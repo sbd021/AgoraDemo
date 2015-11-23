@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AGSRatingView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_evaluate_dialog_cell_traffic" translatesAutoresizingMaskIntoConstraints="NO" id="gXI-ew-pm7">
+                    <rect key="frame" x="215" y="81" width="11" height="12"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="hvR-Pl-dVX"/>
+                        <constraint firstAttribute="height" constant="12" id="ytV-zx-vVR"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用流量" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLi-Vj-m1G">
+                    <rect key="frame" x="231" y="79" width="48" height="15"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_evaluate_dialog_cell_time" translatesAutoresizingMaskIntoConstraints="NO" id="kLd-q7-MxI">
+                    <rect key="frame" x="215" y="59" width="12" height="12"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="9Hf-YO-QLg"/>
+                        <constraint firstAttribute="height" constant="12" id="n5c-MV-K3a"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通话时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECE-P6-Ke0">
+                    <rect key="frame" x="231" y="58" width="48" height="15"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-DL-HWt">
+                    <rect key="frame" x="287" y="59" width="37" height="17"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHx-xn-kec">
+                    <rect key="frame" x="215" y="21" width="170" height="23"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="5ga-Qz-huY"/>
+                        <constraint firstAttribute="width" constant="170" id="QFh-hP-gET"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erk-lL-SgX">
+                    <rect key="frame" x="287" y="79" width="31" height="17"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.58039215686274515" green="0.58039215686274515" blue="0.58039215686274515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pHx-xn-kec" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="25V-8H-4rc"/>
+                <constraint firstItem="ECE-P6-Ke0" firstAttribute="leading" secondItem="kLd-q7-MxI" secondAttribute="trailing" constant="4" id="2Da-kF-q2D"/>
+                <constraint firstItem="gXI-ew-pm7" firstAttribute="top" secondItem="kLd-q7-MxI" secondAttribute="bottom" constant="10" id="6FB-Ql-Csl"/>
+                <constraint firstAttribute="bottom" secondItem="gXI-ew-pm7" secondAttribute="bottom" constant="21" id="9xp-ZM-bkE"/>
+                <constraint firstItem="KKn-DL-HWt" firstAttribute="bottom" secondItem="ECE-P6-Ke0" secondAttribute="bottom" id="AYV-MK-DmG"/>
+                <constraint firstItem="kLd-q7-MxI" firstAttribute="top" secondItem="pHx-xn-kec" secondAttribute="bottom" constant="15" id="EEv-pD-29I"/>
+                <constraint firstItem="kLd-q7-MxI" firstAttribute="leading" secondItem="pHx-xn-kec" secondAttribute="leading" id="Fiw-cv-fWa"/>
+                <constraint firstItem="kLd-q7-MxI" firstAttribute="leading" secondItem="gXI-ew-pm7" secondAttribute="leading" id="HjH-St-UEd"/>
+                <constraint firstItem="erk-lL-SgX" firstAttribute="leading" secondItem="SLi-Vj-m1G" secondAttribute="trailing" constant="12" id="KLj-Sq-Ok9"/>
+                <constraint firstItem="SLi-Vj-m1G" firstAttribute="leading" secondItem="gXI-ew-pm7" secondAttribute="trailing" constant="4" id="NPr-db-dGe"/>
+                <constraint firstItem="KKn-DL-HWt" firstAttribute="leading" secondItem="ECE-P6-Ke0" secondAttribute="trailing" constant="12" id="TBo-vU-aMS"/>
+                <constraint firstItem="ECE-P6-Ke0" firstAttribute="centerY" secondItem="kLd-q7-MxI" secondAttribute="centerY" id="deg-Qr-Be3"/>
+                <constraint firstItem="KKn-DL-HWt" firstAttribute="centerY" secondItem="ECE-P6-Ke0" secondAttribute="centerY" id="jzR-GU-jL1"/>
+                <constraint firstItem="erk-lL-SgX" firstAttribute="bottom" secondItem="SLi-Vj-m1G" secondAttribute="bottom" id="kE3-TJ-aaf"/>
+                <constraint firstAttribute="centerX" secondItem="pHx-xn-kec" secondAttribute="centerX" id="kjR-HG-oqx"/>
+                <constraint firstItem="SLi-Vj-m1G" firstAttribute="centerY" secondItem="gXI-ew-pm7" secondAttribute="centerY" id="mco-z3-fAf"/>
+                <constraint firstItem="erk-lL-SgX" firstAttribute="centerY" secondItem="SLi-Vj-m1G" secondAttribute="centerY" id="xKA-dF-emA"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="jzR-GU-jL1"/>
+                    <exclude reference="xKA-dF-emA"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="dataTrafficLabel" destination="erk-lL-SgX" id="qLX-3v-GSe"/>
+                <outlet property="ratingView" destination="pHx-xn-kec" id="y6a-pG-hbG"/>
+                <outlet property="talkTimeLabel" destination="KKn-DL-HWt" id="fHc-1f-P68"/>
+                <outlet property="titleTimeLabel" destination="ECE-P6-Ke0" id="4g9-zC-zLq"/>
+                <outlet property="titleTrafficLabel" destination="SLi-Vj-m1G" id="rcz-mT-E1p"/>
+            </connections>
+            <point key="canvasLocation" x="524" y="170"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_evaluate_dialog_cell_time" width="12" height="12"/>
+        <image name="ic_evaluate_dialog_cell_traffic" width="11" height="12"/>
+    </resources>
+</document>

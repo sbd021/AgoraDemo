@@ -1,0 +1,87 @@
+/* 
+  Localizable.strings
+  SampleSwift
+
+  Created by let on 11/2/15.
+  Copyright © 2015 Agora. All rights reserved.
+*/
+
+"Agora Easy Call" = "Agora Easy Call";
+"High Quality Conferencing Experience" = "High Quality Conferencing Experience";
+"Online" = "Online";
+"Return" = "Return";
+"Login with Key" = "Login with Key";
+"Need a key? Click Here" = "Need a key? Click Here";
+"Enter Vendor Key" = "Enter Vendor Key";
+"User" = "User";
+"Login" = "Login";
+"Vendor key can not be empty" = "Vendor key can not be empty";
+"User name can not be empty" = "User name can not be empty";
+"Enter Room No." = "Enter Room No.";
+"Join Video Call" = "Join Video Call";
+"Join Voice Call" = "Join Voice Call";
+"Invalid vendor key" = "Invalid vendor key";
+"Tips" = "Tips";
+"Test" = "Test";
+"Room No. can not be empty" = "Room No. can not be empty";
+"Echo Test" = "Echo Test";
+"Click Test to Start" = "Click Test to Start";
+"Cancel" = "Cancel";
+"Please speak to the phone" = "Please speak to the phone";
+"In Testing" = "In Testing";
+//您的设备正常    Echo Test是主观测试，不用提示设备正常 =》 注意下这个"
+"Test Again" = "Test Again";
+"Done" = "Done";
+"Detecting" = "Detecting";
+"Room" = "Room";
+"Mute" = "Mute";
+"Speaker" = "Speaker";
+"Camera Off" = "Camera Off";
+"Switch Camera" = "Switch Camera";
+"Video Call" = "Video Call";
+"Voice Call" = "Voice Call";
+"Waiting for attendees" = "Waiting for attendees\n...";
+"joined room" = "joined room";
+"left room" = "left room";
+"muted video" = "muted video";
+"unmuted video" = "unmuted video";
+"muted audio" = "muted audio";
+"unmuted audio" = "unmuted audio";
+"Exiting" = "Exiting...";
+"Vendor key incorrect, please update user information" = "Vendor key incorrect, please update user information";
+"disabled camera" = "disabled camera";
+"enabled camera" = "enabled camera";
+"disabled microphone" = "disabled microphone";
+"enabled microphone" = "enabled microphone";
+"No network connection, please check your network" = "No network connection, please check your network\n...";
+"Please rate the call" = "Please rate the call";
+"Let's do better" = "Let's do better";
+"Close" = "Close";
+"Rate" = "Rate";
+"Total Time" = "Total Time";
+"Total Trafic" = "Total Trafic";
+"Conf. History" = "Conf. History";
+"Video Resolution" = "Video Resolution";
+"Max. Bitrate" = "Max. Bitrate";
+"Max. Framerate" = "Max. Framerate";
+"Speaker Volume" = "Speaker Volume";
+"Recording" = "Recording";
+"Log Path" = "Log Path";
+"Pop up" = "Pop up";
+"About" = "About";
+"Personal Info" = "Personal Info";
+"Please Enter Vendor Key" = "Please Enter Vendor Key";
+"Please Enter User Name" = "Please Enter User Name";
+"Update" = "Update";
+"Name" = "Name";
+"Conf Report" = "Conf Report";
+"Conf Quality" = "Conf Quality";
+"Agora Conf." = "Agora Conf.";
+"Update" = "Update";
+"FAQ" = "FAQ";
+"Get Your Key" =  "Get Your Key";
+"FAQs" = "FAQs";
+"In Call" = "In Call";
+"Vendor key updated, please login again." = "Vendor key updated, please login again.";
+"Invalid vendor key" = "Invalid vendor key";
+"In Call" = "In Call";
