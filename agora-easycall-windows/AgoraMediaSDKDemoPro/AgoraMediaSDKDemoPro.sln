@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgoraSDKDemoPro", "AgoraSDKDemoPro\AgoraSDKDemoPro.vcproj", "{7A20062F-B776-4BB1-8751-3E7F79A91456}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A20062F-B776-4BB1-8751-3E7F79A91456}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A20062F-B776-4BB1-8751-3E7F79A91456}.Debug|Win32.Build.0 = Debug|Win32
+		{7A20062F-B776-4BB1-8751-3E7F79A91456}.Release|Win32.ActiveCfg = Release|Win32
+		{7A20062F-B776-4BB1-8751-3E7F79A91456}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
