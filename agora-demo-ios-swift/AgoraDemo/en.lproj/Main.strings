@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "通话时间"; ObjectID = "1SY-ZM-8oH"; */
+"1SY-ZM-8oH.text" = "Total Time";
+
+/* Class = "UILabel"; text = "Agora会议室"; ObjectID = "A5F-7a-3rB"; */
+"A5F-7a-3rB.text" = "Agora Easy Call";
+
+/* Class = "UILabel"; text = "切换摄像头"; ObjectID = "Etg-LX-EW2"; */
+"Etg-LX-EW2.text" = "Switch Camera";
+
+/* Class = "UILabel"; text = "进入语音通话"; ObjectID = "HXW-Ak-Gzl"; */
+"HXW-Ak-Gzl.text" = "Join Voice Call";
+
+/* Class = "UILabel"; text = "关闭摄像头"; ObjectID = "Ivl-KL-7ms"; */
+"Ivl-KL-7ms.text" = "Camera Off";
+
+/* Class = "UILabel"; text = "静音"; ObjectID = "U0P-Ez-vQl"; */
+"U0P-Ez-vQl.text" = "Mute";
+
+/* Class = "UILabel"; text = "扬声器"; ObjectID = "VeF-o8-EYI"; */
+"VeF-o8-EYI.text" = "Speaker";
+
+/* Class = "UILabel"; text = "静音"; ObjectID = "bWY-gv-PGA"; */
+"bWY-gv-PGA.text" = "Mute";
+
+/* Class = "UILabel"; text = "扬声器"; ObjectID = "eVc-ey-l32"; */
+"eVc-ey-l32.text" = "Speaker";
+
+/* Class = "UIButton"; normalTitle = "语音通话"; ObjectID = "hC6-71-kA8"; */
+"hC6-71-kA8.normalTitle" = "Voice Call";
+
+/* Class = "UILabel"; text = "Agora会议室"; ObjectID = "olT-BS-2ef"; */
+"olT-BS-2ef.text" = "Agora Easy Call";
+
+/* Class = "UIButton"; normalTitle = "视频通话"; ObjectID = "qIy-ed-0Ff"; */
+"qIy-ed-0Ff.normalTitle" = "Video Call";
+
+/* Class = "UILabel"; text = "NAME"; ObjectID = "qYY-0w-C3H"; */
+"qYY-0w-C3H.text" = "NAME";
+
+/* Class = "UITextField"; placeholder = "输入房间号"; ObjectID = "sAn-Oj-hE8"; */
+"sAn-Oj-hE8.placeholder" = "Enter Room No.";
+
+/* Class = "UITextField"; placeholder = "输入厂商key"; ObjectID = "u6y-eB-4je"; */
+"u6y-eB-4je.placeholder" = "Enter Vendor Key";
+
+/* Class = "UILabel"; text = "流量"; ObjectID = "xy9-6t-h3u"; */
+"xy9-6t-h3u.text" = "Total Trafic";
+
+/* Class = "UILabel"; text = "进入视频通话"; ObjectID = "y7c-au-cTO"; */
+"y7c-au-cTO.text" = "Join Video Call";
+
+/* Class = "UILabel"; text = "稳定完美视频通话体验"; ObjectID = "yLu-6I-fAd"; */
+"yLu-6I-fAd.text" = "High Quality Conferencing Experience";

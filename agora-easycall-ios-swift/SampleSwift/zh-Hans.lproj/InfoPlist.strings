@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  SampleSwift
+
+  Created by let on 11/4/15.
+  Copyright © 2015 Agora. All rights reserved.
+*/
+
+CFBundleDisplayName = "会议宝Swift";

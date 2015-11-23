@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k6i-eq-ASi">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="MTr-aF-tEK">
+            <objects>
+                <viewController id="k6i-eq-ASi" customClass="AGSSplashViewController" customModule="SampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TOt-Z2-FNg"/>
+                        <viewControllerLayoutGuide type="bottom" id="opS-Gc-Rq7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kp5-YE-adk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash_bg" translatesAutoresizingMaskIntoConstraints="NO" id="cZV-uJ-m1x">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="wlk-SR-VII">
+                                <rect key="frame" x="222" y="132" width="157" height="88"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agora会议宝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ3-Cd-NPa">
+                                <rect key="frame" x="16" y="280" width="568" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash_div" translatesAutoresizingMaskIntoConstraints="NO" id="Jmh-xw-4Y6">
+                                <rect key="frame" x="225" y="304" width="150" height="1"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Cba-y5-4hf"/>
+                                    <constraint firstAttribute="width" constant="150" id="bBu-e8-uVU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="稳定完美视频通话体验" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRh-WO-cKk">
+                                <rect key="frame" x="16" y="309" width="568" height="17"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.62352941179999999" green="0.81960784310000001" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NZ3-Cd-NPa" secondAttribute="trailing" constant="16" id="NqT-yc-b9s"/>
+                            <constraint firstItem="NZ3-Cd-NPa" firstAttribute="top" secondItem="wlk-SR-VII" secondAttribute="bottom" constant="60" id="SU2-Sg-DTY"/>
+                            <constraint firstItem="cZV-uJ-m1x" firstAttribute="leading" secondItem="Kp5-YE-adk" secondAttribute="leading" id="Wze-qh-fJU"/>
+                            <constraint firstAttribute="centerX" secondItem="wlk-SR-VII" secondAttribute="centerX" id="bHJ-Th-yyC"/>
+                            <constraint firstAttribute="trailing" secondItem="cZV-uJ-m1x" secondAttribute="trailing" id="crH-FX-hXv"/>
+                            <constraint firstItem="qRh-WO-cKk" firstAttribute="top" secondItem="Jmh-xw-4Y6" secondAttribute="bottom" constant="4" id="hhc-OA-otx"/>
+                            <constraint firstItem="Jmh-xw-4Y6" firstAttribute="top" secondItem="NZ3-Cd-NPa" secondAttribute="bottom" constant="6" id="lAJ-fJ-oGy"/>
+                            <constraint firstItem="NZ3-Cd-NPa" firstAttribute="leading" secondItem="Kp5-YE-adk" secondAttribute="leading" constant="16" id="nHm-hi-TGm"/>
+                            <constraint firstAttribute="trailing" secondItem="qRh-WO-cKk" secondAttribute="trailing" constant="16" id="nhg-mn-JyL"/>
+                            <constraint firstItem="cZV-uJ-m1x" firstAttribute="top" secondItem="Kp5-YE-adk" secondAttribute="top" id="pBI-iI-coF"/>
+                            <constraint firstItem="wlk-SR-VII" firstAttribute="top" secondItem="TOt-Z2-FNg" secondAttribute="bottom" constant="112" id="qch-Ix-2rg"/>
+                            <constraint firstItem="qRh-WO-cKk" firstAttribute="leading" secondItem="Kp5-YE-adk" secondAttribute="leading" constant="16" id="s9C-Hp-lLc"/>
+                            <constraint firstAttribute="centerX" secondItem="Jmh-xw-4Y6" secondAttribute="centerX" id="sgs-XS-AdM"/>
+                            <constraint firstItem="opS-Gc-Rq7" firstAttribute="top" secondItem="cZV-uJ-m1x" secondAttribute="bottom" id="x9V-uZ-IzS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="0nh-8r-6lb" kind="custom" identifier="Splash" customClass="AGSSplashSegue" customModule="SampleSwift" customModuleProvider="target" id="wKY-bx-aIy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gkr-3G-bnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="481" y="-356"/>
+        </scene>
+        <!--Frosted View Controller-->
+        <scene sceneID="0TF-YW-lHM">
+            <objects>
+                <viewController id="0nh-8r-6lb" customClass="AGSFrostedViewController" customModule="SampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A7C-CB-3sc"/>
+                        <viewControllerLayoutGuide type="bottom" id="wjg-F7-kGa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PXl-rt-eag">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ah5-JR-Paa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="-356"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_splash_bg" width="320" height="568"/>
+        <image name="ic_splash_div" width="300" height="2"/>
+        <image name="ic_splash_logo" width="157" height="88"/>
+    </resources>
+</document>
