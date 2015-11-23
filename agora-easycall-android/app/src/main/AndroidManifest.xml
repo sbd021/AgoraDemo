@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.agora.sample.agora">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="ANDROID.PERMISSION.VIBRATE"/>
+    <uses-permission android:name="ANDROID.PERMISSION.WAKE_LOCK"/>
+
+    <application
+        android:name=".AgoraApplication"
+        android:icon="@drawable/app_icon_96"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name=".EntryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".SelectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ChannelActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".RecordActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".AboutActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".WebActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>
