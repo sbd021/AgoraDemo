@@ -1,0 +1,122 @@
+/*
+ Localization.strings
+ AgoraSample"
+ 
+ Created by let on 10/20/15.
+ Copyright © 2015 Agora. All rights reserved.
+ */
+
+
+"High Quality Conferencing Experience" = "稳定完美视频通话体验";
+"Online" = "已上线";
+
+// Common
+"Return" = "返回";
+"Done" = "完成";
+
+// Agora Common
+"Agora Easy Call" = "Agora会议宝";
+
+// Launch view
+"Login with Key" = "使用Key登陆";
+"Need a key? Click Here" = "没有Key?点击这里";
+
+// Login view
+"Enter Vendor Key" = "输入厂商Key";
+"User" = "用户名";
+"Name" = "姓名";
+"Login" = "登录";
+//alert
+"Vendor key can not be empty" = "厂商Key不能为空";
+"User name can not be empty" = "用户名不能为空";
+
+// Select media
+"Enter Room No." = "请输入房间号";
+"Join Video Call" = "进入视频通话";
+"Join Voice Call" = "进入语音通话";
+"Test" = "测试";
+//alert
+"Room No. can not be empty" = "房间号不能为空";
+
+
+"Invalid vendor key" = "无效的厂商Key";
+"Tips" = "提示";
+
+// Test
+"Echo Test" = "语音测试";
+"Click Test to Start" = "点击开始，对设备进行测试";
+"Cancel" = "取消";
+"Please speak to the phone" = "请对设备讲话";
+"In Testing" = "正在测试";
+//您的设备正常    Echo Test是主观测试，不用提示设备正常 =》 注意下这个"
+"Test Again" = "再次测试";
+"Detecting" = "正在检测";
+
+// Chat
+"Room" = "房间";
+"Mute" = "静音";
+"Speaker" = "扬声器";
+"Camera Off" = "关闭摄像头";
+"Switch Camera" = "切换摄像头";
+"Video Call" = "视频通话";
+"Voice Call" = "语音通话";
+"Waiting for attendees" = "房间等待好友加入";
+"joined room" = "进入了房间";
+"left room" = "离开了房间";
+"muted video" = "关闭了视频";
+"unmuted video" = "打开了视频";
+"muted audio" = "关闭了音频";
+"unmuted audio" = "打开了音频";
+"enabled camera" = "打开了摄像头";
+"disabled camera" = "关闭了摄像头";
+"disabled microphone" = "关闭了麦克风";
+"enabled microphone" = "打开了麦克风";
+"Exiting" = "正在退出";
+//alert
+"Vendor key incorrect, please update user information" = "厂商Key错误，请进入个人信息页面修改";
+"No network connection, please check your network" = "网络无法连接，请检查您的网络";
+
+
+// Rate
+"Please rate the call" = "请为本次通话评价";
+"Let's do better" = "让我们做的更好";
+"Close" = "关闭";
+"Rate" = "评价";
+"Total Time" = "通话时间";
+"Total Trafic" = "使用流量";
+
+// Menu
+"Video Resolution" = "视频分辨率";
+"Max. Bitrate" = "最大码率";
+"Max. Framerate" = "最大帧率";
+"Speaker Volume" = "扬声器音量";
+"Recording" = "是否录音";
+"Log Path" = "日志路径";
+"Pop up" = "浮动框";
+
+// About
+"About" = "关于";
+"Agora Conf." = "Agora(会议宝)";
+"Update" = "版本更新";
+"FAQ" = "常见问题";
+
+// History
+"Conf. History" = "通话记录";
+"Conf Report" = "通话报告......";
+
+// Profile
+"Personal Info" = "个人信息";
+"Please Enter Vendor Key" = "请输入厂商Key";
+"Please Enter User Name" = "请输入用户名";
+"Update" = "修改";
+
+
+"Conf Quality" = "通话质量";
+"Agora Conf." = "Agora(会议宝)";
+"Update" = "版本更新";
+"FAQ" = "常见问题";
+"Get Your Key" =  "申请Key";
+"FAQs" = "常见问题";
+"In Call" = "通话中";
+"Vendor key updated, please login again." = "您已经更改厂商Key,请重新登陆";
+"Invalid vendor key" = "无效的厂商Key";

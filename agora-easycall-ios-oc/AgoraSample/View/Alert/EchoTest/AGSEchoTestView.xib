@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="QsY-QB-tLT" customClass="AGSEchoTestView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_voicetest_dialog_horn" translatesAutoresizingMaskIntoConstraints="NO" id="K66-Gf-2hO">
+                    <rect key="frame" x="280" y="32" width="40" height="38"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="SP1-rt-bpc"/>
+                        <constraint firstAttribute="height" constant="38" id="mQp-ZJ-omU"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTJ-G1-19b" customClass="VolumeView">
+                    <rect key="frame" x="259" y="86" width="82" height="9"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="9" id="Rr8-9z-lwk"/>
+                        <constraint firstAttribute="width" constant="82" id="ZkW-Fa-CDs"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mTJ-G1-19b" secondAttribute="bottom" constant="24" id="1RM-aX-6KW"/>
+                <constraint firstItem="mTJ-G1-19b" firstAttribute="top" secondItem="K66-Gf-2hO" secondAttribute="bottom" constant="16" id="LWX-y3-hTQ"/>
+                <constraint firstItem="K66-Gf-2hO" firstAttribute="top" secondItem="QsY-QB-tLT" secondAttribute="top" constant="32" id="eKu-gb-wfs"/>
+                <constraint firstAttribute="centerX" secondItem="mTJ-G1-19b" secondAttribute="centerX" id="st7-lO-Acd"/>
+                <constraint firstAttribute="centerX" secondItem="K66-Gf-2hO" secondAttribute="centerX" id="tT2-Xm-VFD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="volumeView" destination="mTJ-G1-19b" id="E0V-4G-KUA"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_voicetest_dialog_horn" width="40" height="38"/>
+    </resources>
+</document>

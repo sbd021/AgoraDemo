@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  AgoraSample
+
+  Created by let on 11/4/15.
+  Copyright © 2015 Agora. All rights reserved.
+*/
+
+CFBundleDisplayName = "Agora会议宝";
