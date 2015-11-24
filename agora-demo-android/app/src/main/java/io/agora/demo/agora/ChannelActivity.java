@@ -350,7 +350,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
                 rtcEngine.enableVideo();
                 rtcEngine.muteLocalVideoStream(false);
                 rtcEngine.muteLocalAudioStream(false);
-                rtcEngine.muteRemoteVideoStreams(false);
+                rtcEngine.muteAllRemoteVideoStreams(false);
 
                 // join video call
                 if (mRemoteUserContainer.getChildCount() == 0) {
@@ -389,7 +389,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
                 // disable video call when necessary
                 rtcEngine.disableVideo();
                 rtcEngine.muteLocalVideoStream(true);
-                rtcEngine.muteRemoteVideoStreams(true);
+                rtcEngine.muteAllRemoteVideoStreams(true);
 
                 // join voice call
                 if (mRemoteUserContainer.getChildCount() == 0) {

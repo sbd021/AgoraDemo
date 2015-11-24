@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity {
         this.mChannelID = (EditText) findViewById(R.id.input_room_number);
 
 
-        this.mVendorKey.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, ""));
+        this.mVendorKey.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, "6D7A26A1D3554A54A9F43BE6797FE3E2"));
         this.mChannelID.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_CHANNEL_ID, ""));
 
     }
