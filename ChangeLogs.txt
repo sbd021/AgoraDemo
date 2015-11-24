@@ -1,0 +1,15 @@
+
+Release 1.1.0
+Built on 2015-11-24 21:00
+
+API Changes:
+[1] add setVideoProfile API and video profile definition
+[2] remove setVideoMaxBitrate/setVideoMaxFrameRate/setVideoResolution APIs
+[3] onLocalVideoStat: sentBytes/sentFrames ==> sentBitrate/sentFrameRate
+[4] onRemoteVideoStat: receivedFrameCount/receivedBytes ==> receivedBitrate/receivedFrameRate
+[5] add renewDynamicKey to renew dynamic key
+[6] add muteRemoteAudioStream and muteRemoteVideoStream
+[7] add startPreview/stopPreview API, which should be used w/ or w/o joining a channel.
+
+Bug fix:
+[1] video memory leak
