@@ -6,3 +6,5 @@ local.properties
 agora-easycall-android/.gradle
 agora-easycall-android/.idea
 agora-easycall-android/build
+agora-demo-ios-oc/AgoraDemo.xcodeproj/xcuserdata
+agora-demo-ios-oc/AgoraDemo.xcodeproj/project.xcworkspace/xcuserdata

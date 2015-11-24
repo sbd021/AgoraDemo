@@ -7,11 +7,11 @@
 //
 
 #import "AGDChatViewController.h"
-#import <AgoraMediaKit/AgoraRTCEngineKit.h>
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
 @interface AGDChatViewController ()
 {
-    __block AgoraRtcSessionStat *lastStat_;
+    __block AgoraRtcStats *lastStat_;
 }
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *speakerControlButtons;
@@ -86,7 +86,7 @@
     // use test key
     self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKey error:^(AgoraRtcErrorCode errorCode) {
         if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
-            [self.agoraKit leaveChannel];
+            [self.agoraKit leaveChannel:nil];
             [self.errorKeyAlert show];
         }
     }];
@@ -124,7 +124,7 @@
 
 - (void)setUpBlocks
 {
-    [self.agoraKit updateSessionStatBlock:^(AgoraRtcSessionStat *stat) {
+    [self.agoraKit rtcStatsBlock:^(AgoraRtcStats *stat) {
         // Update talk time
         if (self.duration == 0 && !self.durationTimer) {
             self.talkTimeLabel.text = @"00:00";
@@ -155,14 +155,7 @@
         }
     }];
     
-    [self.agoraKit leaveChannelBlock:^(AgoraRtcSessionStat *stat) {
-        // Myself leave status
-        [self.durationTimer invalidate];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
-        [UIApplication sharedApplication].idleTimerDisabled = NO;
-    }];
+
     
     [self.agoraKit connectionLostBlock:^{
         [self showAlertLabelWithString:NSLocalizedString(@"no_network", nil)];
@@ -170,7 +163,7 @@
         self.dataTrafficLabel.text = @"0KB/s";
     }];
     
-    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, bool muted) {
+    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
         NSLog(@"user %@ mute video: %@", @(uid), muted ? @"YES" : @"NO");
         
         [self.videoMuteForUids setObject:@(muted) forKey:@(uid)];
@@ -206,10 +199,16 @@
 
 #pragma mark - 
 
-- (IBAction)didClickBcakView:(id)sender
+- (IBAction)didClickBackView:(id)sender
 {
     [self showAlertLabelWithString:NSLocalizedString(@"exiting", nil)];
-    [self.agoraKit leaveChannel];
+    __weak typeof(self) weakSelf = self;
+    [self.agoraKit leaveChannel:^(AgoraRtcStats *stat) {
+        // Myself leave status
+        [weakSelf.durationTimer invalidate];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+    }];
 }
 
 - (IBAction)didClickAudioMuteButton:(UIButton *)btn
@@ -240,7 +239,13 @@
 - (IBAction)didClickHungUpButton:(UIButton *)btn
 {
     [self showAlertLabelWithString:NSLocalizedString(@"exiting", nil)];
-    [self.agoraKit leaveChannel];
+    __weak typeof(self) weakSelf = self;
+    [self.agoraKit leaveChannel:^(AgoraRtcStats *stat) {
+        // Myself leave status
+        [weakSelf.durationTimer invalidate];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+    }];
 }
 
 - (IBAction)didClickAudioButton:(UIButton *)btn

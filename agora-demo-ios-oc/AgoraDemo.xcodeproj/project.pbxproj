@@ -24,7 +24,7 @@
 		18F23F991B9FC4FF00A7A622 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F23F981B9FC4FF00A7A622 /* AVFoundation.framework */; };
 		18F23FB11B9FC7AD00A7A622 /* AGDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23FB01B9FC7AD00A7A622 /* AGDLoginViewController.m */; };
 		18F23FB51B9FC7C700A7A622 /* AGDChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */; };
-		18FFEEC91BEB4CA50068AA27 /* AgoraMediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FFEEC81BEB4CA50068AA27 /* AgoraMediaKit.framework */; };
+		20FDF36B1C04542E0078A62F /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */; };
 		2C00E95E1BA152D600605003 /* AGDChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00E95D1BA152D600605003 /* AGDChatCell.m */; };
 		2C5DBCD91BA7D85F00952C9D /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCD81BA7D85F00952C9D /* AVOSCloudCrashReporting.framework */; };
 		2C5DBCDB1BA7D86D00952C9D /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDA1BA7D86D00952C9D /* AVOSCloud.framework */; };
@@ -88,7 +88,7 @@
 		18F23FB01B9FC7AD00A7A622 /* AGDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDLoginViewController.m; sourceTree = "<group>"; };
 		18F23FB31B9FC7C700A7A622 /* AGDChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatViewController.h; sourceTree = "<group>"; };
 		18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatViewController.m; sourceTree = "<group>"; };
-		18FFEEC81BEB4CA50068AA27 /* AgoraMediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraMediaKit.framework; sourceTree = "<group>"; };
+		20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C00E95C1BA152D600605003 /* AGDChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatCell.h; sourceTree = "<group>"; };
 		2C00E95D1BA152D600605003 /* AGDChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatCell.m; sourceTree = "<group>"; };
 		2C5DBCD81BA7D85F00952C9D /* AVOSCloudCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudCrashReporting.framework; sourceTree = "<group>"; };
@@ -104,9 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FDF36B1C04542E0078A62F /* AgoraRtcEngineKit.framework in Frameworks */,
 				2C5DBCE31BA7D94400952C9D /* libsqlite3.dylib in Frameworks */,
 				2C5DBCE11BA7D8B800952C9D /* libicucore.dylib in Frameworks */,
-				18FFEEC91BEB4CA50068AA27 /* AgoraMediaKit.framework in Frameworks */,
 				2C5DBCDF1BA7D8AA00952C9D /* CoreLocation.framework in Frameworks */,
 				2C5DBCDD1BA7D89900952C9D /* MobileCoreServices.framework in Frameworks */,
 				18F23F911B9FC4CB00A7A622 /* SystemConfiguration.framework in Frameworks */,
@@ -206,7 +206,7 @@
 		18F23F8D1B9FC49100A7A622 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18FFEEC81BEB4CA50068AA27 /* AgoraMediaKit.framework */,
+				20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */,
 				18F23F9A1B9FC50D00A7A622 /* AudioToolbox.framework */,
 				18F23F981B9FC4FF00A7A622 /* AVFoundation.framework */,
 				2C5DBCDA1BA7D86D00952C9D /* AVOSCloud.framework */,
@@ -362,7 +362,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "leancloud upload_symbol \\\n-f \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\" \\\n-i \"iMBlcA22YEc08R3PcSu3ON11\" \\\n-k \"c5Bz4P2erIpXde7EsKaegCLw\"";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -439,7 +439,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -461,6 +461,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -482,7 +483,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -497,6 +498,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -508,7 +510,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -519,8 +521,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "883580e6-440f-4a40-bdc6-38f81e848c2e";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 			};
 			name = Debug;
 		};
@@ -530,7 +533,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -541,8 +544,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "883580e6-440f-4a40-bdc6-38f81e848c2e";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 			};
 			name = Release;
 		};
@@ -550,6 +554,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -561,6 +566,7 @@
 				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
 			};
 			name = Debug;
@@ -569,6 +575,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -576,6 +583,7 @@
 				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
 			};
 			name = Release;
