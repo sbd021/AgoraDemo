@@ -23,9 +23,12 @@ static NSString * const AGDSegueIdentifierChat = @"Chat";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+#ifdef AgoraDemo_IOS
 #ifdef DEBUG
-    self.keyTextField.text = @"341f3d3c30e94e13bd04be6601dfdd3d";
-    self.roomNumberTextField.text = @"1024";
+    self.keyTextField.text = @"341f3d3c30e94e13bd04be6601dfdd3d"; // Please use your own key. Test key could be forbidden in the future.
+    self.roomNumberTextField.text = @"2048";
+#endif
 #endif
 }
 
