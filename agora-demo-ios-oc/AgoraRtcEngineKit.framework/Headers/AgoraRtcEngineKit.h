@@ -504,6 +504,9 @@ __attribute__((visibility("default"))) @interface AgoraRtcEngineKit : NSObject
 
 - (int)muteAllRemoteAudioStreams:(BOOL)mute;
 
+- (int)muteRemoteAudioStream:(NSUInteger)uid
+                        mute:(BOOL)mute;
+
 /** END OF AUDIO METHODS */
 
 /** BEGIN OF VIDIO METHODS */
@@ -596,6 +599,9 @@ __attribute__((visibility("default"))) @interface AgoraRtcEngineKit : NSObject
  *  @return 0 when executed successfully. return minus value if failed.
  */
 - (int)muteAllRemoteVideoStreams:(BOOL)mute;
+
+- (int)muteRemoteVideoStream:(NSUInteger)uid
+                        mute:(BOOL)mute;
 
 /** END OF VIDIO METHODS */
 
