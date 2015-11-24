@@ -3,3 +3,6 @@ agora-demo-android/.idea
 agora-demo-android/.gradle
 agora-sample-android/.idea
 local.properties
+agora-easycall-android/.gradle
+agora-easycall-android/.idea
+agora-easycall-android/build
