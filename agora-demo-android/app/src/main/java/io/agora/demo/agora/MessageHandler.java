@@ -55,7 +55,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
 
     //更新聊天数据
     @Override
-    public void onUpdateSessionStats(SessionStats stats){
+    public void onRtcStats(RtcStats stats){
 
         BaseEngineEventHandlerActivity activity = getActivity();
 
@@ -66,7 +66,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
 
 
     @Override
-    public void onLeaveChannel(SessionStats stats) {
+    public void onLeaveChannel(RtcStats stats) {
         BaseEngineEventHandlerActivity activity = getActivity();
 
         if (activity != null) {

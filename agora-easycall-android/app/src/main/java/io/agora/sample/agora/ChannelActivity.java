@@ -208,7 +208,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 rtcEngine.enableVideo();
                 rtcEngine.muteLocalVideoStream(false);
                 rtcEngine.muteLocalAudioStream(false);
-                rtcEngine.muteRemoteVideoStreams(false);
+                rtcEngine.muteAllRemoteVideoStreams(false);
 
                 // join video call
                 if (mRemoteUserContainer.getChildCount() == 0) {
@@ -248,7 +248,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 // disable video call when necessary
                 rtcEngine.disableVideo();
                 rtcEngine.muteLocalVideoStream(true);
-                rtcEngine.muteRemoteVideoStreams(true);
+                rtcEngine.muteAllRemoteVideoStreams(true);
 
                 // join voice call
                 if (mRemoteUserContainer.getChildCount() == 0) {
@@ -648,7 +648,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
         isMuted=!isMuted;
 
-        rtcEngine.muteRemoteAudioStreams(isMuted);
+        rtcEngine.muteAllRemoteAudioStreams(isMuted);
 
         for(int i=0;i<mRemoteUserContainer.getChildCount();i++){
 
@@ -843,7 +843,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         });
     }
 
-    public void onUpdateSessionStats(final IRtcEngineEventHandler.SessionStats stats) {
+    public void onUpdateSessionStats(final IRtcEngineEventHandler.RtcStats stats) {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -985,7 +985,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         });
     }
 
-    public void onLeaveChannel(final IRtcEngineEventHandler.SessionStats stats){
+    public void onLeaveChannel(final IRtcEngineEventHandler.RtcStats stats){
 
         runOnUiThread(new Runnable() {
             @Override
@@ -1174,7 +1174,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setResolution(resolution);
 
         mResolutionValue.setText(resolutionValues[resolution]);
-        rtcEngine.setVideoResolution(videoResolutions[resolution][0], videoResolutions[resolution][1]);
+//        rtcEngine.setVideoResolution(videoResolutions[resolution][0], videoResolutions[resolution][1]);
     }
 
     //set rate
@@ -1203,7 +1203,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setRate(rate);
 
         mRateValue.setText(rateValues[rate]);
-        rtcEngine.setVideoMaxBitrate(maxBitRates[rate]);
+//        rtcEngine.setVideoMaxBitrate(maxBitRates[rate]);
     }
 
     //set frame
@@ -1227,7 +1227,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setFrame(frame);
 
         mFrameValue.setText(frameValues[frame]);
-        rtcEngine.setVideoMaxFrameRate(videoMaxFrameRates[frame]);
+//        rtcEngine.setVideoMaxFrameRate(videoMaxFrameRates[frame]);
     }
 
     //set volume

@@ -38,9 +38,9 @@ public class LoginActivity extends BaseActivity {
         this.mVendorKey = (EditText) findViewById(R.id.input_vendor_key);
         this.mChannelID = (EditText) findViewById(R.id.input_room_number);
 
-
-        this.mVendorKey.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, "6D7A26A1D3554A54A9F43BE6797FE3E2"));
-        this.mChannelID.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_CHANNEL_ID, ""));
+        // please your own key, the test key is unavailable soon.
+        this.mVendorKey.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, "341f3d3c30e94e13bd04be6601dfdd3d"));
+        this.mChannelID.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_CHANNEL_ID, "2048"));
 
     }
 

@@ -441,7 +441,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
     }
 
 
-    public void onUpdateSessionStats(final IRtcEngineEventHandler.SessionStats stats) {
+    public void onUpdateSessionStats(final IRtcEngineEventHandler.RtcStats stats) {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -613,7 +613,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
     }
 
     @Override
-    public void onLeaveChannel(IRtcEngineEventHandler.SessionStats stats) {
+    public void onLeaveChannel(IRtcEngineEventHandler.RtcStats stats) {
         try {
             super.onLeaveChannel(stats);
             finish();

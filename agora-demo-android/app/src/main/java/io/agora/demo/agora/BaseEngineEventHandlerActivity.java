@@ -33,10 +33,10 @@ public class BaseEngineEventHandlerActivity extends BaseActivity {
     public void onVideoTransportQuality(int uid, short delay, short lost) {
     }
 
-    public void onLeaveChannel(IRtcEngineEventHandler.SessionStats stats) {
+    public void onLeaveChannel(IRtcEngineEventHandler.RtcStats stats) {
     }
 
-    public void onUpdateSessionStats(IRtcEngineEventHandler.SessionStats stats) {
+    public void onUpdateSessionStats(IRtcEngineEventHandler.RtcStats stats) {
     }
 
     public void onRecap(byte[] recap) {

@@ -363,7 +363,7 @@ public class SelectActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setResolution(resolution);
 
         mResolutionValue.setText(resolutionValues[resolution]);
-        rtcEngine.setVideoResolution(videoResolutions[resolution][0],videoResolutions[resolution][1]);
+//        rtcEngine.setVideoResolution(videoResolutions[resolution][0],videoResolutions[resolution][1]);
     }
 
     //set rate
@@ -392,7 +392,7 @@ public class SelectActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setRate(rate);
 
         mRateValue.setText(rateValues[rate]);
-        rtcEngine.setVideoMaxBitrate(maxBitRates[rate]);
+//        rtcEngine.setVideoMaxBitrate(maxBitRates[rate]);
     }
 
     //set frame
@@ -416,7 +416,7 @@ public class SelectActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setFrame(frame);
 
         mFrameValue.setText(frameValues[frame]);
-        rtcEngine.setVideoMaxFrameRate(videoMaxFrameRates[frame]);
+//        rtcEngine.setVideoMaxFrameRate(videoMaxFrameRates[frame]);
     }
 
     //set volume
