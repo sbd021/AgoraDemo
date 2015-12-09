@@ -7,13 +7,13 @@
 //
 
 #import "AGSChatViewController.h"
-#import <AgoraMediaKit/AgoraRTCEngineKit.h>
+#import <AgoraRtcEngineKit/AgoraRTCEngineKit.h>
 #import "AGSCoreDataManager.h"
 #import "AGSProfileViewController.h"
 
 @interface AGSChatViewController ()
 {
-    __block AgoraRtcSessionStat *lastStat_;
+    __block AgoraRtcStats *lastStat_;
     BOOL isErrorKey_;
     NSUInteger fullscreenUid_;
     AgoraRtcVideoCanvas *localVideoCanvas_;
@@ -261,7 +261,7 @@
         } else {
             if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
                 isErrorKey_ = YES;
-                [self.agoraKit leaveChannel];
+                [self.agoraKit leaveChannel:nil];
                 [self.errorKeyAlert show];
             }
         }
@@ -354,7 +354,7 @@
     //
     // Session
     //
-    [self.agoraKit updateSessionStatBlock:^(AgoraRtcSessionStat *stat) {
+    [self.agoraKit rtcStatsBlock:^(AgoraRtcStats *stat) {
         // Update talk time
         if (self.duration == 0 && !self.durationTimer) {
             self.talkTimeLabel.text = @"00:00";
@@ -423,7 +423,7 @@
     //
     // Leave channel
     //
-    [self.agoraKit leaveChannelBlock:^(AgoraRtcSessionStat *stat) {
+    [self.agoraKit leaveChannelBlock:^(AgoraRtcStats *stat) {
         if (isErrorKey_) return ;
         // Myself leave status
         [self.durationTimer invalidate];
@@ -463,7 +463,7 @@
     }];
     
     //
-    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, bool muted) {
+    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
         NSLog(@"user %td video: %@", uid, muted ? @"muted" : @"unmuted");
         
         [self.videoMuteForUids setObject:@(muted) forKey:@(uid)];
@@ -478,7 +478,7 @@
         
     }];
     
-    [self.agoraKit userMuteAudioBlock:^(NSUInteger uid, bool muted) {
+    [self.agoraKit userMuteAudioBlock:^(NSUInteger uid, BOOL muted) {
         NSLog(@"user %td audio: %@", uid, muted ? @"muted" : @"unmuted");
         
         if (muted) {
@@ -502,9 +502,9 @@
         cell.networkQulity = quality;
     }];
     
-    [self.agoraKit audioRecorderExceptionBlock:^(NSInteger elapsed) {
-        NSLog(@"audio recorder exception, elapsed: %zd", elapsed);
-    }];
+//    [self.agoraKit audioRecorderExceptionBlock:^(NSInteger elapsed) {
+//        NSLog(@"audio recorder exception, elapsed: %zd", elapsed);
+//    }];
     
     [self.agoraKit firstLocalVideoFrameBlock:^(NSInteger width, NSInteger height, NSInteger elapsed) {
         NSLog(@"local video display");
@@ -516,9 +516,9 @@
 {
     AGSMenuViewController *menu = (AGSMenuViewController *)self.frostedViewController.menuViewController;
     
-    [menu setResolutionBlock:^(AGSResolution *resolution) {
-        [self.agoraKit setVideoResolution:resolution.width.intValue andHeight:resolution.height.intValue];
-    }];
+//    [menu setResolutionBlock:^(AGSResolution *resolution) {
+//        [self.agoraKit setVideoResolution:resolution.width.intValue andHeight:resolution.height.intValue];
+//    }];
     
     [menu setFloatWindowBlock:^(BOOL floatWindow) {
         self.activityContrainerView.hidden = !floatWindow;
@@ -540,13 +540,13 @@
         }
     }];
     
-    [menu setRateBlock:^(int rate) {
-        [self.agoraKit setVideoMaxBitrate:rate];
-    }];
-    
-    [menu setFrameBlock:^(int frame) {
-        [self.agoraKit setVideoMaxFrameRate:frame];
-    }];
+//    [menu setRateBlock:^(int rate) {
+//        [self.agoraKit setVideoMaxBitrate:rate];
+//    }];
+//    
+//    [menu setFrameBlock:^(int frame) {
+//        [self.agoraKit setVideoMaxFrameRate:frame];
+//    }];
     
     [menu setVolumeBlock:^(int volume) {
         NSLog(@"%d", volume);
@@ -595,7 +595,13 @@
     if (isErrorKey_) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [self.agoraKit leaveChannel];
+        __weak typeof(self) weakSelf = self;
+        [self.agoraKit leaveChannel:^(AgoraRtcStats *stat) {
+            // Myself leave status
+            [weakSelf.durationTimer invalidate];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
+        }];
     }
 }
 
@@ -627,7 +633,13 @@
 - (IBAction)didClickHungUpButton:(UIButton *)btn
 {
     [self showAlertLabelWithString:NSLocalizedString(@"Exiting", @"")];
-    [self.agoraKit leaveChannel];
+    __weak typeof(self) weakSelf = self;
+    [self.agoraKit leaveChannel:^(AgoraRtcStats *stat) {
+        // Myself leave status
+        [weakSelf.durationTimer invalidate];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+    }];
 }
 
 - (IBAction)didClickAudioButton:(UIButton *)btn

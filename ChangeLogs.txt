@@ -1,6 +1,24 @@
 
+Release 1.1.1
+Built on 2015-12-8
+
+API:
+[1] add API: getNativeHandle;
+[2] add API: setChannelProfile(CHANNEL_PROFILE_TYPE profile), callbacks onUerJoined/onUserDropped/onUserMutedAudio/onUserMutedVideo only work under FREE channel profile
+[3] add API: onApiCallExecuted. Every API call will have notification sent to APP when it's done
+[4] API change: renewDynamicKey ==> renewChannelDynamicKey
+
+Bug fix:
+[1] fix the issue of large comfort noise after mute/unmute op
+[2] increase the mic volume
+[3] improve the echo problem in general
+[4] sometimes video stuck after network bandwidth has a big drop
+[5] the remote view ratates degree 90 when enableVideo after joinChannel
+
+
+
 Release 1.1.0
-Built on 2015-11-24 21:00
+Built on 2015-11-30
 
 API Changes:
 [1] add setVideoProfile API and video profile definition
@@ -13,3 +31,8 @@ API Changes:
 
 Bug fix:
 [1] video memory leak
+[2] Video drops when a video call lasts tens of minutes.
+[3] bug fix: green view
+
+Improvement
+[1] increase the mic volume for Android

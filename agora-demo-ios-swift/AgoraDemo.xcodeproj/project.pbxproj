@@ -26,7 +26,7 @@
 		182218371BB2892E0033B6B8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182218361BB2892E0033B6B8 /* SystemConfiguration.framework */; };
 		18F07B331BD5DAF700A7A6F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F07B351BD5DAF700A7A6F1 /* Localizable.strings */; };
 		18F0F4F61BD6382F008E10E7 /* AGDSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F4F51BD6382F008E10E7 /* AGDSplashViewController.swift */; };
-		18FFEEC71BEB4C600068AA27 /* AgoraMediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FFEEC61BEB4C600068AA27 /* AgoraMediaKit.framework */; };
+		20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 		18F0F4F51BD6382F008E10E7 /* AGDSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGDSplashViewController.swift; sourceTree = "<group>"; };
 		18FE38D31BE300660061BDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		18FE38D51BE3006A0061BDBD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		18FFEEC61BEB4C600068AA27 /* AgoraMediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraMediaKit.framework; sourceTree = "<group>"; };
+		20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */,
 				182218371BB2892E0033B6B8 /* SystemConfiguration.framework in Frameworks */,
-				18FFEEC71BEB4C600068AA27 /* AgoraMediaKit.framework in Frameworks */,
 				182218261BB246150033B6B8 /* libicucore.dylib in Frameworks */,
 				182218241BB246010033B6B8 /* libsqlite3.dylib in Frameworks */,
 				182218221BB245F30033B6B8 /* libc++.dylib in Frameworks */,
@@ -162,7 +162,7 @@
 		182218141BB244810033B6B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18FFEEC61BEB4C600068AA27 /* AgoraMediaKit.framework */,
+				20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */,
 				182218151BB245A40033B6B8 /* AudioToolbox.framework */,
 				182218171BB245AC0033B6B8 /* AVFoundation.framework */,
 				182218191BB245B80033B6B8 /* CoreLocation.framework */,
@@ -247,6 +247,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AGD;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
@@ -446,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Lu (26FA8DJCVS)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -455,7 +457,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "883580e6-440f-4a40-bdc6-38f81e848c2e";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraDemo/AgoraDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -468,8 +470,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Harry Lu (26FA8DJCVS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harry Lu (26FA8DJCVS)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -478,7 +480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "883580e6-440f-4a40-bdc6-38f81e848c2e";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraDemo/AgoraDemo-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -488,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -499,6 +502,7 @@
 				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
 			};
 			name = Debug;
@@ -507,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -514,6 +519,7 @@
 				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
 			};
 			name = Release;

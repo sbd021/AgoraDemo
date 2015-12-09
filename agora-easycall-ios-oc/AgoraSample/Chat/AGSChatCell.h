@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AgoraMediaKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
 typedef NS_ENUM(NSInteger, AGSChatType) {
     AGSChatTypeVideo,

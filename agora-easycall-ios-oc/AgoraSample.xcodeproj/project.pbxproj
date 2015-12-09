@@ -32,6 +32,7 @@
 		18F34DEC1BAFD2E7000ADECA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DEB1BAFD2E7000ADECA /* Foundation.framework */; };
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
+		2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
 		2C11930C1BB3F20500CE994E /* FOWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1193051BB3F20500CE994E /* FOWebViewController.xib */; };
 		2C11930D1BB3F20500CE994E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193081BB3F20500CE994E /* NJKWebViewProgress.m */; };
@@ -69,8 +70,8 @@
 		2CE5460E1B9D6A6100EDE8BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE5460D1B9D6A6100EDE8BB /* SystemConfiguration.framework */; };
 		C70B49C61BD60F1100885E30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C70B49C81BD60F1100885E30 /* Localizable.strings */; };
 		C70B49DD1BD6EFEF00885E30 /* AGSSplashSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C70B49DC1BD6EFEF00885E30 /* AGSSplashSegue.m */; };
-		C70E96BF1BDF500800AD7C96 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96BE1BDF500800AD7C96 /* AVOSCloud.framework */; settings = {ASSET_TAGS = (); }; };
-		C70E96C11BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */; settings = {ASSET_TAGS = (); }; };
+		C70E96BF1BDF500800AD7C96 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96BE1BDF500800AD7C96 /* AVOSCloud.framework */; };
+		C70E96C11BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */; };
 		C773BD691BD6F7D100F92C3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C773BD681BD6F7D100F92C3B /* Info.plist */; };
 		C773BD6B1BD6F7E600F92C3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C773BD6A1BD6F7E600F92C3B /* Info.plist */; };
 		C7A11D591BDF50CF008D0407 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D581BDF50CF008D0407 /* CoreLocation.framework */; };
@@ -78,7 +79,6 @@
 		C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */; };
 		C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5E1BDF51AF008D0407 /* libc++.tbd */; };
 		C7FD24671BE9B14D0064454F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7FD24691BE9B14D0064454F /* InfoPlist.strings */; };
-		C7FD24801BEB290A0064454F /* AgoraMediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD247F1BEB290A0064454F /* AgoraMediaKit.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +148,7 @@
 		18F34DED1BAFD312000ADECA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18F34DF51BB0090D000ADECA /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
+		2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
 		2C1193041BB3F20500CE994E /* FOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOWebViewController.m; sourceTree = "<group>"; };
 		2C1193051BB3F20500CE994E /* FOWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FOWebViewController.xib; sourceTree = "<group>"; };
@@ -222,7 +223,6 @@
 		C7FD24681BE9B14D0064454F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7FD246C1BE9B1A50064454F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7FD246D1BE9B1AA0064454F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		C7FD247F1BEB290A0064454F /* AgoraMediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraMediaKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,12 +230,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */,
 				C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */,
 				C7A11D5B1BDF50E9008D0407 /* MobileCoreServices.framework in Frameworks */,
 				C7A11D591BDF50CF008D0407 /* CoreLocation.framework in Frameworks */,
 				2C4F76EB1BB122D1003635F5 /* CoreData.framework in Frameworks */,
-				C7FD24801BEB290A0064454F /* AgoraMediaKit.framework in Frameworks */,
 				18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */,
 				18F34DEC1BAFD2E7000ADECA /* Foundation.framework in Frameworks */,
 				C70E96BF1BDF500800AD7C96 /* AVOSCloud.framework in Frameworks */,
@@ -561,9 +561,9 @@
 		2CE545FA1B9D629600EDE8BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */,
 				C7A11D5E1BDF51AF008D0407 /* libc++.tbd */,
 				C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */,
-				C7FD247F1BEB290A0064454F /* AgoraMediaKit.framework */,
 				C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */,
 				C7A11D581BDF50CF008D0407 /* CoreLocation.framework */,
 				C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */,
@@ -924,9 +924,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "883580e6-440f-4a40-bdc6-38f81e848c2e";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 			};
 			name = Debug;
 		};
@@ -952,9 +952,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "baf445b0-8d80-403d-b2b0-4f1ab26250ae";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 			};
 			name = Release;
 		};
@@ -962,6 +962,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -972,8 +973,9 @@
 				);
 				INFOPLIST_FILE = AgoraSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraSample.app/AgoraSample";
 			};
 			name = Debug;
@@ -982,14 +984,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AgoraSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraSample.app/AgoraSample";
 			};
 			name = Release;

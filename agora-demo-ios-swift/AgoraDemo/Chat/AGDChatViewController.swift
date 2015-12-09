@@ -61,8 +61,8 @@ class AGDChatViewController: UIViewController {
  
     lazy var agoraKit: AgoraRtcEngineKit = {
         let kit = AgoraRtcEngineKit(vendorKey:self.vendorKey) { errorCode -> Void in
-            if errorCode == AgoraRtcErrorCode._Error_InvalidVendorKey {
-                self.agoraKit.leaveChannel()
+            if errorCode == AgoraRtcErrorCode.Error_InvalidVendorKey {
+                self.agoraKit.leaveChannel(nil)
                 self.errorKeyAlert.show()
             }
         }
@@ -107,7 +107,7 @@ class AGDChatViewController: UIViewController {
     var duration = 0
     
     
-    var lastStat: AgoraRtcSessionStat?
+    var lastStat: AgoraRtcStats?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,13 +143,13 @@ class AGDChatViewController: UIViewController {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
         videoCanvas.view = self.videoMainView
-        videoCanvas.renderMode = AgoraRtcRenderMode._Render_Hidden
+        videoCanvas.renderMode = AgoraRtcRenderMode.Render_Hidden
         kit.setupLocalVideo(videoCanvas)
     }
     
     func setUpBlocks(kit: AgoraRtcEngineKit) {
         
-        kit.updateSessionStatBlock { (stat) -> Void in
+        kit.rtcStatsBlock { (stat) -> Void in
             if self.lastStat == nil {
                 self.talkTimeLabel.text = "00:00"
                 self.durationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTalkTimeLabel"), userInfo: nil, repeats: true)
@@ -176,7 +176,7 @@ class AGDChatViewController: UIViewController {
         
         kit.userOfflineBlock { (uid) -> Void in
             
-            if let index = find(self.uids, uid) {
+            if let index = self.uids.indexOf(uid) {
                 self.uids.removeAtIndex(index)
                 self.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
             }
@@ -188,7 +188,7 @@ class AGDChatViewController: UIViewController {
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.8 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewControllerAnimated(true)
             }
             UIApplication.sharedApplication().idleTimerDisabled = false
         }
@@ -201,7 +201,7 @@ class AGDChatViewController: UIViewController {
         
         kit.userMuteVideoBlock { (uid, mute) -> Void in
             self.videoMuteForUids.updateValue(mute, forKey: uid)
-            if let index = find(self.uids, uid) {
+            if let index = self.uids.indexOf(uid) {
                 self.collectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
             }
         }
@@ -222,19 +222,47 @@ class AGDChatViewController: UIViewController {
     
     func updateTalkTimeLabel() {
         self.duration++
-        var seconds = (duration % 60)
-        var minutes = (duration - seconds)/60
+        let seconds = (duration % 60)
+        let minutes = (duration - seconds)/60
         talkTimeLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
     
     @IBAction func didClickBcakView(sender: UIButton) {
         showAlertLabelWithString(AGDKeyStringExit)
-        agoraKit.leaveChannel()
+        weak var weakSelf = self
+        agoraKit.leaveChannel { (_) -> Void in
+            if let strongSelf = weakSelf {
+                strongSelf.durationTimer?.invalidate()
+                strongSelf.navigationController?.popViewControllerAnimated(true)
+                UIApplication.sharedApplication().idleTimerDisabled = false
+            }
+        }
+        
+        agoraKit.joinChannelByKey(nil, channelName: channel, info: nil, uid: 0) { (sid, uid, elapsed) -> Void in
+            self.agoraKit.setEnableSpeakerphone(true)
+            if self.type == .Audio {
+                self.agoraKit.disableVideo()
+            }
+            UIApplication.sharedApplication().idleTimerDisabled = true
+            
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(self.vendorKey, forKey: AGDKeyVendorKey)
+        }
+        
+        
+        
     }
 
     @IBAction func didClickHungUpButton(sender: UIButton){
         showAlertLabelWithString(AGDKeyStringExit)
-        agoraKit.leaveChannel()
+        weak var weakSelf = self
+        agoraKit.leaveChannel { (_) -> Void in
+            if let strongSelf = weakSelf {
+                strongSelf.durationTimer?.invalidate()
+                strongSelf.navigationController?.popViewControllerAnimated(true)
+                UIApplication.sharedApplication().idleTimerDisabled = false
+            }
+        }
     }
     
     @IBAction func didClickAudioMuteButton(sender: UIButton) {
@@ -291,7 +319,7 @@ class AGDChatViewController: UIViewController {
                 var videoCanvas = AgoraRtcVideoCanvas()
                 videoCanvas.uid = uid
                 videoCanvas.view = cell.videoView;
-                videoCanvas.renderMode = AgoraRtcRenderMode._Render_Hidden
+                videoCanvas.renderMode = AgoraRtcRenderMode.Render_Hidden
                 agoraKit.setupRemoteVideo(videoCanvas)
             }
         } else {

@@ -32,7 +32,7 @@ class AGDLoginViewController: UIViewController {
         navigationController!.navigationBarHidden = true
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        var vendorKey = userDefaults.objectForKey(AGDKeyVendorKey)
+        let vendorKey = userDefaults.objectForKey(AGDKeyVendorKey)
         if vendorKey != nil {
             keyTextField.text = vendorKey as! String
         }
@@ -57,7 +57,7 @@ class AGDLoginViewController: UIViewController {
     
     func isValidInput() -> Bool {
         
-        if keyTextField.text.isEmpty || roomNumberTextField.text.isEmpty {
+        if keyTextField.text!.isEmpty || roomNumberTextField.text!.isEmpty {
             var alertView = UIAlertView(title: nil, message:NSLocalizedString("enter_key_room",comment:"Please Enter Vendor Key and Room No.") , delegate: nil, cancelButtonTitle: NSLocalizedString("done",comment:"Done"))
             alertView.show()
             
@@ -71,7 +71,7 @@ class AGDLoginViewController: UIViewController {
         
         if segue.identifier == AGDKeySegueIdentifierChat {
             var chatViewController = segue.destinationViewController as! AGDChatViewController
-            chatViewController.dictionary = [AGDKeyVendorKey:keyTextField.text,AGDKeyChannel:roomNumberTextField.text]
+            chatViewController.dictionary = [AGDKeyVendorKey:keyTextField.text!,AGDKeyChannel:roomNumberTextField.text!]
             
             var button = sender as! UIButton
             if button.tag == 1 {

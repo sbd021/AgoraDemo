@@ -2,7 +2,7 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import "AgoraMediaKit/AgoraRtcEngineKit.h"
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 #import "AVOSCloud/AVOSCloud.h"
 #import "AVOSCloudCrashReporting/AVOSCloudCrashReporting.h"
 #import "RatingBar.h"

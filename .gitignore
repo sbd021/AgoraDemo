@@ -9,3 +9,14 @@ agora-easycall-android/build
 agora-demo-ios-oc/AgoraDemo.xcodeproj/xcuserdata
 agora-demo-ios-oc/AgoraDemo.xcodeproj/project.xcworkspace/xcuserdata
 agora-demo-android/build
+agora-voice-demo-android/.gradle
+agora-voice-demo-android/.idea
+agora-voice-demo-oc/sample.xcodeproj/xcuserdata
+agora-easycall-ios-oc/AgoraSample.xcodeproj/project.xcworkspace/xcuserdata
+agora-easycall-ios-oc/AgoraSample.xcodeproj/xcuserdata
+agora-voice-demo-android/build
+agora-voice-demo-oc/sample.xcodeproj/project.xcworkspace/xcuserdata
+agora-demo-ios-swift/AgoraDemo.xcodeproj/project.xcworkspace/xcuserdata
+agora-demo-ios-swift/AgoraDemo.xcodeproj/xcuserdata
+agora-easycall-ios-swift/SampleSwift.xcodeproj/project.xcworkspace/xcuserdata
+agora-easycall-ios-swift/SampleSwift.xcodeproj/xcuserdata

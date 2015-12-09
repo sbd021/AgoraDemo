@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AgoraMediaKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 #import "AGSCallBackView.h"
 
 @protocol AGSAgoraKitManagerDelegate;

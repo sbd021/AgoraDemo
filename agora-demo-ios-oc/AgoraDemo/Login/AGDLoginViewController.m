@@ -26,8 +26,8 @@ static NSString * const AGDSegueIdentifierChat = @"Chat";
     
 #ifdef AgoraDemo_IOS
 #ifdef DEBUG
-    self.keyTextField.text = @"341f3d3c30e94e13bd04be6601dfdd3d"; // Please use your own key. Test key could be forbidden in the future.
-    self.roomNumberTextField.text = @"2048";
+    self.keyTextField.text = @""; // Please use your own key. Test key could be forbidden in the future.
+    self.roomNumberTextField.text = @"";
 #endif
 #endif
 }

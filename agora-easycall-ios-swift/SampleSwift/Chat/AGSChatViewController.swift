@@ -17,7 +17,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
     var duration: UInt = 0
     
     //
-    var lastStat_ = AgoraRtcSessionStat()
+    var lastStat_ = AgoraRtcStats()
     var isErrorKey_ = false
     var fullscreenUid_: UInt!
     var localVideoCanvas_: AgoraRtcVideoCanvas!
@@ -276,7 +276,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
             } else {
                 if errorCode == AgoraRtcErrorCode.Error_InvalidVendorKey {
                     self.isErrorKey_ = true
-                    self.agoraKit.leaveChannel()
+                    self.agoraKit.leaveChannel(nil)
                     self.errorKeyAlert.show()
                 }
             }
@@ -360,7 +360,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         //
         // Session status
         //
-        self.agoraKit.updateSessionStatBlock { (stat :AgoraRtcSessionStat!) -> Void in
+        self.agoraKit.rtcStatsBlock { (stat :AgoraRtcStats!) -> Void in
             // Update talk time
             if self.duration == 0 {
                 self.talkTimeLabel.text = "00:00"
@@ -516,9 +516,9 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         //
         // Exception for recording
         //
-        agoraKit.audioRecorderExceptionBlock { (elapsed) -> Void in
-            print("audio recorder exception")
-        }
+//        agoraKit.audioRecorderExceptionBlock { (elapsed) -> Void in
+//            print("audio recorder exception")
+//        }
         
         //
         // Local video
@@ -534,9 +534,9 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         //
         // Resolution
         //
-        menu.resolutionChangedHandler =  { (resolution) -> Void in
-            self.agoraKit.setVideoResolution(resolution.width(), andHeight: resolution.height())
-        }
+//        menu.resolutionChangedHandler =  { (resolution) -> Void in
+//            self.agoraKit.setVideoResolution(resolution.width(), andHeight: resolution.height())
+//        }
         
         //
         // Float window
@@ -566,16 +566,16 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         //
         // Video rate
         //
-        menu.rateChangedHandler = {
-            self.agoraKit.setVideoMaxBitrate($0)
-        }
+//        menu.rateChangedHandler = {
+//            self.agoraKit.setVideoMaxBitrate($0)
+//        }
         
         //
         // Video frame
         //
-        menu.frameChangedHandler = {
-            self.agoraKit.setVideoMaxFrameRate($0)
-        }
+//        menu.frameChangedHandler = {
+//            self.agoraKit.setVideoMaxFrameRate($0)
+//        }
     }
     
     func showAlertLabelWithString(text: String) {
@@ -623,7 +623,14 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         if isErrorKey_ {
             navigationController?.popViewControllerAnimated(true)
         } else {
-            agoraKit.leaveChannel()
+            weak var weakSelf = self
+            agoraKit.leaveChannel { (_) -> Void in
+                if let strongSelf = weakSelf {
+                    strongSelf.durationTimer?.invalidate()
+                    strongSelf.navigationController?.popViewControllerAnimated(true)
+                    UIApplication.sharedApplication().idleTimerDisabled = false
+                }
+            }
         }
     }
     
@@ -650,7 +657,14 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
     
     @IBAction func didClickHungUpButton(btn: UIButton) {
         showAlertLabelWithString(NSLocalizedString("Exiting", comment: ""))
-        agoraKit.leaveChannel()
+        weak var weakSelf = self
+        agoraKit.leaveChannel { (_) -> Void in
+            if let strongSelf = weakSelf {
+                strongSelf.durationTimer?.invalidate()
+                strongSelf.navigationController?.popViewControllerAnimated(true)
+                UIApplication.sharedApplication().idleTimerDisabled = false
+            }
+        }
     }
     
     @IBAction func didClickAudioButton(btn: UIButton) {

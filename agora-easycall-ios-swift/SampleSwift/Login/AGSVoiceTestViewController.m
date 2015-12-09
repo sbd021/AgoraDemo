@@ -7,7 +7,7 @@
 //
 
 #import "AGSVoiceTestViewController.h"
-#import <AgoraMediaKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 #import <AVFoundation/AVFoundation.h>
 
 @interface AGSVoiceTestViewController ()
