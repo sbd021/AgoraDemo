@@ -11,7 +11,7 @@
 
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *keyLabel;
+@property (weak, nonatomic) IBOutlet UITextField *vendorKeyTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
 @property (weak, nonatomic) IBOutlet UIButton *leaveButton;
@@ -28,6 +28,9 @@
 @property (assign, nonatomic) BOOL enabledSpeaker;
 @end
 
+static NSString * const KeyVendorKey = @"VendorKey";
+
+
 @implementation ViewController
 - (NSMutableString *)logString
 {
@@ -41,8 +44,23 @@
 {
     [super viewDidLoad];
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *vendorKey = [userDefaults objectForKey:KeyVendorKey];
+    if (vendorKey) {
+        self.vendorKeyTextField.text = vendorKey;
+    } else {
+        NSURL *innerKeyUrl = [NSURL URLWithString:@"http://192.168.99.253:8970/agora.inner.test.key.txt"];
+        NSString *innerVendorKey = [NSString stringWithContentsOfURL:innerKeyUrl
+                                                            encoding:NSASCIIStringEncoding
+                                                               error:nil];
+        
+        self.vendorKeyTextField.text = [innerVendorKey
+                                  stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
+    }
+    
+    
     __weak typeof(self) weakSelf = self;
-    self.agoraRtcEngine = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.keyLabel.text error:^(AgoraRtcErrorCode errorCode) {
+    self.agoraRtcEngine = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKeyTextField.text error:^(AgoraRtcErrorCode errorCode) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf appendLogString:[NSString stringWithFormat:@"error code: %lu", (long)errorCode]];
     }];
@@ -146,6 +164,10 @@
         weakSelf.joinButton.alpha = 1.0f;
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf appendLogString:[NSString stringWithFormat:@"joined channel: %@ uid %u elapsed %d ms", channel, (unsigned int)uid, (int)elapsed]];
+        
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.vendorKeyTextField.text forKey:KeyVendorKey];
     }];
 }
 
