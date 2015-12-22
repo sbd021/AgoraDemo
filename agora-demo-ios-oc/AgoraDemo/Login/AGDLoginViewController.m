@@ -24,12 +24,7 @@ static NSString * const AGDSegueIdentifierChat = @"Chat";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-#ifdef AgoraDemo_IOS
-#ifdef DEBUG
-    self.keyTextField.text = @""; // Please use your own key. Test key could be forbidden in the future.
-    self.roomNumberTextField.text = @"";
-#endif
-#endif
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +41,16 @@ static NSString * const AGDSegueIdentifierChat = @"Chat";
     NSString *vendorKey = [userDefaults objectForKey:AGDKeyVendorKey];
     if (vendorKey) {
         self.keyTextField.text = vendorKey;
+    } else {
+        NSURL *innerKeyUrl = [NSURL URLWithString:@"http://192.168.99.253:8970/agora.inner.test.key.txt"];
+        NSString *innerVendorKey = [NSString stringWithContentsOfURL:innerKeyUrl
+                                                     encoding:NSASCIIStringEncoding
+                                                        error:nil];
+        
+        self.keyTextField.text = [innerVendorKey
+                                  stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
     }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
