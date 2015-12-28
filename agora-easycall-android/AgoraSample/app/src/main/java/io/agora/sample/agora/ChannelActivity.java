@@ -36,6 +36,8 @@ import java.util.TimerTask;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
+import android.widget.FrameLayout;
+import android.util.Log;
 
 /**
  * Created by apple on 15/9/18.
@@ -71,7 +73,11 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
     private ImageView mNetworkQuality;
 
-    private LinearLayout mRemoteUserContainer;
+	// Used to contain thumbnail videos
+	// When no thumbnail exists, this container becomes invisible
+    private LinearLayout mThumbnailsContainer;
+	// Used to contain main video
+	private FrameLayout mMainVideoContainer;
 
     private RelativeLayout mEvaluationContainer;
 
@@ -92,9 +98,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
     private int mLastRxBytes = 0;
     private int mLastTxBytes = 0;
     private int mLastDuration = 0;
-    private int mRemoteUserViewWidth = 0;
-
-    private SurfaceView mLocalView;
+    private int mThumbnailViewWidth = 0;
 
     private RtcEngine rtcEngine;
 
@@ -128,7 +132,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         // keep screen on - turned on
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        mRemoteUserViewWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
+        mThumbnailViewWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
 
         setupRtcEngine();
 
@@ -211,17 +215,10 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 rtcEngine.muteAllRemoteVideoStreams(false);
 
                 // join video call
-                if (mRemoteUserContainer.getChildCount() == 0) {
+                /*if (mRemoteUserContainer.getChildCount() == 0)*/ {
 
                     setupChannel();
                 }
-
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateRemoteUserViews(CALLING_TYPE_VIDEO);
-                    }
-                },500);
 
                 // ensure video camera enabler states
                 CheckBox cameraEnabler = (CheckBox) findViewById(R.id.action_camera_enabler);
@@ -251,17 +248,10 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 rtcEngine.muteAllRemoteVideoStreams(true);
 
                 // join voice call
-                if (mRemoteUserContainer.getChildCount() == 0) {
+                /*if (mRemoteUserContainer.getChildCount() == 0)*/ {
 
                     setupChannel();
                 }
-
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateRemoteUserViews(CALLING_TYPE_VOICE);
-                    }
-                }, 500);
             }
             break;
 
@@ -443,7 +433,8 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         mNotificationOld=(TextView)findViewById(R.id.channel_notification_old);
         mNotificationNew=(TextView)findViewById(R.id.channel_notification_new);
         mNetworkQuality=(ImageView)findViewById(R.id.channel_network_quality);
-        mRemoteUserContainer=(LinearLayout) findViewById(R.id.user_remote_views);
+		mMainVideoContainer = (FrameLayout) findViewById(R.id.user_main_view_container);
+        mThumbnailsContainer=(LinearLayout) findViewById(R.id.user_remote_views);
 
         mEvaluationContainer=(RelativeLayout)findViewById(R.id.channel_evaluation);
         mEvaluationContainer.setVisibility(View.GONE);
@@ -600,20 +591,24 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
     //Show Local
     private void ensureLocalViewIsCreated() {
+    	ViewGroup vg = findViewFor(0);
+		if(vg != null)
+			return;
 
-        if (this.mLocalView == null) {
+		vg = setupViewFor(0);
 
-            // local view has not been added before
-            FrameLayout localViewContainer = (FrameLayout) findViewById(R.id.user_local_view);
-            SurfaceView localView = rtcEngine.CreateRendererView(getApplicationContext());
-            this.mLocalView = localView;
-            localViewContainer.addView(localView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-
-            rtcEngine.enableVideo();
-            rtcEngine.setupLocalVideo(new VideoCanvas(this.mLocalView));
-
-            mLocalView.setTag(0);
+		if(vg == null)
+			return;
+		SurfaceView canvasView = getVideoSurface(vg, false);
+		if(canvasView == null)
+			return;
+        rtcEngine.enableVideo(); // If video has not been started, then start it
+        int rc;
+		rc = rtcEngine.setupLocalVideo(new VideoCanvas(canvasView));
+        if (rc < 0) {
+            Log.e("AGORA_SDK", "Failed to call rtcEngine.setupLocalVideo for local preview");
         }
+
     }
 
     //switch click
@@ -626,35 +621,72 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
 
         // In Video Call
-        ViewGroup remoteViewParent = (ViewGroup) view.getParent();
-        if(remoteViewParent!=null){
-            View remoteUserVoiceContainer = remoteViewParent.findViewById(R.id.remote_user_voice_container);
-            if(View.VISIBLE == remoteUserVoiceContainer.getVisibility()){
-                return;
-            }
-        }
 
-        int from=(Integer)view.getTag();
-        int to=(Integer)mLocalView.getTag();
+		// view: on which the tap event raised
+    	ViewGroup v1 = (ViewGroup) view.getParent();
+		if(v1 == null)
+			return;
 
-        rtcEngine.switchView(from, to);
+		// switch with main view
+		ViewGroup v2 = (ViewGroup) mMainVideoContainer.getChildAt(0);
+		if(v2 == null)
+			return;
 
-        mLocalView.setTag(from);
-        view.setTag(to);
+		// if click on main view: no switch
+		if(v2.getTag() == v1.getTag())
+			return;
+
+		// switch
+		ViewGroup v1_parent = (ViewGroup) v1.getParent();
+		if(v1_parent == null)
+			return;
+
+		int pos = v1_parent.indexOfChild(v1); // keep position
+		v1_parent.removeView(v1);
+		mMainVideoContainer.removeView(v2);
+		v1_parent.addView(v2, pos, new FrameLayout.LayoutParams(mThumbnailViewWidth, mThumbnailViewWidth));
+		mMainVideoContainer.addView(v1, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+
+		// bring the new main view to background and
+		// thumbnail view top
+		SurfaceView c;
+		c = getVideoSurface(v1, false);
+		if(c != null)
+		{
+        	c.setZOrderOnTop(false);
+        	c.setZOrderMediaOverlay(false);
+		}
+
+		c = getVideoSurface(v2, true);
+		if(c != null)
+		{
+        	c.setZOrderOnTop(true);
+        	c.setZOrderMediaOverlay(true);
+		}
     }
 
     //mute others
     public void onMuteRemoteUsers(View view){
-
         isMuted=!isMuted;
 
         rtcEngine.muteAllRemoteAudioStreams(isMuted);
 
-        for(int i=0;i<mRemoteUserContainer.getChildCount();i++){
+		// check main view
+		RelativeLayout vg;
+		vg = (RelativeLayout) mMainVideoContainer.getChildAt(0);
+		if(vg != null && (int)vg.getTag() != 0) {
+			updateViewStatus(vg, (int)vg.getTag());
+		}
 
-            (mRemoteUserContainer.getChildAt(i).findViewById(R.id.viewlet_remote_video_voice)).setBackgroundResource(isMuted ? R.drawable.ic_room_voice_red : R.drawable.ic_room_voice_grey);
-            (mRemoteUserContainer.getChildAt(i).findViewById(R.id.remote_user_voice_container).findViewById(R.id.remote_user_voice_icon)).setBackgroundResource(isMuted ? R.drawable.ic_room_voice_red : R.drawable.ic_room_voice_grey);
-        }
+		// check thumbnails view
+		int child_count = mThumbnailsContainer.getChildCount();
+		int i;
+		for(i=0; i<child_count; i++) {
+			vg = (RelativeLayout) mThumbnailsContainer.getChildAt(i);
+			if(vg != null && (int)vg.getTag() != 0) {
+				updateViewStatus(vg, (int)vg.getTag());
+			}
+		}
     }
 
     public void onJoinChannelSuccess(String channel,final int uid,int elapsed){
@@ -711,133 +743,63 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+				// Enable view now
+				ViewGroup vg = findViewFor(uid);
+				if(vg == null)
+					return;
+				SurfaceView canvasView = getVideoSurface(vg, false);
+				if(canvasView == null)
+					return;
+		        rtcEngine.enableVideo(); // If video has not been started, then start it
+		        int rc;
+				if(uid == 0)
+					rc = rtcEngine.setupLocalVideo(new VideoCanvas(canvasView));
+				else
+					rc = rtcEngine.setupRemoteVideo(new VideoCanvas(canvasView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+		        if (rc < 0) {
+		            Log.e("AGORA_SDK", "Failed to call rtcEngine.setupRemoteVideo for user " + uid);
+		        }
 
-                View remoteUserView = mRemoteUserContainer.findViewById(Math.abs(uid));
-
-                // ensure container is added
-                if (remoteUserView == null) {
-
-                    LayoutInflater layoutInflater = getLayoutInflater();
-
-                    View singleRemoteUser = layoutInflater.inflate(R.layout.viewlet_remote_user, null);
-                    singleRemoteUser.setId(Math.abs(uid));
-
-                    TextView username = (TextView) singleRemoteUser.findViewById(R.id.remote_user_name);
-                    username.setText(String.valueOf(Math.abs(uid)));
-
-                    mRemoteUserContainer.addView(singleRemoteUser, new LinearLayout.LayoutParams(mRemoteUserViewWidth, mRemoteUserViewWidth));
-
-                    remoteUserView = singleRemoteUser;
-
-                    setupNotification(Math.abs(uid) + getString(R.string.channel_join));
-                }
-
-                FrameLayout remoteVideoUser = (FrameLayout) remoteUserView.findViewById(R.id.viewlet_remote_video_user);
-                remoteVideoUser.removeAllViews();
-                remoteVideoUser.setTag(uid);
-
-                // ensure remote video view setup
-                final SurfaceView remoteView = RtcEngine.CreateRendererView(getApplicationContext());
-                remoteVideoUser.addView(remoteView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-                remoteView.setZOrderOnTop(true);
-                remoteView.setZOrderMediaOverlay(true);
-
-                rtcEngine.enableVideo();
-                int successCode = rtcEngine.setupRemoteVideo(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
-
-                if (successCode < 0) {
-                    new android.os.Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            rtcEngine.setupRemoteVideo(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
-                            remoteView.invalidate();
-                        }
-                    }, 500);
-                }
-
-                if (remoteUserView != null && callingType == CALLING_TYPE_VIDEO) {
-                    remoteUserView.findViewById(R.id.remote_user_voice_container).setVisibility(View.GONE);
-                } else {
-                    remoteUserView.findViewById(R.id.remote_user_voice_container).setVisibility(View.VISIBLE);
-                }
-
-                // app hints before you join
-                TextView appNotification = (TextView) findViewById(R.id.app_notification);
-                appNotification.setText("");
-                setRemoteUserViewVisibility(true);
             }
         });
     }
 
     public synchronized void onUserJoined(final int uid, int elapsed) {
-
-        View existedUser = mRemoteUserContainer.findViewById(Math.abs(uid));
-        if (existedUser != null) {
-            // user view already added
-            return;
-        }
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+				Log.e("AGORA_SDK", "onUserJoined: " + uid);
+				// a view with the UserID already there?
+				// if yes, continue use that view and return
+				ViewGroup vg = findViewFor(uid);
+				if(vg != null) {
+					Log.e("AGORA_SDK", "a previous view is used for user " + uid);
+					return;
+				}
 
-                // Handle the case onFirstRemoteVideoDecoded() is called before onUserJoined()
-                View singleRemoteUser = mRemoteUserContainer.findViewById(Math.abs(uid));
-                if (singleRemoteUser != null) {
-                    return;
-                }
+				// if no, create a new view and do some configure
+				vg = setupViewFor(uid);
+				if(vg == null) {
+					Log.e("AGORA_SDK", "Failed to create a anchor window for user " + uid);
+					return;
+				}
 
-                LayoutInflater layoutInflater = getLayoutInflater();
-                singleRemoteUser = layoutInflater.inflate(R.layout.viewlet_remote_user, null);
-                singleRemoteUser.setId(Math.abs(uid));
-
-                TextView username = (TextView) singleRemoteUser.findViewById(R.id.remote_user_name);
-                username.setText(String.valueOf(Math.abs(uid)));
-
-                mRemoteUserContainer.addView(singleRemoteUser, new LinearLayout.LayoutParams(mRemoteUserViewWidth, mRemoteUserViewWidth));
+				// Notification
+		        setupNotification(Math.abs(uid) + getString(R.string.channel_join));
 
                 // app hints before you join
                 TextView appNotification = (TextView) findViewById(R.id.app_notification);
                 appNotification.setText("");
-
-                //show container
-                setRemoteUserViewVisibility(true);
-
-                setupNotification(Math.abs(uid) + getString(R.string.channel_join));
             }
         });
     }
 
+
     public void onUserOffline(final int uid) {
-
-
-        if(mRemoteUserContainer==null || mLocalView==null){
-            return;
-        }
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                if((Integer)mLocalView.getTag()==uid) {
-
-                    rtcEngine.setupLocalVideo(new VideoCanvas(mLocalView));
-                    mLocalView.setTag(0);
-                }
-
-                View userViewToRemove = mRemoteUserContainer.findViewById(Math.abs(uid));
-                mRemoteUserContainer.removeView(userViewToRemove);
-
-                // no joined users any more
-                if (mRemoteUserContainer.getChildCount() == 0) {
-
-                    TextView appNotification = (TextView) findViewById(R.id.app_notification);
-                    appNotification.setText(R.string.channel_prepare);
-
-                    //hide container
-                    setRemoteUserViewVisibility(false);
-                }
-
+                removeViewFor(uid);
                 setupNotification(Math.abs(uid) + getString(R.string.channel_leave));
             }
         });
@@ -861,27 +823,14 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
     }
 
     public void onUserMuteVideo(final int uid, final boolean muted) {
-
-        if(mRemoteUserContainer==null){
-            return;
-        }
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                View remoteView = mRemoteUserContainer.findViewById(Math.abs(uid));
-
-                if(remoteView!=null) {
-
-                    remoteView.findViewById(R.id.remote_user_voice_container).setVisibility(
-                            (CALLING_TYPE_VOICE==callingType || (CALLING_TYPE_VIDEO==callingType && muted))
-                                    ? View.VISIBLE
-                                    : View.GONE);
-
-                    remoteView.invalidate();
-                }
-
+				ViewGroup gr = findViewFor(uid);
+				if(gr == null)
+					return;
+            	SurfaceView sv = getVideoSurface(gr, uid == 0);
+				sv.setVisibility( muted ? View.GONE : View.VISIBLE);
                 setupNotification(muted ? Math.abs(uid) + getString(R.string.channel_mute_video) : Math.abs(uid) + getString(R.string.channel_open_video));
             }
         });
@@ -892,7 +841,6 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 setupNotification(muted ? Math.abs(uid) + getString(R.string.channel_mute_audio) : Math.abs(uid) + getString(R.string.channel_open_audio));
             }
         });
@@ -943,7 +891,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
                 try {
 
-                    View remoteView = mRemoteUserContainer.findViewById(Math.abs(uid));
+                    View remoteView = findViewFor(uid);
 
                     if(remoteView==null){
                         return;
@@ -1053,46 +1001,6 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 }
             }
         });
-    }
-
-    //show or hide remote user container
-    private void setRemoteUserViewVisibility(boolean isVisible) {
-
-        findViewById(R.id.user_remote_views).getLayoutParams().height =
-                isVisible ? (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics())
-                        : 0;
-    }
-
-    private void updateRemoteUserViews(int callingType) {
-
-        int visibility = View.GONE;
-
-        if (callingType==CALLING_TYPE_VIDEO) {
-            visibility = View.GONE;
-
-        } else if (callingType==CALLING_TYPE_VOICE) {
-            visibility = View.VISIBLE;
-        }
-
-        for (int i = 0, size = mRemoteUserContainer.getChildCount(); i < size; i++) {
-
-            View singleRemoteView = mRemoteUserContainer.getChildAt(i);
-            singleRemoteView.findViewById(R.id.remote_user_voice_container).setVisibility(visibility);
-
-            if (callingType==CALLING_TYPE_VIDEO) {
-
-                // re-setup remote video
-                FrameLayout remoteVideoUser = (FrameLayout) singleRemoteView.findViewById(R.id.viewlet_remote_video_user);
-                // ensure remote video view setup
-                if(remoteVideoUser.getChildCount()>0) {
-                    final SurfaceView remoteView = (SurfaceView) remoteVideoUser.getChildAt(0);
-                    remoteView.setZOrderOnTop(true);
-                    remoteView.setZOrderMediaOverlay(true);
-                    int savedUid = (Integer) remoteVideoUser.getTag();
-                    rtcEngine.setupRemoteVideo(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_ADAPTIVE, savedUid));
-                }
-            }
-        }
     }
 
     private void setupTime() {
@@ -1283,7 +1191,210 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         mFloatContainer.setBackgroundResource(isChecked ? R.drawable.ic_room_bg_talk_time : R.color.transparent);
         mStatsContainer.setBackgroundResource(isChecked?R.color.transparent:R.drawable.ic_room_bg_talk_time);
         mNotificationOld.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-        mNotificationNew.setVisibility(isChecked?View.VISIBLE:View.GONE);
+        mNotificationNew.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         (findViewById(R.id.channel_notification_icon)).setVisibility(isChecked ? View.VISIBLE : View.GONE);
     }
+
+
+	//------------------------------------------------------------------------------------------
+	// View management
+	// Highly depends on your layout design
+	//------------------------------------------------------------------------------------------
+
+	// create local view: could differ with remote view
+	private ViewGroup createLocalView() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View top = layoutInflater.inflate(R.layout.viewlet_remote_user, null);
+
+		return (ViewGroup) top;
+	}
+
+	// create remote view: here we use the same as local view. you can define
+	// a different view layout
+	private ViewGroup createRemoteView() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View top = layoutInflater.inflate(R.layout.viewlet_remote_user, null);
+
+		return (ViewGroup) top;
+	}
+
+	private void updateViewStatus(ViewGroup view, int uid) {
+		if(view == null)
+			return;
+
+		if(uid == 0) {
+			// local
+			View mic = view.findViewById(R.id.viewlet_remote_video_voice);
+			if(mic != null) {
+				mic.setVisibility(View.GONE);
+			}
+
+			TextView name = (TextView) view.findViewById(R.id.remote_user_name);
+			if(name != null) {
+				name.setVisibility(View.GONE);
+			}
+		}
+		else {
+			View mic = view.findViewById(R.id.viewlet_remote_video_voice);
+			if(mic != null) {
+				mic.setBackgroundResource(isMuted ? R.drawable.ic_room_voice_red : R.drawable.ic_room_voice_grey);
+				mic.setVisibility(View.VISIBLE);
+			}
+
+			TextView name = (TextView) view.findViewById(R.id.remote_user_name);
+			if(name != null) {
+		        name.setText(String.valueOf(uid));
+				name.setVisibility(View.VISIBLE);
+			}
+
+			SurfaceView sv = getVideoSurface(view, false);
+            if (callingType == CALLING_TYPE_VIDEO) {
+                sv.setVisibility(View.VISIBLE);
+            } else {
+                sv.setVisibility(View.GONE);
+            }
+		}
+	}
+
+	// return the innermost view where video view will be attached at
+	private FrameLayout getAnchorPoint(ViewGroup view, boolean isLocal) {
+		if(isLocal) {
+			// depends on your view layout
+			FrameLayout anchor = (FrameLayout) view.findViewById(R.id.viewlet_anchor);
+			return anchor;
+		}
+		else {
+			// depends on your view layout
+			FrameLayout anchor = (FrameLayout) view.findViewById(R.id.viewlet_anchor);
+			return anchor;
+		}
+	}
+
+	private SurfaceView getVideoSurface(ViewGroup view, boolean isLocal) {
+		FrameLayout fl = getAnchorPoint(view, isLocal);
+		if(fl == null)
+			return null;
+		if(isLocal)
+			return (SurfaceView)((ViewGroup) fl).getChildAt(0);
+		else
+			return (SurfaceView)((ViewGroup) fl).getChildAt(0);
+	}
+
+	// create a new ViewGroup for user uid and attach to app's view tree
+	// caller must make sure no other ViewGroup for that user exists
+	private ViewGroup setupViewFor(int uid) {
+		boolean videoViewOnTop = false;
+		ViewGroup gr;
+		FrameLayout anchor;
+
+		if(uid == 0) {
+			gr = createLocalView();
+		}
+		else {
+			gr = createRemoteView();
+		}
+
+		anchor = getAnchorPoint(gr, uid==0);
+		if(anchor == null)
+			return null;
+
+		gr.setTag(uid);
+
+
+		// Insert host to app's view tree
+		if(mMainVideoContainer.getChildCount() == 0) {
+	        mMainVideoContainer.addView(gr, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+
+			videoViewOnTop = false;
+		}
+		else {
+	        mThumbnailsContainer.addView(gr, new FrameLayout.LayoutParams(mThumbnailViewWidth, mThumbnailViewWidth));
+
+			videoViewOnTop = true;
+
+			// container is visible now
+			mThumbnailsContainer.setVisibility(View.VISIBLE);
+		}
+
+		// Create an internal view for video rendering
+        final SurfaceView canvasView = RtcEngine.CreateRendererView(getApplicationContext());
+
+        canvasView.setZOrderOnTop(videoViewOnTop);
+        canvasView.setZOrderMediaOverlay(videoViewOnTop);
+
+		// Insert in host view
+        anchor.addView(canvasView);
+
+		// Update the status
+		updateViewStatus(gr, uid);
+
+		return gr;
+	}
+
+	// return a ViewGroup for user uid
+	private ViewGroup findViewFor(int uid) {
+		ViewGroup gr;
+		gr = (ViewGroup) mMainVideoContainer.getChildAt(0);
+		if(gr != null && (int)gr.getTag() == uid)
+			return gr;
+
+		int child_count = mThumbnailsContainer.getChildCount();
+		int i;
+		for(i=0; i<child_count; i++) {
+			gr = (ViewGroup) mThumbnailsContainer.getChildAt(i);
+
+			if(gr != null && (int)gr.getTag() == uid)
+				return gr;
+		}
+
+		return null;
+	}
+
+	// Caller make sure mMainVideoAnchor does not contain
+	// a child calling this funciton
+	private void moveThumbnailVideoToMain() {
+		if(mThumbnailsContainer.getChildCount() == 0)
+			return;
+
+		ViewGroup gr = (ViewGroup) mThumbnailsContainer.getChildAt(0);
+		mThumbnailsContainer.removeView(gr);
+		mMainVideoContainer.addView(gr, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+
+		if(mThumbnailsContainer.getChildCount() == 0)
+			mThumbnailsContainer.setVisibility(View.GONE);
+
+		int uid = (int)gr.getTag();
+		SurfaceView c = getVideoSurface(gr, uid==0);
+		if(c != null)
+		{
+        	c.setZOrderOnTop(false);
+        	c.setZOrderMediaOverlay(false);
+		}
+	}
+
+	// must run in gui thread
+	private void removeViewFor(int uid) {
+		ViewGroup gr = findViewFor(uid);
+		if(gr == null)
+			return;
+
+		// notify SDK
+		if(uid == 0)
+			rtcEngine.setupLocalVideo(new VideoCanvas(null));
+		else
+			rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+
+		ViewGroup parent = (ViewGroup) gr.getParent();
+		if(parent == null)
+			return;
+
+		parent.removeView(gr);
+
+		if(mThumbnailsContainer.getChildCount() == 0) {
+			mThumbnailsContainer.setVisibility(View.GONE);
+		}
+
+		if(mMainVideoContainer.getChildCount() == 0)
+			moveThumbnailVideoToMain();
+	}
 }

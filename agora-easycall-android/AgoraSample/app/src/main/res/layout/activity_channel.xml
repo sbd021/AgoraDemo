@@ -284,10 +284,13 @@
             android:layout_above="@id/channel_bottom_actions_container"
             android:layout_below="@id/channel_top_actions_container">
 
+			<!-- used for main video view -->
             <FrameLayout
-                android:id="@+id/user_local_view"
+            	android:id="@+id/user_main_view_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+                <!-- Do not place other views here -->
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/user_local_voice_bg"
