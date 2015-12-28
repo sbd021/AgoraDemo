@@ -1379,11 +1379,11 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 			return;
 
 		// notify SDK
-/*		if(uid == 0)
+		if(uid == 0)
 			rtcEngine.setupLocalVideo(new VideoCanvas(null));
 		else
 			rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
-*/
+
 		ViewGroup parent = (ViewGroup) gr.getParent();
 		if(parent == null)
 			return;
