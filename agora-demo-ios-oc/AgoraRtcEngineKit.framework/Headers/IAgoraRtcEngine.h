@@ -91,6 +91,7 @@ enum INTERFACE_ID_TYPE
 {
 	AGORA_IID_AUDIO_DEVICE_MANAGER = 1,
 	AGORA_IID_VIDEO_DEVICE_MANAGER = 2,
+	AGORA_IID_RTC_ENGINE_PARAMETER = 3,
 };
 
 enum WARN_CODE_TYPE
@@ -260,6 +261,13 @@ enum CHANNEL_PROFILE_TYPE
 	CHANNEL_PROFILE_FREE = 0,
 	CHANNEL_PROFILE_BROADCASTER = 1,
 	CHANNEL_PROFILE_AUDIENCE = 2,
+	CHANNEL_PROFILE_WEBSDK_COMPATIBLE = 3,
+};
+
+enum USER_OFFLINE_REASON_TYPE
+{
+	USER_OFFLINE_QUIT = 0,
+	USER_OFFLINE_DROPPED = 1,
 };
 
 struct AudioVolumeInfo
@@ -344,87 +352,501 @@ public:
 	virtual bool onReceivePacket(Packet& packet) = 0;
 };
 
+
+/**
+* the event call back interface
+*/
 class IRtcEngineEventHandler
 {
 public:
 	virtual ~IRtcEngineEventHandler() {}
+
+	/**
+	* when join channel success, the function will be called
+	* @param [in] channel
+	*		the channel name you have joined
+	* @param [in] uid_t
+	*		the UID of you in this channel
+	* @param [in] elapsed
+	*		the time elapsed in ms from the joinChannel been called to joining completed
+	*/
 	virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {}
+	
+	/**
+	* when join channel success, the function will be called
+	* @param [in] channel
+	*		the channel name you have joined
+	* @param [in] uid_t
+	*		the UID of you in this channel
+	* @param [in] elapsed
+	*		the time elapsed in ms elapsed
+	*/
 	virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {}
+	
+	/**
+	* when warning message coming, the function will be called
+	* @param [in] warn
+	*		warning code
+	* @param [in] msg
+	*		the warning message
+	*/
 	virtual void onWarning(int warn, const char* msg) {}
+	
+	/**
+	* when error message come, the function will be called
+	* @param [in] err
+	*		error code
+	* @param [in] msg
+	*		the error message
+	*/
 	virtual void onError(int err, const char* msg) {}
+
+	/**
+	* when audio quality message come, the function will be called
+	* @param [in] uid
+	*		the uid of the peer
+	* @param [in] quality
+	*		the quality of the user 0~5 the higher the better
+	* @param [in] delay
+	*		the average time of the audio packages delayed
+	* @param [in] lost
+	*		the rate of the audio packages lost
+	*/
 	virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {}
+	
+	/**
+	* when the audio volume information come, the function will be called
+	* @param [in] speakers
+	*		the array of the speakers' audio volume information
+	* @param [in] speakerNumber
+	*		the count of speakers in this array
+	* @param [in] totalVolume
+	*		the total volume of all users
+	*/
 	virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume) {}
+	
+	/**
+	* when the audio volume information come, the function will be called
+	* @param [in] speakers
+	*		the array of the speakers' audio volume information
+	* @param [in] speakerNumber
+	*		the count of speakers in this array
+	* @param [in] totalVolume
+	*		the total volume of all users
+	*/
 	virtual void onLeaveChannel(const RtcStats& stat) {}
+	
+	/**
+	* when the information of the RTC engine stats come, the function will be called
+	* @param [in] stat
+	*		the RTC engine stats
+	*/
 	virtual void onRtcStats(const RtcStats& stat) {}
+	
+	/**
+	* when the media engine event come, the function will be called
+	* @param [in] evt
+	*		the event code
+	*/
 	virtual void onMediaEngineEvent(int evt) {}
+
+	/**
+	* when the audio device state changed(plugged or removed), the function will be called
+	* @param [in] deviceId
+	*		the ID of the state changed audio device
+	* @param [in] deviceType
+	*		the type of the audio device(playout device or record device)
+	* @param [in] deviceState
+	*		the device is been removed or added
+	*/
 	virtual void onAudioDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {}
+
+	/**
+	* when the video device state changed(plugged or removed), the function will be called
+	* @param [in] deviceId
+	*		the ID of the state changed video device
+	* @param [in] deviceType
+	*		not used
+	* @param [in] deviceState
+	*		the device is been removed or added
+	*/
 	virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {}
+	
+	/**
+	* report the network quality
+	* @param [in] quality
+	*		the score of the network quality 0~5 the higher the better
+	*/
 	virtual void onNetworkQuality(int quality) {}
+	
+	/**
+	* when the first local video frame displayed, the function will be called
+	* @param [in] width
+	*		the width of the video frame
+	* @param [in] height
+	*		the height of the video frame
+	* @param [in] elapsed
+	*		the time elapsed from channel joined in ms
+	*/
 	virtual void onFirstLocalVideoFrame(int width, int height, int elapsed) {}
+	
+	/**
+	* when the first remote video frame decoded, the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	* @param [in] width
+	*		the width of the video frame
+	* @param [in] height
+	*		the height of the video frame
+	* @param [in] elapsed
+	*		the time elapsed from channel joined in ms
+	*/
 	virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {}
+	
+	/**
+	* when the first remote video frame displayed, the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	* @param [in] width
+	*		the width of the video frame
+	* @param [in] height
+	*		the height of the video frame
+	* @param [in] elapsed
+	*		the time elapsed from remote user called joinChannel in ms
+	*/
 	virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) {}
+	
+	/**
+	* when any other user joined in the same channel, the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	* @param [in] elapsed
+	*		the time elapsed from the 
+	* @param [in] height
+	*		the height of the video frame
+	* @param [in] elapsed
+	*		the time elapsed from remote used called joinChannel to joining completed in ms
+	*/
 	virtual void onUserJoined(uid_t uid, int elapsed) {}
-	virtual void onUserOffline(uid_t uid) {}
+	
+	/**
+	* when user offline(exit channel or offline by accident), the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	*/
+	virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {}
+	
+	/**
+	* when remote user muted the audio stream, the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	* @param [in] muted
+	*		true: the remote user muted the audio stream, false: the remote user unmuted the audio stream
+	*/
 	virtual void onUserMuteAudio(uid_t uid, bool muted) {}
+
+	/**
+	* when remote user muted the video stream, the function will be called
+	* @param [in] uid
+	*		the UID of the remote user
+	* @param [in] muted
+	*		true: the remote user muted the video stream, false: the remote user unmuted the video stream
+	*/
 	virtual void onUserMuteVideo(uid_t uid, bool muted) {}
+
+	/**
+	* when api call executed completely, the function will be called
+	* @param [in] api
+	*		the api name
+	* @param [in] error
+	*		error code while 0 means OK
+	*/
 	virtual void onApiCallExecuted(const char* api, int error) {}
+	
+	/**
+	* when api call executed completely, the function will be called
+	* @param [in] api
+	*		the api name
+	* @param [in] error
+	*		error code while 0 means OK
+	*/
 	virtual void onLocalVideoStat(int sentBitrate, int sentFrameRate) {}
+	
+	/**
+	* reported the remote video stat
+	* @param [in] uid
+	*		UID of the remote user
+	* @param [in] delay
+	*		remote video frame delayed
+	* @param [in] receivedBitrate
+	*		bit rate
+	* @param [in] receiveFrameRate
+	*		frame rate
+	*/
 	virtual void onRemoteVideoStat(uid_t uid, int delay, int receivedBitrate, int receiveFrameRate) {}
-    virtual void onCameraReady() {}
+    
+	/**
+	* when the camera is ready to work, the function will be called
+	*/
+	virtual void onCameraReady() {}
+	
+	/**
+	* when all video stopped, the function will be called then you can repaint the video windows
+	*/
 	virtual void onVideoStopped() {}
+
+	/**
+	* when the network can not worked well, the function will be called
+	*/
 	virtual void onConnectionLost() {}
+
+	/**
+	* when local user disconnected by accident, the function will be called(then SDK will try to reconnect itself)
+	*/
+	virtual void onConnectionInterrupted() {}
+	
+	/**
+	* when vendor message received, the function will be called
+	* @param [in] uid
+	*		UID of the remote user
+	* @param [in] data
+	*		the message data
+	* @param [in] length
+	*		the message length, in bytes
+	*		frame rate
+	*/
 	virtual void onVendorMessage(uid_t uid, const char* data, size_t length) {}
 };
 
+/**
+* the video device collection interface
+*/
 class IVideoDeviceCollection
 {
 public:
+	/**
+	* get the audio device count
+	* @return returns the audio device count
+	*/
 	virtual int getCount() = 0;
+
+	/**
+	* get audio device information
+	* @param [in] index
+	*		the index of the device in the device list
+	* @param [in out] deviceName
+	*		the device name, UTF8 format
+	* @param [in out] deviceId
+	*		the device ID, UTF8 format
+	* @return return 0 if success or an error code
+	*/
 	virtual int getDevice(int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* set current active audio device
+	* @param [in] deviceId
+	*		the deviceId of the device you want to active currently
+	* @return return 0 if success or an error code
+	*/
 	virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+
+	/**
+	* release the resource
+	*/
 	virtual void release() = 0;
 };
 
 class IVideoDeviceManager
 {
 public:
+
+	/**
+	* create the IVideoDeviceCollection interface pointer
+	* @return return the IVideoDeviceCollection interface or nullptr if failed
+	*/
 	virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;
+	
+	/**
+	* active the video device for current using
+	* @param [in] deviceId
+	*		the deviceId of the device you want to active currently
+	* @return return 0 if success or the error code.
+	*/
 	virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* get the current active video device
+	* @param [in out] deviceId
+	*		the device id of the current active video device
+	* @return return 0 if success or an error code
+	*/
 	virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* test the video capture device to know whether it can worked well
+	* @param [in] hwnd
+	*		the HWND of the video-display window
+	* @return return 0 if success or an error code
+	*/
 	virtual int startDeviceTest(view_t hwnd) = 0;
+	
+	/**
+	* stop the video device testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int stopDeviceTest() = 0;
+	
+	/**
+	* release the resource
+	*/
 	virtual void release() = 0;
 };
 
 class IAudioDeviceCollection
 {
 public:
+	/**
+	* get the available devices count
+	* @return return the device count
+	*/
 	virtual int getCount() = 0;
+
+	/**
+	* get video device information
+	* @param [in] index
+	*		the index of the device in the device list
+	* @param [in out] deviceName
+	*		the device name, UTF8 format
+	* @param [in out] deviceId
+	*		the device ID, UTF8 format
+	* @return return 0 if success or an error code
+	*/
 	virtual int getDevice(int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* active the device for current using
+	* @param [in] deviceId
+	*		the deviceId of the device you want to active currently
+	* @return return 0 if success or the error code.
+	*/
 	virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* release the resource
+	*/
 	virtual void release() = 0;
 };
 
 class IAudioDeviceManager
 {
 public:
+	/**
+	* create the IAudioDeviceCollection interface pointer of the playback devices
+	* @return return the IVideoDeviceCollection interface or nullptr if failed
+	*/
 	virtual IAudioDeviceCollection* enumeratePlaybackDevices() = 0;
+	
+	/**
+	* create the IAudioDeviceCollection interface pointer of the Recording devices
+	* @return return the IVideoDeviceCollection interface or nullptr if failed
+	*/
 	virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;
+	
+	/**
+	* active the playback device for current using
+	* @param [in] deviceId
+	*		the deviceId of the playback device you want to active currently
+	* @return return 0 if success or the error code.
+	*/
 	virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* get the current active playback device
+	* @param [in out] deviceId
+	*		the device id of the current active video device
+	* @return return 0 if success or an error code
+	*/
 	virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* set current playback device volume
+	* @param [in] volume
+	*		the volume you want to set 0-255
+	* @return return 0 if success or an error code
+	*/
 	virtual int setPlaybackDeviceVolume(int volume) = 0;
+	
+	/**
+	* get current playback device volume
+	* @param [in out] *volume
+	*		the current playback device volume 0-255
+	* @return return 0 if success or an error code
+	*/
 	virtual int getPlaybackDeviceVolume(int *volume) = 0;
 
+	/**
+	* active the recording audio device for current using
+	* @param [in] deviceId
+	*		the deviceId of the recording audio device you want to active currently
+	* @return return 0 if success or the error code.
+	*/
 	virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* get the current active recording device
+	* @param [in out] deviceId
+	*		the device id of the current active recording audio device
+	* @return return 0 if success or an error code
+	*/
 	virtual int getRecordingDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;
+	
+	/**
+	* set current recording device volume
+	* @param [in] volume
+	*		the volume you want to set 0-255
+	* @return return 0 if success or an error code
+	*/
 	virtual int setRecordingDeviceVolume(int volume) = 0;
+	
+	/**
+	* get current recording device volume
+	* @param [in out] *volume
+	*		the current recording device volume 0-255
+	* @return return 0 if success or an error code
+	*/
 	virtual int getRecordingDeviceVolume(int *volume) = 0;
 
+	/**
+	* test the playback audio device to know whether it can worked well
+	* @param [in] testAudioFilePath
+	*		the path of the .wav file
+	* @return return 0 if success and you can hear the sound of the .wav file or an error code.
+	*/
 	virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;
+	
+	/**
+	* stop the playback audio device testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int stopPlaybackDeviceTest() = 0;
 	
+	/**
+	* test the recording audio device to know whether it can worked well
+	* @param [in] indicationInterval
+	*		the period in ms of the call back cycle
+	* @return return 0 if success or an error code
+	*/
 	virtual int startRecordingDeviceTest(int indicationInterval) = 0;
+	
+	/**
+	* stop the recording audio device testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int stopRecordingDeviceTest() = 0;
+	
+	/**
+	* release the resource
+	*/
 	virtual void release() = 0;
 };
 
@@ -438,31 +860,184 @@ struct RtcEngineContext
 class IRtcEngine
 {
 public:
+
+	/**
+	* release the engine resource
+	*/
 	virtual void release() = 0;
+
+	/**
+	* initialize the engine
+	* @param [in] context
+	*		the RTC engine context
+	* @return return 0 if success or an error code
+	*/
 	virtual int initialize(const RtcEngineContext& context) = 0;
+	
+	/**
+	* get the pointer of the device manager object.
+	* @param [in] iid
+	*		the iid of the interface you want to get
+	* @param [in out] inter
+	*       the pointer of the pointer you want to point to DeviceManager object
+	* @return return 0 if success or an error code
+	*/
 	virtual int queryInterface(INTERFACE_ID_TYPE iid, void** inter) = 0;
+
+	/**
+	* get the version information of the SDK
+	* @param [in out] build
+	*		the build number
+	* @return return the version number string in char format
+	*/
+	virtual const char* getVersion(int* build) = 0;
+	
+	/**
+	* get the version information of the SDK
+	* @param [in out] build
+	*		the build number
+	* @return return the version number string in char format
+	*/
+	virtual const char* getErrorDescription(int code) = 0;
+	
+	/**
+	* join the channel, if the channel have not been created, it will been created automatically 
+	* @param [in] key
+	*		the vendor key, if you have initialized the engine with an available vendor key, it can be null here
+	* @param [in] channel
+	*		the channel number 
+	* @param [in] info
+	*		the additional information, it can be null here
+	* @param [in] uid
+	*		the uid of you, if 0 the system will automatically allocate one for you
+	* @return return 0 if success or an error code
+	*/
 	virtual int joinChannel(const char* key, const char* channel, const char* info, uid_t uid) = 0;
+
+	/**
+	* leave the current channel
+	* @return return 0 if success or an error code
+	*/
 	virtual int leaveChannel() = 0;
+	
+	/**
+	* renew the dynamic key for the current channel, it used for dynamic key only
+	* @param [in] key
+	*		the dynamic key get from the authenticate server
+	* @return return 0 if success or an error code
+	*/
 	virtual int renewChannelDynamicKey(const char* key) = 0;
+
+
 	virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;
+	
+	/**
+	* start the echo testing, if every thing goes well you can hear your echo from the server
+	* @return return 0 if success or an error code
+	*/
 	virtual int startEchoTest() = 0;
+
+	/**
+	* stop the echo testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int stopEchoTest() = 0;
+	
+	/**
+	* start the network testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int enableNetworkTest() = 0;
+
+	/**
+	* stop the network testing
+	* @return return 0 if success or an error code
+	*/
 	virtual int disableNetworkTest() = 0;
+	
+	/**
+	* enable local and remote video showing
+	* @return return 0 if success or an error code
+	*/
 	virtual int enableVideo() = 0;
+	
+	/**
+	* disable local and remote video showing
+	* @return return 0 if success or an error code
+	*/
 	virtual int disableVideo() = 0;
+	
+	/**
+	* start the local video previewing
+	* @return return 0 if success or an error code
+	*/
 	virtual int startPreview() = 0;
+	
+	/**
+	* stop the local video previewing
+	* @return return 0 if success or an error code
+	*/
 	virtual int stopPreview() = 0;
+	
+	
 	virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile) = 0;
+	
+	/**
+	* set the remote video canvas
+	* @param [in] canvas
+	*		the canvas information
+	* @return return 0 if success or an error code
+	*/
 	virtual int setupRemoteVideo(const VideoCanvas& canvas) = 0;
+	
+	/**
+	* set the local video canvas
+	* @param [in] canvas
+	*		the canvas information
+	* @return return 0 if success or an error code
+	*/
 	virtual int setupLocalVideo(const VideoCanvas& canvas) = 0;
+	
+	/**
+	* get self call id in the current channel
+	* @param [in out] callId
+	*		the self call Id
+	* @return return 0 if success or an error code
+	*/
 	virtual int getCallId(agora::util::AString& callId) = 0;
+	
 	virtual int rate(const char* callId, int rating, const char* description) = 0; // 0~10
 	virtual int complain(const char* callId, const char* description) = 0;
-	virtual int makeQualityReportUrl(const char* channel, uid_t listenerUid, uid_t speakerUid, int format, agora::util::AString& url) = 0;
+	virtual int makeQualityReportUrl(const char* channel, uid_t listenerUid, uid_t speakerUid, QUALITY_REPORT_FORMAT_TYPE format, agora::util::AString& url) = 0;
+	
+	/**
+	* register a packet observer while the packet arrived or ready to be sent, the observer can touch the packet data
+	* @param [in] observer
+	*		the pointer of the observer object
+	* @return return 0 if success or an error code
+	*/
 	virtual int registerPacketObserver(IPacketObserver* observer) = 0;
+	
+	/**
+	* enable the vendor message, sending and receiving
+	* @return return 0 if success or an error code
+	*/
 	virtual int enableVendorMessage() = 0;
+	
+	/**
+	* disable the vendor message, sending and receiving
+	* @return return 0 if success or an error code
+	*/
 	virtual int disableVendorMessage() = 0;
+	
+	/**
+	* broadcast the vendor message in the channel
+	* @param [in] data
+	*		the message data
+	* @param [in] length
+	*		the message lenghe, in byte
+	* @return return 0 if success or an error code
+	*/
 	virtual int sendVendorMessage(const char* data, size_t length) = 0;
 };
 
@@ -470,26 +1045,159 @@ public:
 class IRtcEngineParameter
 {
 public:
+	/**
+	* release the resource
+	*/
 	virtual void release() = 0;
+
+	/**
+	* set bool value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setBool(const char* key, bool value) = 0;
+	
+	/**
+	* set int value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setInt(const char* key, int value) = 0;
+	
+	/**
+	* set unsigned int value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setUInt(const char* key, unsigned int value) = 0;
+	
+	/**
+	* set double value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setNumber(const char* key, double value) = 0;
+	
+	/**
+	* set string value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setString(const char* key, const char* value) = 0;
+	
+	/**
+	* set object value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setObject(const char* key, const char* value) = 0;
+	
+	/**
+	* get bool value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getBool(const char* key, bool& value) = 0;
+	
+	/**
+	* get int value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getInt(const char* key, int& value) = 0;
+	
+	/**
+	* get unsigned int value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getUInt(const char* key, unsigned int& value) = 0;
+	
+	/**
+	* get double value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getNumber(const char* key, double& value) = 0;
+	
+	/**
+	* get string value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getString(const char* key, agora::util::AString& value) = 0;
+	
+	/**
+	* get a child object value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getObject(const char* key, agora::util::AString& value) = 0;
+	
+	/**
+	* get array value of the json
+	* @param [in] key
+	*		the key name
+	* @param [in out] value
+	*		the value
+	* @return return 0 if success or an error code
+	*/
 	virtual int getArray(const char* key, agora::util::AString& value) = 0;
-	//magics
+	
+	/**
+	* set parameters of the sdk or engine
+	* @param [in] parameters
+	*		the parameters
+	* @return return 0 if success or an error code
+	*/
 	virtual int setParameters(const char* parameters) = 0;
+	
+	/**
+	* set profile to control the RTC engine
+	* @param [in] profile
+	*		the profile
+	* @param [in] merge
+	*		if merge with the original value
+	* @return return 0 if success or an error code
+	*/
 	virtual int setProfile(const char* profile, bool merge) = 0;
 };
-
-AGORA_API IRtcEngineParameter* AGORA_CALL createRtcEngineParameter(IRtcEngine& engine);
 
 class AAudioDeviceManager : public agora::util::AutoPtr<IAudioDeviceManager>
 {
@@ -517,8 +1225,11 @@ class AParameter : public agora::util::AutoPtr<IRtcEngineParameter>
 {
 public:
 	AParameter(IRtcEngine& engine)
-		: AutoPtr<IRtcEngineParameter>(createRtcEngineParameter(engine))
-	{}
+	{
+		IRtcEngineParameter* p;
+		if (!engine.queryInterface(AGORA_IID_RTC_ENGINE_PARAMETER, (void**)&p))
+			reset(p);
+	}
 	AParameter(IRtcEngineParameter* p)
 		:AutoPtr<IRtcEngineParameter>(p)
 	{}
@@ -529,48 +1240,158 @@ class RtcEngineParameters
 public:
 	RtcEngineParameters(IRtcEngine& engine)
 		:m_parameter(engine){}
+
+	/**
+	* mute/unmute the local stream capturing
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
 	int muteLocalAudioStream(bool mute) {
 		return setParameters("{\"rtc.audio.mute_me\":%s,\"che.audio.mute_me\":%s}", mute ? "true" : "false", mute ? "true" : "false");
 	}
 	// mute/unmute all peers. unmute will clear all muted peers specified mutePeer() interface
-    int muteAllRemoteAudioStreams(bool mute) {
+    
+	/**
+	* mute/unmute all the remote audio stream receiving
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
+	int muteAllRemoteAudioStreams(bool mute) {
         return m_parameter->setBool("rtc.audio.mute_peers", mute);
     }
+
+	/**
+	* mute/unmute one remote audio stream receiving
+	* @param [in] uid
+	*		the uid of the remote user you want to mute/unmute
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
 	int muteRemoteAudioStream(uid_t uid, bool mute) {
 		return setObject("rtc.audio.mute_peer", "{\"uid\":%u,\"mute\":%s}", uid, mute?"true":"false");
 	}
+
+	/**
+	* mute/unmute local video stream sending
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
 	int muteLocalVideoStream(bool mute) {
 		return setParameters("{\"rtc.video.mute_me\":%s,\"che.video.local.send\":%s}", mute ? "true" : "false", mute ? "false" : "true");
     }
+
+	/**
+	* mute/unmute all the remote video stream receiving
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
     int muteAllRemoteVideoStreams(bool mute) {
         return m_parameter->setBool("rtc.video.mute_peers", mute);
     }
+
+	/**
+	* mute/unmute one remote video stream receiving
+	* @param [in] uid
+	*		the uid of the remote user you want to mute/unmute
+	* @param [in] mute
+	*		true:  mute
+	*       false: unmute
+	* @return return 0 if success or an error code
+	*/
 	int muteRemoteVideoStream(uid_t uid, bool mute) {
 		return setObject("rtc.video.mute_peer", "{\"uid\":%u,\"mute\":%s}", uid, mute ? "true" : "false");
 	}
+
+	/**
+	* set play sound volume
+	* @param [in] volume
+	*		the volume 0~255
+	* @return return 0 if success or an error code
+	*/
 	int setPlaybackDeviceVolume(int volume) {// [0,255]
         return m_parameter->setInt("che.audio.output.volume", volume);
     }
+
+	/**
+	* enable or disable the audio volume indication
+	* @param [in] interval
+	*		the period of the call back cycle, in ms
+	*		interval <= 0: disable
+	*		interval >  0: enable
+	* @param [in] smooth
+	*		the smooth parameter
+	* @return return 0 if success or an error code
+	*/
     int enableAudioVolumeIndication(int interval, int smooth) { // in ms: <= 0: disable, > 0: enable, interval in ms
         if (interval < 0)
             interval = 0;
 		return setObject("che.audio.volume_indication", "{\"interval\":%d,\"smooth\":%d}", interval, smooth);
     }
+
+	/**
+	* start recording the audio stream
+	* @param [in] filePath
+	*		the .wav file path you want to saved
+	* @return return 0 if success or an error code
+	*/
     int startAudioRecording(const char* filePath) {
         return m_parameter->setString("che.audio.start_recording", filePath);
     }
+
+	/**
+	* stop recording the audio stream
+	* @return return 0 if success or an error code
+	*/
     int stopAudioRecording() {
         return m_parameter->setBool("che.audio.stop_recording", true);
     }
+
+	/**
+	* set path to save the log file
+	* @param [in] filePath
+	*		the .log file path you want to saved
+	* @return return 0 if success or an error code
+	*/
     int setLogFile(const char* filePath) {
         return m_parameter->setString("rtc.log_file", filePath);
     }
+
+	/**
+	* set the log information filter level
+	* @param [in] filter
+	*		the filter level
+	* @return return 0 if success or an error code
+	*/
     int setLogFilter(unsigned int filter) {
 		return m_parameter->setUInt("rtc.log_filter", filter&0x80f);
 	}
+
+	/**
+	* set local video render mode
+	* @param [in] renderMode
+	*		the render mode
+	* @return return 0 if success or an error code
+	*/
 	int setLocalRenderMode(RENDER_MODE_TYPE renderMode) {
 		return setRemoteRenderMode(0, renderMode);
 	}
+
+	/**
+	* set remote video render mode
+	* @param [in] renderMode
+	*		the render mode
+	* @return return 0 if success or an error code
+	*/
 	int setRemoteRenderMode(uid_t uid, RENDER_MODE_TYPE renderMode) {
 		return setObject("che.video.peer.render_mode", "{\"uid\":%u,\"mode\":%d}", uid, renderMode);
 	}
@@ -613,8 +1434,26 @@ private:
 } //namespace rtc
 } // namespace agora
 
+/**
+* to get the version number of the SDK
+* @param [in out] build
+*		the build number of Agora SDK
+* @return returns the string of the version of the SDK
+*/
 AGORA_API const char* AGORA_CALL getAgoraRtcEngineVersion(int* build);
+
+/**
+* create the RTC engine object and return the pointer
+* @return returns the pointer of the RTC engine object
+*/
 AGORA_API agora::rtc::IRtcEngine* AGORA_CALL createAgoraRtcEngine();
+
+/**
+* create the RTC engine object and return the pointer
+* @param [in] err
+*		the error code
+* @return returns the description of the error code
+*/
 AGORA_API const char* AGORA_CALL getAgoraRtcEngineErrorDescription(int err);
 
 #endif

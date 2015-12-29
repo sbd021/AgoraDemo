@@ -3,12 +3,29 @@ package io.agora.demo.agora;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.http.AndroidHttpClient;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alibaba.fastjson.util.IOUtils;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * Created by apple on 15/9/9.
@@ -24,6 +41,9 @@ public class LoginActivity extends BaseActivity {
         super.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstance);
+
+        new RequestTask().execute("http://192.168.99.253:8970/agora.inner.test.key.txt"); // just update inner testing vendor key
+
         setContentView(R.layout.activity_login);
 
         initViews();
@@ -39,11 +59,10 @@ public class LoginActivity extends BaseActivity {
         this.mChannelID = (EditText) findViewById(R.id.input_room_number);
 
         // please your own key, the test key is unavailable soon.
-        this.mVendorKey.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, ""));
-        this.mChannelID.setText(getSharedPreferences(getClass().getName(),Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_CHANNEL_ID, ""));
+        this.mVendorKey.setText(getSharedPreferences(getClass().getName(), Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_VENDOR_KEY, ""));
+        this.mChannelID.setText(getSharedPreferences(getClass().getName(), Context.MODE_PRIVATE).getString(ChannelActivity.EXTRA_CHANNEL_ID, ""));
 
     }
-
 
     @Override
     public void onUserInteraction(View view) {
@@ -129,6 +148,45 @@ public class LoginActivity extends BaseActivity {
         }
 
         return true;
+    }
+
+
+    class RequestTask extends AsyncTask<String, String, String> {
+
+
+        String responseString = null;
+
+        @Override
+        protected String doInBackground(String... uri) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response;
+            try {
+                response = httpclient.execute(new HttpGet(uri[0]));
+                StatusLine statusLine = response.getStatusLine();
+                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+                    out.close();
+                } else{
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (ClientProtocolException e) {
+                //TODO Handle problems..
+            } catch (IOException e) {
+                //TODO Handle problems..
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //Do anything with response..
+            mVendorKey.setText(responseString, TextView.BufferType.EDITABLE);
+        }
     }
 
 }

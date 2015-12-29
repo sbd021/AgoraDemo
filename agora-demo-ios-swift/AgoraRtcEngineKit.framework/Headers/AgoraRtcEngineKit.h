@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, AgoraRtcErrorCode) {
     AgoraRtc_Error_BindSocket = 13,
     AgoraRtc_Error_NetDown = 14,
     AgoraRtc_Error_NoBufs = 15,
+    AgoraRtc_Error_InitVideo = 16,
+    AgoraRtc_Error_JoinChannelRejected = 17,
+    AgoraRtc_Error_LeaveChannelRejected = 18,
 
     AgoraRtc_Error_InvalidVendorKey = 101,
     AgoraRtc_Error_InvalidChannelName = 102,
@@ -74,8 +77,9 @@ typedef NS_ENUM(NSInteger, AgoraRtcErrorCode) {
 
 typedef NS_ENUM(NSInteger, AgoraRtcChannelProfile) {
 	AgoraRtc_ChannelProfile_Free = 0,
-		AgoraRtc_ChannelProfile_Broadcaster = 1,
-		AgoraRtc_ChannelProfile_Audience = 2,
+	AgoraRtc_ChannelProfile_Broadcaster = 1,
+	AgoraRtc_ChannelProfile_Audience = 2,
+	AgoraRtc_ChannelProfile_WebSdkCompatible = 3,
 };
 
 typedef NS_ENUM(NSInteger, AgoraRtcVideoProfile) {
@@ -126,6 +130,11 @@ typedef NS_ENUM(NSUInteger, AgoraRtcQuality) {
     AgoraRtc_Quality_Bad = 4,
     AgoraRtc_Quality_VBad = 5,
     AgoraRtc_Quality_Down = 6,
+};
+
+typedef NS_ENUM(NSUInteger, AgoraRtcUserOfflineReason) {
+    AgoraRtc_UserOffline_Quit = 0,
+    AgoraRtc_UserOffline_Dropped = 1,
 };
 
 typedef NS_ENUM(NSUInteger, AgoraRtcLogFilter) {
@@ -193,7 +202,7 @@ __attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSOb
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid;
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine localVideoStatWithSentBitrate:(NSInteger)sentBitrate sentFrameRate:(NSInteger)sentFrameRate;
