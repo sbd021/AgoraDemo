@@ -92,7 +92,7 @@ public class MediaHandlerMgr extends IRtcEngineEventHandler {
 	}
 	
 	@Override
-	public void onUserOffline(int uid) {
+	public void onUserOffline(int uid, int reason) {
         notify2UIThread(MediaMessage.onWriteLog, "user " + (uid&0xFFFFFFFFL) + " is offline");
 	}
 

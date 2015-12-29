@@ -17,6 +17,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.avos.avoscloud.LogUtil;
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,7 +51,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
 
     private int mCallingType;
     private SurfaceView mLocalView;
-    private String vendorKey = "6D7A26A1D3554A54A9F43BE6797FE3E2";
+    private String vendorKey = "";
     private String channelId = "";
     private TextView mDuration;
     private TextView mByteCounts;
@@ -129,6 +131,9 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
         // setup engine
         ((AgoraApplication) getApplication()).setRtcEngine(vendorKey);
         rtcEngine = ((AgoraApplication) getApplication()).getRtcEngine();
+        LogUtil.log.d(getApplicationContext().getExternalFilesDir(null).toString() + "/agorasdk.log");
+        rtcEngine.setLogFile(getApplicationContext().getExternalFilesDir(null).toString() + "/agorasdk.log");
+
 
         // setup engine event activity
         ((AgoraApplication) getApplication()).setEngineEventHandlerActivity(this);
