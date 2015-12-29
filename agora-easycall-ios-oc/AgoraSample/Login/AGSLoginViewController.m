@@ -40,10 +40,10 @@
     self.keyTextField.placeholder = NSLocalizedString(@"Enter Vendor Key", @"");
     self.usernameTextField.placeholder = NSLocalizedString(@"User", @"");
     
-#ifdef DEBUG
-    self.keyTextField.text = @"6D7A26A1D3554A54A9F43BE6797FE3E2";
+//#ifdef DEBUG
+    self.keyTextField.text = @"E33D67E2B174495F8F7AB9E154713D5E";
     self.usernameTextField.text = @"小明";
-#endif
+//#endif
     
 }
 
