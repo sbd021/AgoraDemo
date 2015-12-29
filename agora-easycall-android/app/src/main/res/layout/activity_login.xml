@@ -87,7 +87,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/login_key"
                     android:textSize="15sp"
-                    android:text="6D7A26A1D3554A54A9F43BE6797FE3E2"
+                    android:text="E33D67E2B174495F8F7AB9E154713D5E"
                     android:background="@drawable/ic_key_input"/>
 
                 <!--Input Username-->
