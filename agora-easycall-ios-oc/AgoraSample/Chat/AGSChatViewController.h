@@ -13,7 +13,7 @@
 #import "AGSAlertView.h"
 #import "AGSRatingView.h"
 
-@interface AGSChatViewController : AGSBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, AGSAlertViewDelegate, RatingBarDelegate, UITableViewDataSource, AGSChatCellDelegate, UIAlertViewDelegate>
+@interface AGSChatViewController : AGSBaseViewController <AGSAlertViewDelegate, RatingBarDelegate, UITableViewDataSource, AGSChatCellDelegate, UIAlertViewDelegate>
 
 @property(nonatomic,retain) NSDictionary *dictionary;
 @property (assign, nonatomic) AGSChatType chatType;
