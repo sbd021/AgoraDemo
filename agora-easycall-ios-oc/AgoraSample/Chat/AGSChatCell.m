@@ -9,15 +9,29 @@
 #import "AGSChatCell.h"
 
 @interface AGSChatCell ()
-@property (weak, nonatomic) IBOutlet UIView *audioView;
-@property (weak, nonatomic) IBOutlet UIButton *audioMicButton;
-@property (weak, nonatomic) IBOutlet UIButton *videoMicButton;
-@property (weak, nonatomic) IBOutlet UIImageView *qualityImageView;
+@property (weak, nonatomic) UIView *audioView;
+@property (weak, nonatomic) UIButton *audioMicButton;
+@property (weak, nonatomic) UIButton *videoMicButton;
+@property (weak, nonatomic) UIImageView *qualityImageView;
 
 @property (assign, nonatomic) BOOL audioMute;
 @end
 
 @implementation AGSChatCell
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _videoView = [[UIView alloc] init];
+        _videoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self addSubview:_videoView];
+        _type = AGSChatTypeVideo;
+        _audioMute = NO;
+    }
+    return self;
+}
+
 
 - (void)setType:(AGSChatType)type
 {
@@ -26,7 +40,6 @@
     if (type == AGSChatTypeAudio) {
         self.videoView.hidden = YES;
         self.audioView.hidden = NO;
-        self.uid = 0;
     } else if (type == AGSChatTypeVideo) {
         self.videoView.hidden = NO;
         self.audioView.hidden = YES;
@@ -70,17 +83,6 @@
     }
     
     self.qualityImageView.image = [UIImage imageNamed:imageName];
-}
-
-- (void)setUid:(NSUInteger)uid
-{
-    _uid = uid;
-    if (!self.canvas) {
-        _canvas = [[AgoraRtcVideoCanvas alloc] init];
-        _canvas.renderMode = AgoraRtc_Render_Hidden;
-        _canvas.view = self.videoView;
-    }
-    self.canvas.uid = uid;
 }
 
 - (IBAction)didClickAudioMute:(UIButton *)btn

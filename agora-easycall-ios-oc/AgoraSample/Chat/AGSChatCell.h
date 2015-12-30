@@ -19,14 +19,11 @@ typedef NS_ENUM(NSInteger, AGSChatType) {
 
 @interface AGSChatCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *videoView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic) UIView *videoView;
+@property (nonatomic) UILabel *nameLabel;
 @property (assign, nonatomic) AGSChatType type;
 
 @property (assign, nonatomic) AgoraRtcQuality networkQulity;
-@property (assign, nonatomic) NSUInteger uid;
-
-@property (strong, nonatomic) AgoraRtcVideoCanvas *canvas;
 
 @property (weak, nonatomic) id<AGSChatCellDelegate> delegate;
 @end
