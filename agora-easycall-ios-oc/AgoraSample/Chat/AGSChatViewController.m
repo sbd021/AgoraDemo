@@ -399,6 +399,12 @@
             NSLog(@"Failed to create a anchor window for user %d", (int)uid);
             return;
         }
+        
+        AgoraRtcVideoCanvas *canvas = [[AgoraRtcVideoCanvas alloc] init];
+        canvas.uid = uid;
+        canvas.view = [self getAnchorPoint:vg];
+        canvas.renderMode = AgoraRtc_Render_Hidden;
+        [self.agoraKit setupRemoteVideo:canvas];
 
         //
         [self hideAlertLabel];
