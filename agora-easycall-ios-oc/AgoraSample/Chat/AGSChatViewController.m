@@ -15,8 +15,10 @@
 {
     __block AgoraRtcStats *lastStat_;
     BOOL isErrorKey_;
-    NSUInteger fullscreenUid_;
-    AgoraRtcVideoCanvas *localVideoCanvas_;
+    
+    // for convenience
+    UIView *mMainVideoContainer;
+    UIView *mThumbnailsContainer;
 }
 
 @property (weak,nonatomic) IBOutlet UILabel *controlTitleMuteLabel;
@@ -34,8 +36,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *videoMainView;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (weak, nonatomic) IBOutlet UIView *statContrainerView;
 @property (weak, nonatomic) IBOutlet UILabel *talkTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dataTrafficLabel;
@@ -46,9 +46,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *audioButton;
 
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
-
-@property (strong, nonatomic) NSMutableArray *uids;
-@property (strong, nonatomic) NSMutableDictionary *videoMuteForUids;
 
 //
 @property (assign, nonatomic) AGSChatType type;
@@ -62,7 +59,6 @@
 @property (nonatomic) NSInteger rating;
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSUInteger myUid;
-@property (nonatomic) NSUInteger firstJoinedUid;
 
 // Activity
 @property (strong, nonatomic) NSMutableArray *activityStrings;
@@ -81,13 +77,22 @@
     [super viewDidLoad];
     
     //
-    self.uids = [NSMutableArray array];
-    self.videoMuteForUids = [NSMutableDictionary dictionary];
     self.activityStrings = [NSMutableArray array];
     
     self.key = [[NSUserDefaults standardUserDefaults] stringForKey:AGSKeyVendorKey];
     self.channel = [self.dictionary objectForKey:AGSKeyChannel];
     self.type = self.chatType;
+    
+    mMainVideoContainer = self.videoMainView;
+    CGRect rc;
+    rc = mMainVideoContainer.superview.bounds;
+    rc.size.height -= 60;
+    mMainVideoContainer.frame = rc;
+    rc = self.view.frame;
+    rc.origin.y = rc.size.height - 48 - 80 - 65;
+    rc.size.height = 80;
+    mThumbnailsContainer = [[UIView alloc] initWithFrame:rc];
+    [self.view addSubview:mThumbnailsContainer];
     
     
     [self prepareAgoraKit];
@@ -146,55 +151,63 @@
     return cell;
 }
 
-// Collection view
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+-(void)onSwitchRemoteUsers:(UITapGestureRecognizer*)recognizer
 {
-    return self.uids.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+    // switch view
+    UIView *view = recognizer.view;
+    if(view == nil)
+        return;
     
-    AGSChatCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
-    cell.delegate = self;
+    if([[NSString stringWithUTF8String:object_getClassName(view)] isEqualToString:@"AGSChatCell"] == NO)
+        return;
     
-    // Get info
-    NSNumber *uid = [self.uids objectAtIndex:indexPath.row];
-    NSNumber *videoMute = [self.videoMuteForUids objectForKey:uid];
-    
-    if (self.type == AGSChatTypeVideo) {
-        if (videoMute.boolValue) {
-            cell.type = AGSChatTypeAudio;
-        } else {
-            cell.type = AGSChatTypeVideo;
-            cell.uid = uid.unsignedIntegerValue;
-            [self.agoraKit setupRemoteVideo:cell.canvas];
-        }
-    } else {
-        cell.type = AGSChatTypeAudio;
+    // In voice call
+    if (self.type == AGSChatTypeAudio) {
+        return;
     }
     
-    // Name
-    cell.nameLabel.text = uid.stringValue;
+    // In Video Call
     
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    AGSChatCell *cell = (AGSChatCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [self.agoraKit switchView:fullscreenUid_ andAnother:cell.uid];
+    // view: on which the tap event raised
+    UIView *v1 = view;
+    if(v1 == nil)
+        return;
     
-    // Switch two Uid
-    NSUInteger temp = cell.uid;
-    cell.uid = fullscreenUid_;
-    fullscreenUid_ = temp;
+    // switch with main view
+    UIView *v2 = mMainVideoContainer.subviews[0];
+    if(v2 == nil)
+        return;
+    
+    // if click on main view: no switch
+    if(v2.tag == v1.tag)
+        return;
+    
+    // switch
+    UIView *v1_parent = v1.superview;
+    if(v1_parent == nil)
+        return;
+    
+    // find view index
+    int i;
+    for(i=0; i<v1_parent.subviews.count; i++) {
+        if(v1_parent.subviews[i].tag == v1.tag) {
+            break;
+        }
+    }
+    CGRect frame1 = v1.frame;
+    CGRect frame2 = v2.frame;
+    [v1 removeFromSuperview];
+    [v2 removeFromSuperview];
+    [v1_parent insertSubview:v2 atIndex:i];
+    [mMainVideoContainer insertSubview:v1 atIndex:0];
+    v1.frame = frame2;
+    v2.frame = frame1;
 }
 
 // Cell
 - (void)cell:(AGSChatCell *)cell didMuteAudio:(BOOL)muted
 {
-    NSLog(@"make user: %td %@", cell.uid, muted?@"muted":@"unmuted");
+    NSLog(@"make user: %td %@", cell.tag, muted?@"muted":@"unmuted");
     [self.agoraKit muteAllRemoteAudioStreams:muted];
 }
 
@@ -237,12 +250,9 @@
 
 - (void)clearData
 {
-    [self.uids removeAllObjects];
-    [self.videoMuteForUids removeAllObjects];
     [self.activityStrings removeAllObjects];
     
     [self.tableView reloadData];
-    [self.collectionView reloadData];
     
     // update UI
     [self.durationTimer invalidate];
@@ -305,13 +315,12 @@
 - (void)setUpVideo
 {
     [self.agoraKit enableVideo];
-    localVideoCanvas_ = [[AgoraRtcVideoCanvas alloc] init];
-    localVideoCanvas_.uid = 0;
-    localVideoCanvas_.view = self.videoMainView;
-    localVideoCanvas_.renderMode = AgoraRtc_Render_Hidden;
-    [self.agoraKit setupLocalVideo:localVideoCanvas_];
-    
-    fullscreenUid_ = 0;
+    AGSChatCell *view = [self setupViewFor:0];
+    AgoraRtcVideoCanvas *canvas = [[AgoraRtcVideoCanvas alloc] init];
+    canvas.uid = 0;
+    canvas.view = [self getAnchorPoint:view];
+    canvas.renderMode = AgoraRtc_Render_Hidden;
+    [self.agoraKit setupLocalVideo:canvas];
 }
 
 - (void)updateActivityTableView
@@ -374,16 +383,25 @@
     //
     [self.agoraKit userJoinedBlock:^(NSUInteger uid, NSInteger elapsed) {
         NSLog(@"user joined: %td", uid);
-        //
-        if (self.firstJoinedUid == 0) {
-            self.firstJoinedUid = uid;
+
+        // a view with the UserID already there?
+        // if yes, continue use that view and return
+        AGSChatCell *vg = [self findViewFor:uid];
+        if(vg != nil) {
+            NSLog(@"a previous view is used for user %d", (int)uid);
+            return;
         }
         
+        // if no, create a new view and do some configure
+        [self.agoraKit enableVideo];
+        vg = [self setupViewFor:uid];
+        if(vg == nil) {
+            NSLog(@"Failed to create a anchor window for user %d", (int)uid);
+            return;
+        }
+
         //
         [self hideAlertLabel];
-        [self.uids addObject:@(uid)];
-        
-        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.uids.count-1 inSection:0]]];
         
         //
         [self.activityStrings addObject:[NSString stringWithFormat:@"%td %@", uid, NSLocalizedString(@"joined room", @"")]];
@@ -397,24 +415,7 @@
     //
     [self.agoraKit userOfflineBlock:^(NSUInteger uid) {
         NSLog(@"user offine: %td", uid);
-        NSInteger index = [self.uids indexOfObject:@(uid)];
-        
-        if (index != NSNotFound) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-            if (fullscreenUid_ == uid) {
-                
-                [self.agoraKit setupLocalVideo:localVideoCanvas_];
-                
-                [self.agoraKit disableVideo];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.agoraKit enableVideo];
-                });
-                
-            }
-        
-            [self.uids removeObjectAtIndex:index];
-            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-        }
+        [self removeViewFor:uid];
         
         [self.activityStrings addObject:[NSString stringWithFormat:@"%td %@", uid, NSLocalizedString(@"left room", @"")]];
         [self updateActivityTableView];
@@ -453,22 +454,18 @@
         
         [alert showAlertView];
         
-        // Save record
-        if (self.firstJoinedUid != 0) {
-            NSString *url = [self.agoraKit makeQualityReportUrl:self.callId listenerUid:self.firstJoinedUid speakerrUid:self.myUid reportFormat:AgoraRtc_QualityReportFormat_Html];
-            [[AGSCoreDataManager shareManager] saveRecordWithCallId:self.callId date:self.startDate duration:self.duration url:url];
-        }
-        
         [UIApplication sharedApplication].idleTimerDisabled = YES;
     }];
     
     //
     [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
         NSLog(@"user %td video: %@", uid, muted ? @"muted" : @"unmuted");
-        
-        [self.videoMuteForUids setObject:@(muted) forKey:@(uid)];
-        
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.uids indexOfObject:@(uid)] inSection:0]]];
+        AGSChatCell *gr = [self findViewFor:uid];
+        if(gr == nil)
+            return;
+
+        // TODO: mute this cell
+
         if (muted) {
             [self.activityStrings addObject:[NSString stringWithFormat:@"%td %@", uid, NSLocalizedString(@"disabled camera", @"")]];
         } else {
@@ -497,9 +494,11 @@
     [self.agoraKit audioQualityBlock:^(NSUInteger uid, AgoraRtcQuality quality, NSUInteger delay, NSUInteger lost) {
         
 //        NSLog(@"audio quality %td %td: quality-%td, delay-%td, lost-%td", [self.uids indexOfObject:@(uid)], uid, quality, delay, lost);
-        
-        AGSChatCell *cell = (AGSChatCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:[self.uids indexOfObject:@(uid)] inSection:0]];
-        cell.networkQulity = quality;
+        AGSChatCell *gr = [self findViewFor:uid];
+        if(gr == nil)
+            return;
+
+        gr.networkQulity = quality; // FIXME! BUG!
     }];
     
 //    [self.agoraKit audioRecorderExceptionBlock:^(NSInteger elapsed) {
@@ -508,7 +507,21 @@
     
     [self.agoraKit firstLocalVideoFrameBlock:^(NSInteger width, NSInteger height, NSInteger elapsed) {
         NSLog(@"local video display");
-        self.videoMainView.frame = self.videoMainView.superview.bounds; // video view's autolayout cause crash
+//        self.videoMainView.frame = self.videoMainView.superview.bounds; // video view's autolayout cause crash
+    }];
+    
+    [self.agoraKit firstRemoteVideoDecodedBlock:^(NSUInteger uid, NSInteger width, NSInteger height, NSInteger elapsed) {
+        AGSChatCell *vg = [self findViewFor:uid];
+        if(vg == nil) {
+            NSLog(@"a previous view is gone for user %d", (int)uid);
+            return;
+        }
+
+        AgoraRtcVideoCanvas *canvas = [[AgoraRtcVideoCanvas alloc] init];
+        canvas.uid = uid;
+        canvas.view = [self getAnchorPoint:vg];
+        canvas.renderMode = AgoraRtc_Render_Hidden;
+        [self.agoraKit setupRemoteVideo:canvas];
     }];
 }
 
@@ -692,7 +705,6 @@
         //
         self.videoMainView.hidden = YES;
     }
-    [self.collectionView reloadData];
 }
 
 - (UIAlertView *)errorKeyAlert
@@ -706,6 +718,148 @@
         _errorKeyAlert.delegate = self;
     }
     return _errorKeyAlert;
+}
+
+//------------------------------------------------------------------------------------------
+// View management
+// Highly depends on your layout design
+//------------------------------------------------------------------------------------------
+// create local view: could differ with remote view
+- (AGSChatCell *) createLocalView {
+	AGSChatCell *cell = [[AGSChatCell alloc] init];
+
+	return cell;
+}
+
+// create remote view: here we use the same as local view. you can define
+// a different view layout
+- (AGSChatCell *) createRemoteView {
+	AGSChatCell *cell = [[AGSChatCell alloc] init];
+
+	return cell;
+}
+
+- (void) updateViewStatus:(AGSChatCell *)view {
+}
+
+// Anchor point: subview of 'view' to attach video surface
+- (UIView *) getAnchorPoint:(AGSChatCell *)view {
+    return view.videoView;
+}
+
+// create a new cell for user uid and attach to app's view tree
+// caller must make sure no other cell for that user exists
+- (AGSChatCell *) setupViewFor:(NSInteger) uid {
+	AGSChatCell *gr;
+
+	if(uid == 0) {
+		gr = [self createLocalView];
+	}
+	else {
+		gr = [self createRemoteView];
+	}
+
+    gr.tag = uid;
+
+	// Insert host to app's view tree
+	if(mMainVideoContainer.subviews.count == 0) {
+		[mMainVideoContainer addSubview:gr]; // TODO: set size
+        gr.frame = mMainVideoContainer.bounds;
+        gr.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	}
+	else {
+		[mThumbnailsContainer addSubview:gr]; // TODO: set size
+
+		// TODO: mThumbnailsContainer visible
+        // no auto-layout
+        [self relayoutThumbnails];
+	}
+
+    UITapGestureRecognizer* singleTapRecognizer;
+    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSwitchRemoteUsers:)];
+    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
+    [gr addGestureRecognizer:singleTapRecognizer];
+
+	// Update the status
+    [self updateViewStatus:gr];
+
+	return gr;
+
+}
+
+// return a ViewGroup for user uid
+- (AGSChatCell *) findViewFor:(NSInteger) uid {
+	AGSChatCell *gr;
+	gr = (AGSChatCell *) [mMainVideoContainer.subviews objectAtIndex:0];
+	if(gr != nil && gr.tag == uid)
+		return gr;
+
+	int child_count = (int)mThumbnailsContainer.subviews.count;
+	int i;
+	for(i=0; i<child_count; i++) {
+		gr = (AGSChatCell *) [mThumbnailsContainer.subviews objectAtIndex:i];
+
+		if(gr != nil && gr.tag == uid)
+			return gr;
+	}
+
+	return nil;
+}
+
+// Caller make sure mMainVideoAnchor does not contain
+// a child calling this funciton
+- (void) moveThumbnailVideoToMain {
+	if(mThumbnailsContainer.subviews.count == 0)
+		return;
+
+	AGSChatCell *gr = (AGSChatCell *) [mThumbnailsContainer.subviews objectAtIndex:0];
+	[gr removeFromSuperview];
+	[mMainVideoContainer addSubview:gr];
+/* TODO: set invisible
+	if(mThumbnailsContainer.subviews.count == 0)
+		mThumbnailsContainer*/
+    
+    // no auto-layout
+    [self relayoutThumbnails];
+}
+
+// must run in gui thread
+- (void) removeViewFor:(NSInteger) uid {
+	AGSChatCell *gr = [self findViewFor:uid];
+	if(gr == nil)
+		return;
+
+	// notify SDK
+	AgoraRtcVideoCanvas *canvas = [[AgoraRtcVideoCanvas alloc] init];
+	canvas.uid = uid;
+    canvas.view = nil;
+	canvas.renderMode = AgoraRtc_Render_Hidden;
+	if(uid == 0)
+		[self.agoraKit setupLocalVideo:canvas];
+	else
+		[self.agoraKit setupRemoteVideo:canvas];
+
+	[gr removeFromSuperview];
+
+	if(mThumbnailsContainer.subviews.count == 0) {
+// TODO: hide			mThumbnailsContainer.setVisibility(View.GONE);
+	}
+
+	if(mMainVideoContainer.subviews.count == 0)
+		[self moveThumbnailVideoToMain];
+
+    // no auto-layout
+    [self relayoutThumbnails];
+}
+
+// relayout thumbnails is required if no autolayout support for the container
+- (void) relayoutThumbnails {
+    CGRect rc = CGRectMake(0, 0, 80, 80);
+    int i;
+    for(i=0; i<mThumbnailsContainer.subviews.count; i++) {
+        mThumbnailsContainer.subviews[i].frame = rc;
+        rc.origin.x += rc.size.width;
+    }
 }
 
 @end
