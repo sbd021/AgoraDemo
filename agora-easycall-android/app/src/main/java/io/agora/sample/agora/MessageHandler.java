@@ -65,7 +65,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
 
     //用户退出
     @Override
-    public void onUserOffline(int uid, int reason) {
+    public void onUserOffline(int uid) {
 
         BaseEngineHandlerActivity activity = getActivity();
 
