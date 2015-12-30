@@ -77,9 +77,8 @@ typedef NS_ENUM(NSInteger, AgoraRtcErrorCode) {
 
 typedef NS_ENUM(NSInteger, AgoraRtcChannelProfile) {
 	AgoraRtc_ChannelProfile_Free = 0,
-	AgoraRtc_ChannelProfile_Broadcaster = 1,
-	AgoraRtc_ChannelProfile_Audience = 2,
-	AgoraRtc_ChannelProfile_WebSdkCompatible = 3,
+		AgoraRtc_ChannelProfile_Broadcaster = 1,
+		AgoraRtc_ChannelProfile_Audience = 2,
 };
 
 typedef NS_ENUM(NSInteger, AgoraRtcVideoProfile) {
@@ -130,11 +129,6 @@ typedef NS_ENUM(NSUInteger, AgoraRtcQuality) {
     AgoraRtc_Quality_Bad = 4,
     AgoraRtc_Quality_VBad = 5,
     AgoraRtc_Quality_Down = 6,
-};
-
-typedef NS_ENUM(NSUInteger, AgoraRtcUserOfflineReason) {
-    AgoraRtc_UserOffline_Quit = 0,
-    AgoraRtc_UserOffline_Dropped = 1,
 };
 
 typedef NS_ENUM(NSUInteger, AgoraRtcLogFilter) {
@@ -202,7 +196,7 @@ __attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSOb
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason;
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid;
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine localVideoStatWithSentBitrate:(NSInteger)sentBitrate sentFrameRate:(NSInteger)sentFrameRate;
