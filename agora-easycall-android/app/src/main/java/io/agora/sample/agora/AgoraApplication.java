@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
+import com.xsj.crasheye.Crasheye;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +67,7 @@ public class AgoraApplication extends Application {
 
         super.onCreate();
 
-        AVOSCloud.initialize(this, EXTRA_APP_KEY, EXTRA_MASTER_KEY);
-        AVAnalytics.enableCrashReport(this, true);
-        AVOSCloud.setLastModifyEnabled(true);
-        AVOSCloud.setDebugLogEnabled(true);
+        Crasheye.initWithNativeHandle(this, "e1925440");
 
         messageHandler = new MessageHandler();
 

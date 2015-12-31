@@ -185,7 +185,7 @@ public class LoginActivity extends BaseActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
-            mVendorKey.setText(responseString, TextView.BufferType.EDITABLE);
+            mVendorKey.setText(responseString.replaceAll("\\s+",""), TextView.BufferType.EDITABLE);
         }
     }
 

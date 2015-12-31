@@ -6,6 +6,7 @@ import android.util.Log;
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.LogUtil;
+import com.xsj.crasheye.Crasheye;
 
 import io.agora.rtc.RtcEngine;
 
@@ -22,12 +23,10 @@ public class AgoraApplication extends Application {
 
         super.onCreate();
 
-        AVOSCloud.initialize(this, "iMBlcA22YEc08R3PcSu3ON11", "c5Bz4P2erIpXde7EsKaegCLw");
-        AVAnalytics.enableCrashReport(this, true);
-        AVOSCloud.setLastModifyEnabled(true);
-        AVOSCloud.setDebugLogEnabled(true);
+        Crasheye.initWithNativeHandle(this, "06798b00");
 
-        Log.d("CrashReport","0");
+
+        Log.d("Crasheye","0");
 
         messageHandler = new MessageHandler();
     }

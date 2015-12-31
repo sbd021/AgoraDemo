@@ -5,6 +5,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import android.app.Application;
 import android.util.Log;
+
+import com.xsj.crasheye.Crasheye;
+
 import io.agora.rtc.RtcEngine;
 
 public class MediaDemoApplication extends Application {
@@ -33,6 +36,8 @@ public class MediaDemoApplication extends Application {
 		Log.i(LOG, "onCreate begin");
 
 		super.onCreate();
+
+		Crasheye.initWithNativeHandle(this, "3c6f5380");
 
 		mInstance.set(this);
 		mNative = null;

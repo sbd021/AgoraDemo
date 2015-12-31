@@ -152,7 +152,7 @@ public class LoginActivity extends BaseEngineHandlerActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
-            mVendorKeyInput.setText(responseString, TextView.BufferType.EDITABLE);
+            mVendorKeyInput.setText(responseString.replaceAll("\\s+",""), TextView.BufferType.EDITABLE);
         }
     }
 
