@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2019E7FF1C34D80200B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FE1C34D80200B281E3 /* libCrasheye.a */; };
 		20416C171C17D78C00598B89 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */; };
 		C70B49BF1BD4720700885E30 /* AGSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */; };
 		C70EE7A61BCF83E300458992 /* AGSLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */; };
 		C7680E971BC509F700A5B26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7680E961BC509F700A5B26B /* AppDelegate.swift */; };
-		C7680EB01BC509F700A5B26B /* SampleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7680EAF1BC509F700A5B26B /* SampleSwiftTests.swift */; };
 		C7A726901BD3FBBC0031D6C2 /* AGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A7268F1BD3FBBC0031D6C2 /* AGSLoginViewController.swift */; };
 		C7CA195D1BE335090000CA4F /* AGSAgoraKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CA195C1BE335090000CA4F /* AGSAgoraKitManager.swift */; };
 		C7CF177B1BC50FBC005BE5D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CF17771BC50FBC005BE5D5 /* LaunchScreen.xib */; };
@@ -63,8 +63,6 @@
 		C7DE4EE81BE2186A0064F1B1 /* AGSCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE4EE71BE2186A0064F1B1 /* AGSCoreDataManager.swift */; };
 		C7EDCC741BC57E8E001FB50D /* AGSChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EDCC731BC57E8E001FB50D /* AGSChatViewController.swift */; };
 		C7EDCC761BC7AE95001FB50D /* AGSChatActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EDCC751BC7AE95001FB50D /* AGSChatActivityCell.swift */; };
-		C7FD243E1BE68CC90064454F /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD243C1BE68CC90064454F /* AVOSCloudCrashReporting.framework */; };
-		C7FD243F1BE68CC90064454F /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD243D1BE68CC90064454F /* AVOSCloud.framework */; };
 		C7FD24411BE68CF10064454F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD24401BE68CF10064454F /* libc++.tbd */; };
 		C7FD24431BE68D070064454F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD24421BE68D070064454F /* libsqlite3.tbd */; };
 		C7FD24451BE68D220064454F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FD24441BE68D220064454F /* MobileCoreServices.framework */; };
@@ -79,24 +77,14 @@
 		C7FD247C1BEA65BC0064454F /* AGSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD247B1BEA65BC0064454F /* AGSBaseViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C7680EAA1BC509F700A5B26B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7680E891BC509F700A5B26B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C7680E901BC509F700A5B26B;
-			remoteInfo = SampleSwift;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		2019E7FE1C34D80200B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSNavigationBar.swift; path = SampleSwift/AGSNavigationBar.swift; sourceTree = SOURCE_ROOT; };
 		C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLaunchViewController.swift; path = SampleSwift/AGSLaunchViewController.swift; sourceTree = SOURCE_ROOT; };
 		C7680E911BC509F700A5B26B /* SampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7680E951BC509F700A5B26B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7680E961BC509F700A5B26B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
-		C7680EA91BC509F700A5B26B /* SampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7680EAE1BC509F700A5B26B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7680EAF1BC509F700A5B26B /* SampleSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleSwiftTests.swift; sourceTree = "<group>"; };
 		C7A7268F1BD3FBBC0031D6C2 /* AGSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLoginViewController.swift; path = SampleSwift/AGSLoginViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -169,8 +157,6 @@
 		C7DE4EE71BE2186A0064F1B1 /* AGSCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSCoreDataManager.swift; path = SampleSwift/AGSCoreDataManager.swift; sourceTree = SOURCE_ROOT; };
 		C7EDCC731BC57E8E001FB50D /* AGSChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGSChatViewController.swift; sourceTree = "<group>"; };
 		C7EDCC751BC7AE95001FB50D /* AGSChatActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGSChatActivityCell.swift; sourceTree = "<group>"; };
-		C7FD243C1BE68CC90064454F /* AVOSCloudCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudCrashReporting.framework; sourceTree = "<group>"; };
-		C7FD243D1BE68CC90064454F /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
 		C7FD24401BE68CF10064454F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C7FD24421BE68D070064454F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C7FD24441BE68D220064454F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -196,16 +182,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2019E7FF1C34D80200B281E3 /* libCrasheye.a in Frameworks */,
 				20416C171C17D78C00598B89 /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7FD24471BE68D2E0064454F /* CoreLocation.framework in Frameworks */,
 				C7FD24451BE68D220064454F /* MobileCoreServices.framework in Frameworks */,
 				C7FD24431BE68D070064454F /* libsqlite3.tbd in Frameworks */,
 				C7FD24411BE68CF10064454F /* libc++.tbd in Frameworks */,
-				C7FD243E1BE68CC90064454F /* AVOSCloudCrashReporting.framework in Frameworks */,
 				C7CF181D1BC51702005BE5D5 /* AudioToolbox.framework in Frameworks */,
 				C7CF181B1BC516F9005BE5D5 /* AVFoundation.framework in Frameworks */,
 				C7CF18191BC516F0005BE5D5 /* CoreMedia.framework in Frameworks */,
-				C7FD243F1BE68CC90064454F /* AVOSCloud.framework in Frameworks */,
 				C7CF18171BC516E8005BE5D5 /* CoreTelephony.framework in Frameworks */,
 				C7CF18151BC516E0005BE5D5 /* CoreMotion.framework in Frameworks */,
 				C7CF18131BC516D7005BE5D5 /* SystemConfiguration.framework in Frameworks */,
@@ -215,20 +200,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7680EA61BC509F700A5B26B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		C7680E881BC509F700A5B26B = {
 			isa = PBXGroup;
 			children = (
-				20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */,
 				C7D27F661BC518C3002E72B6 /* Framework */,
 				C7680E931BC509F700A5B26B /* SampleSwift */,
 				C7680EAC1BC509F700A5B26B /* SampleSwiftTests */,
@@ -240,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				C7680E911BC509F700A5B26B /* SampleSwift.app */,
-				C7680EA91BC509F700A5B26B /* SampleSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,12 +453,12 @@
 		C7D27F661BC518C3002E72B6 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				2019E7FE1C34D80200B281E3 /* libCrasheye.a */,
+				20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */,
 				C7FD24421BE68D070064454F /* libsqlite3.tbd */,
 				C7FD24401BE68CF10064454F /* libc++.tbd */,
 				C7FD24461BE68D2E0064454F /* CoreLocation.framework */,
 				C7FD24441BE68D220064454F /* MobileCoreServices.framework */,
-				C7FD243C1BE68CC90064454F /* AVOSCloudCrashReporting.framework */,
-				C7FD243D1BE68CC90064454F /* AVOSCloud.framework */,
 				C7CF181C1BC51702005BE5D5 /* AudioToolbox.framework */,
 				C7CF181A1BC516F9005BE5D5 /* AVFoundation.framework */,
 				C7CF18181BC516F0005BE5D5 /* CoreMedia.framework */,
@@ -516,24 +492,6 @@
 			productReference = C7680E911BC509F700A5B26B /* SampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C7680EA81BC509F700A5B26B /* SampleSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7680EB61BC509F700A5B26B /* Build configuration list for PBXNativeTarget "SampleSwiftTests" */;
-			buildPhases = (
-				C7680EA51BC509F700A5B26B /* Sources */,
-				C7680EA61BC509F700A5B26B /* Frameworks */,
-				C7680EA71BC509F700A5B26B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7680EAB1BC509F700A5B26B /* PBXTargetDependency */,
-			);
-			name = SampleSwiftTests;
-			productName = SampleSwiftTests;
-			productReference = C7680EA91BC509F700A5B26B /* SampleSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -553,10 +511,6 @@
 							};
 						};
 					};
-					C7680EA81BC509F700A5B26B = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = C7680E901BC509F700A5B26B;
-					};
 				};
 			};
 			buildConfigurationList = C7680E8C1BC509F700A5B26B /* Build configuration list for PBXProject "SampleSwift" */;
@@ -574,7 +528,6 @@
 			projectRoot = "";
 			targets = (
 				C7680E901BC509F700A5B26B /* SampleSwift */,
-				C7680EA81BC509F700A5B26B /* SampleSwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -597,13 +550,6 @@
 				C7CF18071BC50FDD005BE5D5 /* AGSCallBackView.xib in Resources */,
 				C7CF18011BC50FDD005BE5D5 /* AGSRatingView.xib in Resources */,
 				C7FD24781BEA55FA0064454F /* Login.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7680EA71BC509F700A5B26B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,23 +603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7680EA51BC509F700A5B26B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7680EB01BC509F700A5B26B /* SampleSwiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C7680EAB1BC509F700A5B26B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C7680E901BC509F700A5B26B /* SampleSwift */;
-			targetProxy = C7680EAA1BC509F700A5B26B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C7CF17771BC50FBC005BE5D5 /* LaunchScreen.xib */ = {
@@ -810,9 +740,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Crasheye",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -839,9 +774,14 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Crasheye",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -853,42 +793,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
 				SWIFT_OBJC_BRIDGING_HEADER = "SampleSwift/SampleSwift-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		C7680EB71BC509F700A5B26B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SampleSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleSwift.app/SampleSwift";
-			};
-			name = Debug;
-		};
-		C7680EB81BC509F700A5B26B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SampleSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleSwift.app/SampleSwift";
 			};
 			name = Release;
 		};
@@ -909,15 +813,6 @@
 			buildConfigurations = (
 				C7680EB41BC509F700A5B26B /* Debug */,
 				C7680EB51BC509F700A5B26B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7680EB61BC509F700A5B26B /* Build configuration list for PBXNativeTarget "SampleSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7680EB71BC509F700A5B26B /* Debug */,
-				C7680EB81BC509F700A5B26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

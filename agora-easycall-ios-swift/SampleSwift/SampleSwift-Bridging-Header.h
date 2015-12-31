@@ -3,8 +3,6 @@
 //
 
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
-#import "AVOSCloud/AVOSCloud.h"
-#import "AVOSCloudCrashReporting/AVOSCloudCrashReporting.h"
 #import "RatingBar.h"
 #import "AGSAlertView.h"
 #import "AGSRatingView.h"
@@ -15,3 +13,5 @@
 #import "NSDate+Helper.h"
 #import "REFrostedViewController.h"
 #import "AGSCallBackView.h"
+
+#import "Crasheye.h"

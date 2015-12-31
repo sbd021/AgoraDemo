@@ -7,11 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "Crasheye.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crasheye initWithAppKey:@"e73f6e40"];
+    
     // Override point for customization after application launch.
     return YES;
 }

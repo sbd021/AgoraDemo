@@ -32,6 +32,7 @@
 		18F34DEC1BAFD2E7000ADECA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DEB1BAFD2E7000ADECA /* Foundation.framework */; };
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
+		2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FC1C34D4A600B281E3 /* libCrasheye.a */; };
 		2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
 		2C11930C1BB3F20500CE994E /* FOWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1193051BB3F20500CE994E /* FOWebViewController.xib */; };
@@ -61,7 +62,6 @@
 		2CE545E01B9D54E400EDE8BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE545DE1B9D54E400EDE8BB /* Main.storyboard */; };
 		2CE545E21B9D54E400EDE8BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE545E11B9D54E400EDE8BB /* Images.xcassets */; };
 		2CE545E51B9D54E400EDE8BB /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE545E31B9D54E400EDE8BB /* Launch.xib */; };
-		2CE545F11B9D54E400EDE8BB /* AgoraSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE545F01B9D54E400EDE8BB /* AgoraSampleTests.m */; };
 		2CE546041B9D6A3300EDE8BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE546031B9D6A3300EDE8BB /* AudioToolbox.framework */; };
 		2CE546061B9D6A3C00EDE8BB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE546051B9D6A3C00EDE8BB /* AVFoundation.framework */; };
 		2CE546081B9D6A4500EDE8BB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE546071B9D6A4500EDE8BB /* CoreMedia.framework */; };
@@ -70,9 +70,6 @@
 		2CE5460E1B9D6A6100EDE8BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE5460D1B9D6A6100EDE8BB /* SystemConfiguration.framework */; };
 		C70B49C61BD60F1100885E30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C70B49C81BD60F1100885E30 /* Localizable.strings */; };
 		C70B49DD1BD6EFEF00885E30 /* AGSSplashSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C70B49DC1BD6EFEF00885E30 /* AGSSplashSegue.m */; };
-		C70E96BF1BDF500800AD7C96 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96BE1BDF500800AD7C96 /* AVOSCloud.framework */; };
-		C70E96C11BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */; };
-		C773BD691BD6F7D100F92C3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C773BD681BD6F7D100F92C3B /* Info.plist */; };
 		C773BD6B1BD6F7E600F92C3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C773BD6A1BD6F7E600F92C3B /* Info.plist */; };
 		C7A11D591BDF50CF008D0407 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D581BDF50CF008D0407 /* CoreLocation.framework */; };
 		C7A11D5B1BDF50E9008D0407 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */; };
@@ -80,16 +77,6 @@
 		C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5E1BDF51AF008D0407 /* libc++.tbd */; };
 		C7FD24671BE9B14D0064454F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7FD24691BE9B14D0064454F /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		2CE545EB1B9D54E400EDE8BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2CE545C91B9D54E400EDE8BB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CE545D01B9D54E400EDE8BB;
-			remoteInfo = AgoraSample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		18F0F53B1BD9F7F9008E10E7 /* Embed Frameworks */ = {
@@ -148,6 +135,7 @@
 		18F34DED1BAFD312000ADECA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18F34DF51BB0090D000ADECA /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
+		2019E7FC1C34D4A600B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
 		2C1193041BB3F20500CE994E /* FOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOWebViewController.m; sourceTree = "<group>"; };
@@ -197,7 +185,6 @@
 		2CE545DF1B9D54E400EDE8BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CE545E11B9D54E400EDE8BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2CE545E41B9D54E400EDE8BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Launch.xib; sourceTree = "<group>"; };
-		2CE545EA1B9D54E400EDE8BB /* AgoraSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgoraSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE545F01B9D54E400EDE8BB /* AgoraSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgoraSampleTests.m; sourceTree = "<group>"; };
 		2CE546031B9D6A3300EDE8BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2CE546051B9D6A3C00EDE8BB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -212,8 +199,6 @@
 		C70B49DA1BD6EED200885E30 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		C70B49DB1BD6EFEF00885E30 /* AGSSplashSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSSplashSegue.h; sourceTree = "<group>"; };
 		C70B49DC1BD6EFEF00885E30 /* AGSSplashSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSSplashSegue.m; sourceTree = "<group>"; };
-		C70E96BE1BDF500800AD7C96 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
-		C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudCrashReporting.framework; sourceTree = "<group>"; };
 		C773BD681BD6F7D100F92C3B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C773BD6A1BD6F7E600F92C3B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7A11D581BDF50CF008D0407 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -230,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */,
 				2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */,
 				C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */,
@@ -238,21 +224,12 @@
 				2C4F76EB1BB122D1003635F5 /* CoreData.framework in Frameworks */,
 				18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */,
 				18F34DEC1BAFD2E7000ADECA /* Foundation.framework in Frameworks */,
-				C70E96BF1BDF500800AD7C96 /* AVOSCloud.framework in Frameworks */,
 				2CE5460E1B9D6A6100EDE8BB /* SystemConfiguration.framework in Frameworks */,
-				C70E96C11BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework in Frameworks */,
 				2CE5460C1B9D6A5700EDE8BB /* CoreMotion.framework in Frameworks */,
 				2CE5460A1B9D6A4D00EDE8BB /* CoreTelephony.framework in Frameworks */,
 				2CE546081B9D6A4500EDE8BB /* CoreMedia.framework in Frameworks */,
 				2CE546061B9D6A3C00EDE8BB /* AVFoundation.framework in Frameworks */,
 				2CE546041B9D6A3300EDE8BB /* AudioToolbox.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CE545E71B9D54E400EDE8BB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +484,6 @@
 			isa = PBXGroup;
 			children = (
 				2CE545D11B9D54E400EDE8BB /* AgoraSample.app */,
-				2CE545EA1B9D54E400EDE8BB /* AgoraSampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -561,13 +537,12 @@
 		2CE545FA1B9D629600EDE8BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2019E7FC1C34D4A600B281E3 /* libCrasheye.a */,
 				2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */,
 				C7A11D5E1BDF51AF008D0407 /* libc++.tbd */,
 				C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */,
 				C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */,
 				C7A11D581BDF50CF008D0407 /* CoreLocation.framework */,
-				C70E96C01BDF501F00AD7C96 /* AVOSCloudCrashReporting.framework */,
-				C70E96BE1BDF500800AD7C96 /* AVOSCloud.framework */,
 				2CE546031B9D6A3300EDE8BB /* AudioToolbox.framework */,
 				2CE546051B9D6A3C00EDE8BB /* AVFoundation.framework */,
 				2C4F76EA1BB122D1003635F5 /* CoreData.framework */,
@@ -603,24 +578,6 @@
 			productReference = 2CE545D11B9D54E400EDE8BB /* AgoraSample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2CE545E91B9D54E400EDE8BB /* AgoraSampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2CE545F71B9D54E400EDE8BB /* Build configuration list for PBXNativeTarget "AgoraSampleTests" */;
-			buildPhases = (
-				2CE545E61B9D54E400EDE8BB /* Sources */,
-				2CE545E71B9D54E400EDE8BB /* Frameworks */,
-				2CE545E81B9D54E400EDE8BB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2CE545EC1B9D54E400EDE8BB /* PBXTargetDependency */,
-			);
-			name = AgoraSampleTests;
-			productName = AgoraSampleTests;
-			productReference = 2CE545EA1B9D54E400EDE8BB /* AgoraSampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -640,10 +597,6 @@
 							};
 						};
 					};
-					2CE545E91B9D54E400EDE8BB = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 2CE545D01B9D54E400EDE8BB;
-					};
 				};
 			};
 			buildConfigurationList = 2CE545CC1B9D54E400EDE8BB /* Build configuration list for PBXProject "AgoraSample" */;
@@ -661,7 +614,6 @@
 			projectRoot = "";
 			targets = (
 				2CE545D01B9D54E400EDE8BB /* AgoraSample */,
-				2CE545E91B9D54E400EDE8BB /* AgoraSampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -685,14 +637,6 @@
 				18F0F5201BD72DEE008E10E7 /* AGSVoiceTestViewController.xib in Resources */,
 				18F34DE41BAFC2A2000ADECA /* AGSCallBackView.xib in Resources */,
 				C773BD6B1BD6F7E600F92C3B /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CE545E81B9D54E400EDE8BB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C773BD691BD6F7D100F92C3B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,23 +706,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CE545E61B9D54E400EDE8BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2CE545F11B9D54E400EDE8BB /* AgoraSampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2CE545EC1B9D54E400EDE8BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CE545D01B9D54E400EDE8BB /* AgoraSample */;
-			targetProxy = 2CE545EB1B9D54E400EDE8BB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2CE545DE1B9D54E400EDE8BB /* Main.storyboard */ = {
@@ -913,11 +841,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/AVOSCloud",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				INFOPLIST_FILE = AgoraSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-licucore",
@@ -941,11 +870,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/AVOSCloud",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				INFOPLIST_FILE = AgoraSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-licucore",
@@ -955,46 +885,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-			};
-			name = Release;
-		};
-		2CE545F81B9D54E400EDE8BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AgoraSampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraSample.app/AgoraSample";
-			};
-			name = Debug;
-		};
-		2CE545F91B9D54E400EDE8BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AgoraSampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraSample.app/AgoraSample";
 			};
 			name = Release;
 		};
@@ -1015,15 +905,6 @@
 			buildConfigurations = (
 				2CE545F51B9D54E400EDE8BB /* Debug */,
 				2CE545F61B9D54E400EDE8BB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2CE545F71B9D54E400EDE8BB /* Build configuration list for PBXNativeTarget "AgoraSampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2CE545F81B9D54E400EDE8BB /* Debug */,
-				2CE545F91B9D54E400EDE8BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

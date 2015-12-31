@@ -18,11 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Enable Crash Reporting
-        AVOSCloudCrashReporting.enable()
-        
-        // Setup AVOSCloud
-        AVOSCloud.setApplicationId("28JP7oxLHbCNi7ofL6YgywT0", clientKey:"aQpqEH0qmo0bGLaCzNlYkra3")
+        Crasheye.initWithAppKey("29114fb0")
         
         //
         AGSAgoraKitManager.shareManager.delegate = self;

@@ -11,8 +11,7 @@
 #import "AGSCoreDataManager.h"
 #import "AGSChatViewController.h"
 #import "AGSCallBackView.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudCrashReporting/AVOSCloudCrashReporting.h>
+#import "Crasheye.h"
 
 @interface AGSAppDelegate ()
 
@@ -22,11 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // Enable Crash Reporting
-    [AVOSCloudCrashReporting enable];
-    
-    // Setup AVOSCloud
-    [AVOSCloud setApplicationId:@"28JP7oxLHbCNi7ofL6YgywT0" clientKey:@"aQpqEH0qmo0bGLaCzNlYkra3"];
+    [Crasheye initWithAppKey:@"faf12510"];
     
     //
     [AGSAgoraKitManager shareManager].delegate = self;
