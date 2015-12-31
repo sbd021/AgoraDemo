@@ -7,8 +7,7 @@
 //
 
 #import "AGDAppDelegate.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudCrashReporting/AVOSCloudCrashReporting.h>
+#import "crasheye.h"
 
 @interface AGDAppDelegate ()
 
@@ -19,12 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    // Enable Crash Reporting
-    [AVOSCloudCrashReporting enable];
-    
-    // Setup AVOSCloud
-    [AVOSCloud setApplicationId:@"iMBlcA22YEc08R3PcSu3ON11" clientKey:@"c5Bz4P2erIpXde7EsKaegCLw"];
-    
+   [Crasheye initWithAppKey:@"d7b5e280"];
     return YES;
 }
 

@@ -15,7 +15,6 @@
 		18F23F6F1B9FC3F400A7A622 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23F6E1B9FC3F400A7A622 /* ViewController.m */; };
 		18F23F721B9FC3F400A7A622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F23F701B9FC3F400A7A622 /* Main.storyboard */; };
 		18F23F741B9FC3F400A7A622 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F23F731B9FC3F400A7A622 /* Images.xcassets */; };
-		18F23F831B9FC3F400A7A622 /* AgoraDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23F821B9FC3F400A7A622 /* AgoraDemoTests.m */; };
 		18F23F8F1B9FC4BC00A7A622 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F23F8E1B9FC4BC00A7A622 /* libc++.dylib */; };
 		18F23F911B9FC4CB00A7A622 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F23F901B9FC4CB00A7A622 /* SystemConfiguration.framework */; };
 		18F23F931B9FC4D300A7A622 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F23F921B9FC4D300A7A622 /* CoreMotion.framework */; };
@@ -24,25 +23,16 @@
 		18F23F991B9FC4FF00A7A622 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F23F981B9FC4FF00A7A622 /* AVFoundation.framework */; };
 		18F23FB11B9FC7AD00A7A622 /* AGDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23FB01B9FC7AD00A7A622 /* AGDLoginViewController.m */; };
 		18F23FB51B9FC7C700A7A622 /* AGDChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */; };
+		2019E7F01C34CA9900B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7EF1C34CA9900B281E3 /* libCrasheye.a */; };
+		2019E7F91C34CCF600B281E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */; };
+		2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FA1C34CD8700B281E3 /* libz.tbd */; };
 		20FDF36B1C04542E0078A62F /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */; };
 		2C00E95E1BA152D600605003 /* AGDChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00E95D1BA152D600605003 /* AGDChatCell.m */; };
-		2C5DBCD91BA7D85F00952C9D /* AVOSCloudCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCD81BA7D85F00952C9D /* AVOSCloudCrashReporting.framework */; };
-		2C5DBCDB1BA7D86D00952C9D /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDA1BA7D86D00952C9D /* AVOSCloud.framework */; };
 		2C5DBCDD1BA7D89900952C9D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDC1BA7D89900952C9D /* MobileCoreServices.framework */; };
 		2C5DBCDF1BA7D8AA00952C9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDE1BA7D8AA00952C9D /* CoreLocation.framework */; };
 		2C5DBCE11BA7D8B800952C9D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCE01BA7D8B800952C9D /* libicucore.dylib */; };
 		2C5DBCE31BA7D94400952C9D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCE21BA7D94400952C9D /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		18F23F7D1B9FC3F400A7A622 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18F23F5B1B9FC3F400A7A622 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18F23F621B9FC3F400A7A622;
-			remoteInfo = AgoraDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2C19FB9E1BA6B72F00783F73 /* Embed Frameworks */ = {
@@ -74,7 +64,6 @@
 		18F23F6E1B9FC3F400A7A622 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		18F23F711B9FC3F400A7A622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18F23F731B9FC3F400A7A622 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18F23F7C1B9FC3F400A7A622 /* AgoraDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgoraDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F23F811B9FC3F400A7A622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18F23F821B9FC3F400A7A622 /* AgoraDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgoraDemoTests.m; sourceTree = "<group>"; };
 		18F23F8E1B9FC4BC00A7A622 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -83,16 +72,16 @@
 		18F23F941B9FC4E300A7A622 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18F23F961B9FC4F100A7A622 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		18F23F981B9FC4FF00A7A622 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		18F23F9A1B9FC50D00A7A622 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		18F23FAF1B9FC7AD00A7A622 /* AGDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDLoginViewController.h; sourceTree = "<group>"; };
 		18F23FB01B9FC7AD00A7A622 /* AGDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDLoginViewController.m; sourceTree = "<group>"; };
 		18F23FB31B9FC7C700A7A622 /* AGDChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatViewController.h; sourceTree = "<group>"; };
 		18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatViewController.m; sourceTree = "<group>"; };
+		2019E7EF1C34CA9900B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
+		2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2019E7FA1C34CD8700B281E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C00E95C1BA152D600605003 /* AGDChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatCell.h; sourceTree = "<group>"; };
 		2C00E95D1BA152D600605003 /* AGDChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatCell.m; sourceTree = "<group>"; };
-		2C5DBCD81BA7D85F00952C9D /* AVOSCloudCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudCrashReporting.framework; sourceTree = "<group>"; };
-		2C5DBCDA1BA7D86D00952C9D /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
 		2C5DBCDC1BA7D89900952C9D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2C5DBCDE1BA7D8AA00952C9D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2C5DBCE01BA7D8B800952C9D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -104,26 +93,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */,
+				2019E7F91C34CCF600B281E3 /* AudioToolbox.framework in Frameworks */,
+				18F23F991B9FC4FF00A7A622 /* AVFoundation.framework in Frameworks */,
+				2019E7F01C34CA9900B281E3 /* libCrasheye.a in Frameworks */,
 				20FDF36B1C04542E0078A62F /* AgoraRtcEngineKit.framework in Frameworks */,
 				2C5DBCE31BA7D94400952C9D /* libsqlite3.dylib in Frameworks */,
 				2C5DBCE11BA7D8B800952C9D /* libicucore.dylib in Frameworks */,
 				2C5DBCDF1BA7D8AA00952C9D /* CoreLocation.framework in Frameworks */,
 				2C5DBCDD1BA7D89900952C9D /* MobileCoreServices.framework in Frameworks */,
 				18F23F911B9FC4CB00A7A622 /* SystemConfiguration.framework in Frameworks */,
-				2C5DBCD91BA7D85F00952C9D /* AVOSCloudCrashReporting.framework in Frameworks */,
-				18F23F991B9FC4FF00A7A622 /* AVFoundation.framework in Frameworks */,
 				18F23F971B9FC4F100A7A622 /* CoreMedia.framework in Frameworks */,
 				18F23F951B9FC4E300A7A622 /* CoreTelephony.framework in Frameworks */,
 				18F23F931B9FC4D300A7A622 /* CoreMotion.framework in Frameworks */,
 				18F23F8F1B9FC4BC00A7A622 /* libc++.dylib in Frameworks */,
-				2C5DBCDB1BA7D86D00952C9D /* AVOSCloud.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18F23F791B9FC3F400A7A622 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				18F23F631B9FC3F400A7A622 /* AgoraDemo.app */,
-				18F23F7C1B9FC3F400A7A622 /* AgoraDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,11 +188,11 @@
 		18F23F8D1B9FC49100A7A622 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2019E7FA1C34CD8700B281E3 /* libz.tbd */,
+				2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */,
+				2019E7EF1C34CA9900B281E3 /* libCrasheye.a */,
 				20FDF36A1C04542E0078A62F /* AgoraRtcEngineKit.framework */,
-				18F23F9A1B9FC50D00A7A622 /* AudioToolbox.framework */,
 				18F23F981B9FC4FF00A7A622 /* AVFoundation.framework */,
-				2C5DBCDA1BA7D86D00952C9D /* AVOSCloud.framework */,
-				2C5DBCD81BA7D85F00952C9D /* AVOSCloudCrashReporting.framework */,
 				2C5DBCDE1BA7D8AA00952C9D /* CoreLocation.framework */,
 				18F23F961B9FC4F100A7A622 /* CoreMedia.framework */,
 				18F23F921B9FC4D300A7A622 /* CoreMotion.framework */,
@@ -266,24 +248,6 @@
 			productReference = 18F23F631B9FC3F400A7A622 /* AgoraDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18F23F7B1B9FC3F400A7A622 /* AgoraDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 18F23F891B9FC3F400A7A622 /* Build configuration list for PBXNativeTarget "AgoraDemoTests" */;
-			buildPhases = (
-				18F23F781B9FC3F400A7A622 /* Sources */,
-				18F23F791B9FC3F400A7A622 /* Frameworks */,
-				18F23F7A1B9FC3F400A7A622 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				18F23F7E1B9FC3F400A7A622 /* PBXTargetDependency */,
-			);
-			name = AgoraDemoTests;
-			productName = AgoraDemoTests;
-			productReference = 18F23F7C1B9FC3F400A7A622 /* AgoraDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,10 +267,6 @@
 							};
 						};
 					};
-					18F23F7B1B9FC3F400A7A622 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 18F23F621B9FC3F400A7A622;
-					};
 				};
 			};
 			buildConfigurationList = 18F23F5E1B9FC3F400A7A622 /* Build configuration list for PBXProject "AgoraDemo" */;
@@ -324,7 +284,6 @@
 			projectRoot = "";
 			targets = (
 				18F23F621B9FC3F400A7A622 /* AgoraDemo */,
-				18F23F7B1B9FC3F400A7A622 /* AgoraDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -338,13 +297,6 @@
 				18F07B3B1BD5E16D00A7A6F1 /* Localizable.strings in Resources */,
 				18F0F5281BD739D0008E10E7 /* Launch.xib in Resources */,
 				18F23F741B9FC3F400A7A622 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18F23F7A1B9FC3F400A7A622 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,23 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18F23F781B9FC3F400A7A622 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				18F23F831B9FC3F400A7A622 /* AgoraDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		18F23F7E1B9FC3F400A7A622 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 18F23F621B9FC3F400A7A622 /* AgoraDemo */;
-			targetProxy = 18F23F7D1B9FC3F400A7A622 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18F07B3D1BD5E16D00A7A6F1 /* Localizable.strings */ = {
@@ -522,10 +458,18 @@
 					"$(inherited)",
 					AgoraDemo_IOS,
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye/";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Crasheye/",
+					"$(PROJECT_DIR)/Crasheye",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
@@ -545,51 +489,21 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye/";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Crasheye/",
+					"$(PROJECT_DIR)/Crasheye",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-			};
-			name = Release;
-		};
-		18F23F8A1B9FC3F400A7A622 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
-			};
-			name = Debug;
-		};
-		18F23F8B1B9FC3F400A7A622 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AgoraDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgoraDemo.app/AgoraDemo";
 			};
 			name = Release;
 		};
@@ -610,15 +524,6 @@
 			buildConfigurations = (
 				18F23F871B9FC3F400A7A622 /* Debug */,
 				18F23F881B9FC3F400A7A622 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		18F23F891B9FC3F400A7A622 /* Build configuration list for PBXNativeTarget "AgoraDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				18F23F8A1B9FC3F400A7A622 /* Debug */,
-				18F23F8B1B9FC3F400A7A622 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
