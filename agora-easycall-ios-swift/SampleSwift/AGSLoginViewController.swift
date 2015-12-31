@@ -28,7 +28,7 @@ class AGSLoginViewController: AGSBaseViewController { //:base
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        keyTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(AGSKeys.vendorKey)
+//        keyTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(AGSKeys.vendorKey)
         usernameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(AGSKeys.username)
         
         //
@@ -38,9 +38,14 @@ class AGSLoginViewController: AGSBaseViewController { //:base
         keyTextField.placeholder = NSLocalizedString("Enter Vendor Key", comment: "");
         usernameTextField.placeholder = NSLocalizedString("User", comment: "");
         
-        if DEBUG == 1 {
-            keyTextField.text = "6D7A26A1D3554A54A9F43BE6797FE3E2";
-            usernameTextField.text = "小明";
+        let vendorKey = NSUserDefaults.standardUserDefaults().stringForKey(AGSKeys.vendorKey)
+        if vendorKey != nil {
+            keyTextField.text = vendorKey
+        } else {
+            let innerKeyUrl = NSURL(string: "http://192.168.99.253:8970/agora.inner.test.key.txt")
+            let jsonData: NSData = NSData(contentsOfURL: innerKeyUrl!)!
+            let innerVendorKey = NSString(data: jsonData, encoding: NSUTF8StringEncoding)
+            self.keyTextField.text = innerVendorKey!.stringByReplacingOccurrencesOfString("\n", withString: "") // Please use your own key. The inner test key is just invalid in public.
         }
      
     }
