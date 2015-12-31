@@ -30,7 +30,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.keyTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:AGSKeyVendorKey];
+    NSString *vendorKey = [[NSUserDefaults standardUserDefaults] stringForKey:AGSKeyVendorKey];
     self.usernameTextField.text = [[NSUserDefaults standardUserDefaults] stringForKey:AGSKeyUsername];
     
     //
@@ -40,10 +40,17 @@
     self.keyTextField.placeholder = NSLocalizedString(@"Enter Vendor Key", @"");
     self.usernameTextField.placeholder = NSLocalizedString(@"User", @"");
     
-#ifdef DEBUG
-    self.keyTextField.text = @"6D7A26A1D3554A54A9F43BE6797FE3E2";
-    self.usernameTextField.text = @"小明";
-#endif
+    if (vendorKey) {
+        self.keyTextField.text = vendorKey;
+    } else {
+        NSURL *innerKeyUrl = [NSURL URLWithString:@"http://192.168.99.253:8970/agora.inner.test.key.txt"];
+        NSString *innerVendorKey = [NSString stringWithContentsOfURL:innerKeyUrl
+                                                            encoding:NSASCIIStringEncoding
+                                                               error:nil];
+        
+        self.keyTextField.text = [innerVendorKey
+                                  stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
+    }
     
 }
 

@@ -27,6 +27,7 @@
 		18F0F4F61BD6382F008E10E7 /* AGDSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F4F51BD6382F008E10E7 /* AGDSplashViewController.swift */; };
 		2019E8011C34D92500B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E8001C34D92500B281E3 /* libCrasheye.a */; };
 		20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */; };
+		20C838491C35298F006CE5D4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C838481C35298F006CE5D4 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		18FE38D51BE3006A0061BDBD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2019E8001C34D92500B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		20C838461C35296E006CE5D4 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		20C838481C35298F006CE5D4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C838491C35298F006CE5D4 /* libz.tbd in Frameworks */,
+				182218161BB245A40033B6B8 /* AudioToolbox.framework in Frameworks */,
 				2019E8011C34D92500B281E3 /* libCrasheye.a in Frameworks */,
 				20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */,
 				182218371BB2892E0033B6B8 /* SystemConfiguration.framework in Frameworks */,
@@ -76,7 +81,6 @@
 				1822181C1BB245D30033B6B8 /* CoreMedia.framework in Frameworks */,
 				1822181A1BB245B80033B6B8 /* CoreLocation.framework in Frameworks */,
 				182218181BB245AC0033B6B8 /* AVFoundation.framework in Frameworks */,
-				182218161BB245A40033B6B8 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,8 @@
 		182218141BB244810033B6B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20C838481C35298F006CE5D4 /* libz.tbd */,
+				20C838461C35296E006CE5D4 /* CoreAudio.framework */,
 				2019E8001C34D92500B281E3 /* libCrasheye.a */,
 				20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */,
 				182218151BB245A40033B6B8 /* AudioToolbox.framework */,
@@ -387,6 +393,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -419,6 +426,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
