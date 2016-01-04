@@ -339,7 +339,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../libs",
 				);
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -347,13 +347,13 @@
 				GCC_PREFIX_HEADER = "sample/sample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/../libs/Crasheye",
 				);
 				INFOPLIST_FILE = "sample/sample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/../libs/Crasheye",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -377,7 +377,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../libs",
 				);
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -385,13 +385,13 @@
 				GCC_PREFIX_HEADER = "sample/sample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/../libs/Crasheye",
 				);
 				INFOPLIST_FILE = "sample/sample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/../libs/Crasheye",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
