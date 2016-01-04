@@ -70,3 +70,11 @@ Bug fix:
 
 Improvement
 [1] increase the mic volume for Android
+
+Release 1.0.0
+Built on 2015-10-30
+
+Feature:
+[1] Support video chat: 1v1 and group call
+[2] API changes
+
