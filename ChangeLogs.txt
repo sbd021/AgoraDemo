@@ -1,14 +1,18 @@
+
+
 Release 1.1.4
 
 API:
 [1] API changed: add offline reason to onUserOffline callback
 [2] API changed: move Constants from interface IRtcEngineHandler to class Constants
 [3] API changed: add new channel profile: WEBSDK_COMPATIBLE
+[4] API changed for iOS: change - (id)initWithVendorKey:(NSString*)key delegate:(id<AgoraRtcEngineDelegate>)delegate; to + (id)sharedEngineWithVendorKey:(NSString*)key delegate:(id<AgoraRtcEngineDelegate>)delegate; 
 
 Bug fix:
 [1] Fix BT headset issue
 [2] fix a bug that enable/disable video very quickly may cause video function cannto work (mismatch of stream subscription between SDK and VOS)
 [3] user leave and then join, see a lot of decode error
+[4] delegate could be updated
 
 Release 1.1.3
 
