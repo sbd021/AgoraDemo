@@ -20,3 +20,10 @@ agora-demo-ios-swift/AgoraDemo.xcodeproj/project.xcworkspace/xcuserdata
 agora-demo-ios-swift/AgoraDemo.xcodeproj/xcuserdata
 agora-easycall-ios-swift/SampleSwift.xcodeproj/project.xcworkspace/xcuserdata
 agora-easycall-ios-swift/SampleSwift.xcodeproj/xcuserdata
+*.xcuserstate
+*.xcbkptlist
+*.plist
+agora-voice-demo-android/Sample/.gradle
+agora-voice-demo-android/Sample/.idea
+agora-voice-demo-android/Sample/build
+*.xcscheme
