@@ -60,7 +60,7 @@ static NSString * const KeyVendorKey = @"VendorKey";
     
     
     __weak typeof(self) weakSelf = self;
-    self.agoraRtcEngine = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKeyTextField.text error:^(AgoraRtcErrorCode errorCode) {
+    self.agoraRtcEngine = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKeyTextField.text error:^(AgoraRtcErrorCode errorCode) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf appendLogString:[NSString stringWithFormat:@"error code: %lu", (long)errorCode]];
     }];

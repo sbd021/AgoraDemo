@@ -7,7 +7,6 @@
 //
 
 #import "AGDChatViewController.h"
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
 @interface AGDChatViewController ()
 {
@@ -65,6 +64,7 @@
     self.title = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"room", nil), self.channel];
 //    [self selectSpeakerButtons:YES];
     [self initAgoraKit];
+    NSLog(@"self: %@", self);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -81,15 +81,19 @@
 
 #pragma mark -
 
+
 - (void)initAgoraKit
 {
     // use test key
-    self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKey error:^(AgoraRtcErrorCode errorCode) {
-        if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
-            [self.agoraKit leaveChannel:nil];
-            [self.errorKeyAlert show];
-        }
-    }];
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKey delegate:self];
+        
+//    self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKey error:^(AgoraRtcErrorCode errorCode) {
+//        if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
+//            [self.agoraKit leaveChannel:nil];
+//            [self.errorKeyAlert show];
+//        }
+//    }];
+    [self.agoraKit setLogFilter:0];
     
     [self setUpVideo];
     [self setUpBlocks];
@@ -98,17 +102,18 @@
 - (void)joinChannel
 {
     [self showAlertLabelWithString:NSLocalizedString(@"wait_attendees", nil)];
+    __weak typeof(self) weakSelf = self;
     [self.agoraKit joinChannelByKey:nil channelName:self.channel info:nil uid:0 joinSuccess:^(NSString *channel, NSUInteger uid, NSInteger elapsed) {
         
-        [self.agoraKit setEnableSpeakerphone:YES];
-        if (self.type == AGDChatTypeAudio) {
-            [self.agoraKit disableVideo];
+        [weakSelf.agoraKit setEnableSpeakerphone:YES];
+        if (weakSelf.type == AGDChatTypeAudio) {
+            [weakSelf.agoraKit disableVideo];
         }
         
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:self.vendorKey forKey:AGDKeyVendorKey];
+        [userDefaults setObject:weakSelf.vendorKey forKey:AGDKeyVendorKey];
     }];
 }
 
@@ -122,58 +127,129 @@
     [self.agoraKit setupLocalVideo:videoCanvas];
 }
 
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed
+{
+    NSLog(@"local video display");
+    __weak typeof(self) weakSelf = self;
+    weakSelf.videoMainView.frame = weakSelf.videoMainView.superview.bounds; // video view's autolayout cause crash
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed
+{
+    __weak typeof(self) weakSelf = self;
+    NSLog(@"self: %@", weakSelf);
+    NSLog(@"engine: %@", engine);
+    [weakSelf hideAlertLabel];
+    [weakSelf.uids addObject:@(uid)];
+    
+    [weakSelf.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.uids.count-1 inSection:0]]];
+}
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason
+{
+    __weak typeof(self) weakSelf = self;
+    NSInteger index = [weakSelf.uids indexOfObject:@(uid)];
+    if (index != NSNotFound) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [weakSelf.uids removeObjectAtIndex:index];
+        [weakSelf.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    }
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid
+{
+    __weak typeof(self) weakSelf = self;
+    NSLog(@"user %@ mute video: %@", @(uid), muted ? @"YES" : @"NO");
+    
+    [weakSelf.videoMuteForUids setObject:@(muted) forKey:@(uid)];
+    [weakSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[weakSelf.uids indexOfObject:@(uid)] inSection:0]]];
+}
+
+- (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine
+{
+    __weak typeof(self) weakSelf = self;
+    [weakSelf showAlertLabelWithString:NSLocalizedString(@"no_network", nil)];
+    weakSelf.videoMainView.hidden = YES;
+    weakSelf.dataTrafficLabel.text = @"0KB/s";
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine reportRtcStats:(AgoraRtcStats*)stats
+{
+    __weak typeof(self) weakSelf = self;
+    // Update talk time
+    if (weakSelf.duration == 0 && !weakSelf.durationTimer) {
+        weakSelf.talkTimeLabel.text = @"00:00";
+        weakSelf.durationTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:weakSelf selector:@selector(updateTalkTimeLabel) userInfo:nil repeats:YES];
+    }
+    
+    NSUInteger traffic = (stats.txBytes + stats.rxBytes - lastStat_.txBytes - lastStat_.rxBytes) / 1024;
+    NSUInteger speed = traffic / (stats.duration - lastStat_.duration);
+    NSString *trafficString = [NSString stringWithFormat:@"%@KB/s", @(speed)];
+    weakSelf.dataTrafficLabel.text = trafficString;
+    
+    lastStat_ = stats;
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraRtcErrorCode)errorCode
+{
+    __weak typeof(self) weakSelf = self;
+    if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
+        [weakSelf.agoraKit leaveChannel:nil];
+        [weakSelf.errorKeyAlert show];
+    }
+}
+
 - (void)setUpBlocks
 {
-    [self.agoraKit rtcStatsBlock:^(AgoraRtcStats *stat) {
-        // Update talk time
-        if (self.duration == 0 && !self.durationTimer) {
-            self.talkTimeLabel.text = @"00:00";
-            self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTalkTimeLabel) userInfo:nil repeats:YES];
-        }
-        
-        NSUInteger traffic = (stat.txBytes + stat.rxBytes - lastStat_.txBytes - lastStat_.rxBytes) / 1024;
-        NSUInteger speed = traffic / (stat.duration - lastStat_.duration);
-        NSString *trafficString = [NSString stringWithFormat:@"%@KB/s", @(speed)];
-        self.dataTrafficLabel.text = trafficString;
-        
-        lastStat_ = stat;
-    }];
+//    [self.agoraKit rtcStatsBlock:^(AgoraRtcStats *stat) {
+//        // Update talk time
+//        if (self.duration == 0 && !self.durationTimer) {
+//            self.talkTimeLabel.text = @"00:00";
+//            self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTalkTimeLabel) userInfo:nil repeats:YES];
+//        }
+//        
+//        NSUInteger traffic = (stat.txBytes + stat.rxBytes - lastStat_.txBytes - lastStat_.rxBytes) / 1024;
+//        NSUInteger speed = traffic / (stat.duration - lastStat_.duration);
+//        NSString *trafficString = [NSString stringWithFormat:@"%@KB/s", @(speed)];
+//        self.dataTrafficLabel.text = trafficString;
+//        
+//        lastStat_ = stat;
+//    }];
     
-    [self.agoraKit userJoinedBlock:^(NSUInteger uid, NSInteger elapsed) {
-        [self hideAlertLabel];
-        [self.uids addObject:@(uid)];
-        
-        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.uids.count-1 inSection:0]]];
-    }];
+//    [self.agoraKit userJoinedBlock:^(NSUInteger uid, NSInteger elapsed) {
+//        [self hideAlertLabel];
+//        [self.uids addObject:@(uid)];
+//        
+//        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.uids.count-1 inSection:0]]];
+//    }];
     
-    [self.agoraKit userOfflineBlock:^(NSUInteger uid) {
-        NSInteger index = [self.uids indexOfObject:@(uid)];
-        if (index != NSNotFound) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-            [self.uids removeObjectAtIndex:index];
-            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-        }
-    }];
+//    [self.agoraKit userOfflineBlock:^(NSUInteger uid) {
+//        NSInteger index = [self.uids indexOfObject:@(uid)];
+//        if (index != NSNotFound) {
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+//            [self.uids removeObjectAtIndex:index];
+//            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+//        }
+//    }];
     
 
     
-    [self.agoraKit connectionLostBlock:^{
-        [self showAlertLabelWithString:NSLocalizedString(@"no_network", nil)];
-        self.videoMainView.hidden = YES;
-        self.dataTrafficLabel.text = @"0KB/s";
-    }];
+//    [self.agoraKit connectionLostBlock:^{
+//        [self showAlertLabelWithString:NSLocalizedString(@"no_network", nil)];
+//        self.videoMainView.hidden = YES;
+//        self.dataTrafficLabel.text = @"0KB/s";
+//    }];
     
-    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
-        NSLog(@"user %@ mute video: %@", @(uid), muted ? @"YES" : @"NO");
-        
-        [self.videoMuteForUids setObject:@(muted) forKey:@(uid)];
-        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.uids indexOfObject:@(uid)] inSection:0]]];
-    }];
-    
-    [self.agoraKit firstLocalVideoFrameBlock:^(NSInteger width, NSInteger height, NSInteger elapsed) {
-        NSLog(@"local video display");
-        self.videoMainView.frame = self.videoMainView.superview.bounds; // video view's autolayout cause crash
-    }];
+//    [self.agoraKit userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
+//        NSLog(@"user %@ mute video: %@", @(uid), muted ? @"YES" : @"NO");
+//        
+//        [self.videoMuteForUids setObject:@(muted) forKey:@(uid)];
+//        [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.uids indexOfObject:@(uid)] inSection:0]]];
+//    }];
+//    
+//    [self.agoraKit firstLocalVideoFrameBlock:^(NSInteger width, NSInteger height, NSInteger elapsed) {
+//        NSLog(@"local video display");
+//        self.videoMainView.frame = self.videoMainView.superview.bounds; // video view's autolayout cause crash
+//    }];
 }
 
 #pragma mark - 
@@ -194,7 +270,7 @@
     self.duration++;
     NSUInteger seconds = self.duration % 60;
     NSUInteger minutes = (self.duration - seconds) / 60;
-    self.talkTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld", minutes, seconds];
+    self.talkTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld", (unsigned long)minutes, (unsigned long)seconds];
 }
 
 #pragma mark - 

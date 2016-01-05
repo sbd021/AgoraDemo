@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AGDChatCell.h"
+#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
-@interface AGDChatViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface AGDChatViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, AgoraRtcEngineDelegate>
 
 @property(nonatomic,retain) NSDictionary *dictionary;
 

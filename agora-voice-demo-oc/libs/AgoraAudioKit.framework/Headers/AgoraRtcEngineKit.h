@@ -248,13 +248,13 @@ __attribute__((visibility("default"))) @interface AgoraRtcEngineKit : NSObject
  *
  *  @return an object of AgoraRtcEngineKit class
  */
-- (id)initWithVendorKey:(NSString*)key
++ (id)sharedEngineWithVendorKey:(NSString*)key
                delegate:(id<AgoraRtcEngineDelegate>)delegate;
 
 /**
  *  deprecated
  */
-- (id)initWithVendorKey:(NSString*)key
++ (id)sharedEngineWithVendorKey:(NSString*)key
                   error:(void(^)(AgoraRtcErrorCode errorCode))errorBlock __deprecated;
 
 /**
