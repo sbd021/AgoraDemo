@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#include <AgoraAudioKit/AgoraRtcEngineKit.h>
 
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -59,11 +58,7 @@ static NSString * const KeyVendorKey = @"VendorKey";
     }
     
     
-    __weak typeof(self) weakSelf = self;
-    self.agoraRtcEngine = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKeyTextField.text error:^(AgoraRtcErrorCode errorCode) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"error code: %lu", (long)errorCode]];
-    }];
+    self.agoraRtcEngine = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKeyTextField.text delegate:self];
     
     NSURL *docURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *logDir = [docURL path];
@@ -72,25 +67,68 @@ static NSString * const KeyVendorKey = @"VendorKey";
     NSString *logTextPath = [logDir stringByAppendingPathComponent:@"com.agora.CacheLogs/agorasdk.log"];
     [self.agoraRtcEngine setLogFile:logTextPath];
     
-    [self.agoraRtcEngine audioQualityBlock:^(NSUInteger uid, AgoraRtcQuality quality, NSUInteger delay, NSUInteger lost) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u delay %u lost %u", (unsigned int)uid, (unsigned int)delay, (unsigned int)lost]];
-    }];
-    
-    [self.agoraRtcEngine leaveChannelBlock:^(AgoraRtcStats *stat) {
-        //NSLog(@"duration %d tx %d rx %d", stat.duration, stat.txBytes, stat.rxBytes);
-    }];
-    
-    [self.agoraRtcEngine rtcStatsBlock:^(AgoraRtcStats *stat) {
-        //NSLog(@"duration %d tx %d rx %d", stat.duration, stat.txBytes, stat.rxBytes);
-    }];
-    
-    [self.agoraRtcEngine networkQualityBlock:^(AgoraRtcQuality quality) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"network quality: %d", (int)quality]];
-    }];
+//    [self.agoraRtcEngine audioQualityBlock:^(NSUInteger uid, AgoraRtcQuality quality, NSUInteger delay, NSUInteger lost) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u delay %u lost %u", (unsigned int)uid, (unsigned int)delay, (unsigned int)lost]];
+//    }];
+//    
+//    [self.agoraRtcEngine leaveChannelBlock:^(AgoraRtcStats *stat) {
+//        //NSLog(@"duration %d tx %d rx %d", stat.duration, stat.txBytes, stat.rxBytes);
+//    }];
+//    
+//    [self.agoraRtcEngine rtcStatsBlock:^(AgoraRtcStats *stat) {
+//        //NSLog(@"duration %d tx %d rx %d", stat.duration, stat.txBytes, stat.rxBytes);
+//    }];
+//    
+//    [self.agoraRtcEngine networkQualityBlock:^(AgoraRtcQuality quality) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"network quality: %d", (int)quality]];
+//    }];
     
     [self.agoraRtcEngine enableNetworkTest];
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine audioQualityOfUid:(NSUInteger)uid quality:(AgoraRtcQuality)quality delay:(NSUInteger)delay lost:(NSUInteger)lost{
+    __weak typeof(self) weakSelf = self;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"user %u delay %u lost %u", (unsigned int)uid, (unsigned int)delay, (unsigned int)lost]];
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didLeaveChannelWithStats:(AgoraRtcStats *)stats {
+    
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraRtcErrorCode)errorCode {
+    __weak typeof(self) weakSelf = self;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"error code: %lu", (long)errorCode]];
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
+    __weak typeof(self) weakSelf = self;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"user %u joined in %d ms", (uint32_t)uid, (int)elapsed]];
+    
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason {
+    
+    __weak typeof(self) weakSelf = self;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"user %u offline", (uint32_t)uid]];
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid {
+    __weak typeof(self) weakSelf = self;
+    
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"user %u audio %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
+}
+
+- (void) rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
+    __weak typeof(self) weakSelf = self;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf appendLogString:[NSString stringWithFormat:@"user %u video %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
 }
 
 - (void)setHasJoinedChannel:(BOOL)hasJoinedChannel
@@ -138,25 +176,25 @@ static NSString * const KeyVendorKey = @"VendorKey";
     
     __weak typeof(self) weakSelf = self;
     
-    [self.agoraRtcEngine userJoinedBlock:^(NSUInteger uid, NSInteger elapsed) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u joined in %d ms", (uint32_t)uid, (int)elapsed]];
-    }];
-    
-    [self.agoraRtcEngine userOfflineBlock:^(NSUInteger uid) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u offline", (uint32_t)uid]];
-    }];
-
-    [self.agoraRtcEngine userMuteAudioBlock:^(NSUInteger uid, BOOL muted) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u audio %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
-    }];
-
-    [self.agoraRtcEngine userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u video %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
-    }];
+//    [self.agoraRtcEngine userJoinedBlock:^(NSUInteger uid, NSInteger elapsed) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u joined in %d ms", (uint32_t)uid, (int)elapsed]];
+//    }];
+//    
+//    [self.agoraRtcEngine userOfflineBlock:^(NSUInteger uid) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u offline", (uint32_t)uid]];
+//    }];
+//
+//    [self.agoraRtcEngine userMuteAudioBlock:^(NSUInteger uid, BOOL muted) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u audio %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
+//    }];
+//
+//    [self.agoraRtcEngine userMuteVideoBlock:^(NSUInteger uid, BOOL muted) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        [strongSelf appendLogString:[NSString stringWithFormat:@"user %u video %@", (uint32_t)uid, muted ? @"muted" : @"unmuted"]];
+//    }];
 
     [self.agoraRtcEngine joinChannelByKey:nil channelName:channelName info:nil uid:0 joinSuccess:^(NSString* channel, NSUInteger uid, NSInteger elapsed){
         weakSelf.hasJoinedChannel = YES;

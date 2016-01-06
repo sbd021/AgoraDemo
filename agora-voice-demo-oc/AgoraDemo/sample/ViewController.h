@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#include <AgoraAudioKit/AgoraRtcEngineKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<AgoraRtcEngineDelegate>
 
 @end
