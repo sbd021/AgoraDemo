@@ -204,8 +204,17 @@ static NSString * const KeyVendorKey = @"VendorKey";
         [strongSelf appendLogString:[NSString stringWithFormat:@"joined channel: %@ uid %u elapsed %d ms", channel, (unsigned int)uid, (int)elapsed]];
         
         
+        
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:self.vendorKeyTextField.text forKey:KeyVendorKey];
+        
+        NSURL *docURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        NSString *logDir = [docURL path];
+        //    NSString *logDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES).firstObject;
+        
+        NSString *logTextPath = [logDir stringByAppendingPathComponent:@"agorasdk.wav"];
+        
+        [self.agoraRtcEngine startAudioRecording:logTextPath];
     }];
 }
 
@@ -220,6 +229,8 @@ static NSString * const KeyVendorKey = @"VendorKey";
         [self appendLogString:@"not in channel!"];
         return;
     }
+    
+    [self.agoraRtcEngine stopAudioRecording];
     
     [self.agoraRtcEngine leaveChannel:nil];
     self.hasJoinedChannel = NO;
