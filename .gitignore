@@ -27,3 +27,7 @@ agora-voice-demo-android/Sample/.gradle
 agora-voice-demo-android/Sample/.idea
 agora-voice-demo-android/Sample/build
 *.xcscheme
+AgoraRtcEngineKit.h
+IAgoraRtcEngine.h
+AgoraRtcEngineKit
+AgoraAudioKit
