@@ -25,7 +25,10 @@
     if (self) {
         _videoView = [[UIView alloc] init];
         _videoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 64, 16)];
+        _nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:_videoView];
+        [self addSubview:_nameLabel];
         _type = AGSChatTypeVideo;
         _audioMute = NO;
     }
