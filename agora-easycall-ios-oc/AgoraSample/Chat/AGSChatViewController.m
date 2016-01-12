@@ -782,6 +782,8 @@
         // no auto-layout
         [self relayoutThumbnails];
 	}
+    
+    gr.nameLabel.text = [NSString stringWithFormat:@"%u", (unsigned int)uid];
 
     UITapGestureRecognizer* singleTapRecognizer;
     singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSwitchRemoteUsers:)];
