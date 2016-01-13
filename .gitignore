@@ -31,3 +31,6 @@ AgoraRtcEngineKit.h
 IAgoraRtcEngine.h
 AgoraRtcEngineKit
 AgoraAudioKit
+agora-demo-android/libs
+agora-easycall-android/libs
+agora-voice-demo-android/libs
