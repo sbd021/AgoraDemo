@@ -3,8 +3,6 @@ package io.agora.sample.agora;
 import android.app.Application;
 import android.content.SharedPreferences;
 
-import com.avos.avoscloud.AVAnalytics;
-import com.avos.avoscloud.AVOSCloud;
 import com.xsj.crasheye.Crasheye;
 
 import java.util.ArrayList;
