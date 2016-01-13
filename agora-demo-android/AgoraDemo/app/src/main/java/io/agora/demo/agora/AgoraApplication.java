@@ -3,9 +3,6 @@ package io.agora.demo.agora;
 import android.app.Application;
 import android.util.Log;
 
-import com.avos.avoscloud.AVAnalytics;
-import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.LogUtil;
 import com.xsj.crasheye.Crasheye;
 
 import io.agora.rtc.RtcEngine;

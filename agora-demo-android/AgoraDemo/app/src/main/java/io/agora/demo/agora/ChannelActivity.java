@@ -17,8 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.avos.avoscloud.LogUtil;
-
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -131,7 +129,7 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
         // setup engine
         ((AgoraApplication) getApplication()).setRtcEngine(vendorKey);
         rtcEngine = ((AgoraApplication) getApplication()).getRtcEngine();
-        LogUtil.log.d(getApplicationContext().getExternalFilesDir(null).toString() + "/agorasdk.log");
+//        LogUtil.log.d(getApplicationContext().getExternalFilesDir(null).toString() + "/agorasdk.log");
         rtcEngine.setLogFile(getApplicationContext().getExternalFilesDir(null).toString() + "/agorasdk.log");
 
 

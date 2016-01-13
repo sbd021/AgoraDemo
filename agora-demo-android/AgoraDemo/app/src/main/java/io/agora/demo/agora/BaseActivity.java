@@ -5,8 +5,6 @@ import android.os.PersistableBundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.avos.avoscloud.AVAnalytics;
-
 import io.agora.demo.agora.util.LoggingUtils;
 
 /**
@@ -24,12 +22,10 @@ public class BaseActivity extends FragmentActivity{
 
     protected void onPause() {
         super.onPause();
-        AVAnalytics.onPause(getApplicationContext());
     }
 
     protected void onResume() {
         super.onResume();
-        AVAnalytics.onResume(getApplicationContext());
     }
 
 
