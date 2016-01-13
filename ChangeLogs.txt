@@ -1,4 +1,14 @@
+Release 1.1.5
+API:
+[1] API: add comments for iOS API
+[2] API: deprecate API setSpeakerphoneVolume on iOS
+[3] API: add more error code definition
 
+Bug fix:
+[1] callback userJoined, userOffline doesn't work when rejoin on iOS
+
+Feature:
+[1] feature changed: chat engine start local video capture even if local canvas is not specified
 
 Release 1.1.4
 
