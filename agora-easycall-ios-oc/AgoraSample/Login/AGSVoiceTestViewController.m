@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:@"6D7A26A1D3554A54A9F43BE6797FE3E2" error:^(AgoraRtcErrorCode errorCode) {
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:@"E33D67E2B174495F8F7AB9E154713D5E" error:^(AgoraRtcErrorCode errorCode) {
         if (errorCode != AgoraRtc_Error_NoError) {
             NSLog(@"kit initial error: %ld. please check the detail", errorCode);
         } else {

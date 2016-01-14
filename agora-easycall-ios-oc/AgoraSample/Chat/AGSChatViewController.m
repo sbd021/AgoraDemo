@@ -267,7 +267,7 @@
     if (self.agoraKit) {
         self.agoraKit = nil;
     }
-    self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.key error:^(AgoraRtcErrorCode errorCode) {
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.key error:^(AgoraRtcErrorCode errorCode) {
         if (errorCode == AgoraRtc_Error_NoError) {
             NSLog(@"agora kit init successfully");
         } else {
