@@ -755,7 +755,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 				if(uid == 0)
 					rc = rtcEngine.setupLocalVideo(new VideoCanvas(canvasView));
 				else
-					rc = rtcEngine.setupRemoteVideo(new VideoCanvas(canvasView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+					rc = rtcEngine.setupRemoteVideo(new VideoCanvas(canvasView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
 		        if (rc < 0) {
 		            Log.e("AGORA_SDK", "Failed to call rtcEngine.setupRemoteVideo for user " + uid);
 		        }
@@ -1382,7 +1382,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 		if(uid == 0)
 			rtcEngine.setupLocalVideo(new VideoCanvas(null));
 		else
-			rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+			rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid));
 
 		ViewGroup parent = (ViewGroup) gr.getParent();
 		if(parent == null)
