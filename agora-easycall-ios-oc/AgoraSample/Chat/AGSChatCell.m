@@ -9,10 +9,10 @@
 #import "AGSChatCell.h"
 
 @interface AGSChatCell ()
-@property (weak, nonatomic) UIView *audioView;
-@property (weak, nonatomic) UIButton *audioMicButton;
-@property (weak, nonatomic) UIButton *videoMicButton;
-@property (weak, nonatomic) UIImageView *qualityImageView;
+
+@property (nonatomic) UILabel *nameLabel;
+@property (nonatomic) UIButton *audioMicButton;
+@property (nonatomic) UIImageView *qualityImageView;
 
 @property (assign, nonatomic) BOOL audioMute;
 @end
@@ -25,10 +25,22 @@
     if (self) {
         _videoView = [[UIView alloc] init];
         _videoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 64, 16)];
-        _nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:_videoView];
+
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 64, 16)];
+        _nameLabel.textColor = [UIColor colorWithRed:0.7 green:0.2 blue:0.2 alpha:1.0];
+        _nameLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:_nameLabel];
+        
+        _qualityImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
+        [self addSubview:_qualityImageView];
+        
+        _audioMicButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [_audioMicButton setBackgroundImage:[UIImage imageNamed:@"ic_room_cell_microphone"] forState:UIControlStateNormal];
+        [_audioMicButton setBackgroundImage:[UIImage imageNamed:@"ic_room_mute_pressed"] forState:UIControlStateSelected];
+        [_audioMicButton addTarget:self action:@selector(didClickAudioMute:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_audioMicButton];
+
         _type = AGSChatTypeVideo;
         _audioMute = NO;
     }
@@ -42,10 +54,8 @@
     
     if (type == AGSChatTypeAudio) {
         self.videoView.hidden = YES;
-        self.audioView.hidden = NO;
     } else if (type == AGSChatTypeVideo) {
         self.videoView.hidden = NO;
-        self.audioView.hidden = YES;
     } else {
         NSLog(@"error: control type not correct");
     }
@@ -57,7 +67,6 @@
     
     //
     self.audioMicButton.selected = audioMute;
-    self.videoMicButton.selected = audioMute;
 }
 
 - (void)setNetworkQulity:(AgoraRtcQuality)networkQulity
@@ -88,12 +97,39 @@
     self.qualityImageView.image = [UIImage imageNamed:imageName];
 }
 
-- (IBAction)didClickAudioMute:(UIButton *)btn
+- (void) didClickAudioMute:(UIButton *)btn
 {
     self.audioMute = !self.audioMute;
     if ([self.delegate respondsToSelector:@selector(cell:didMuteAudio:)]) {
         [self.delegate cell:self didMuteAudio:self.audioMute];
     }
+}
+
+- (void) reLayout
+{
+    CGRect rcBounds = self.bounds;
+    self.videoView.frame = rcBounds;
+
+    CGRect rc = rcBounds;
+    rc.size.height = 16;
+    self.nameLabel.frame = rc;
+
+    rc.origin.y += rc.size.height;
+    rc.size.width = 32;
+    rc.size.height = 32;
+    rc.origin.x = rcBounds.size.width - rc.size.width;
+    self.audioMicButton.frame = rc;
+    
+    rc.origin.x = 0;
+    rc.size.width = 16;
+    rc.size.height = 16;
+    rc.origin.y = rcBounds.size.height - rc.size.height;
+    self.qualityImageView.frame = rc;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    self.nameLabel.text = title;
 }
 
 @end

@@ -20,17 +20,13 @@ typedef NS_ENUM(NSInteger, AGSChatType) {
 @interface AGSChatCell : UICollectionViewCell
 
 @property (nonatomic) UIView *videoView;
-@property (nonatomic) UILabel *nameLabel;
 @property (assign, nonatomic) AGSChatType type;
-
 @property (assign, nonatomic) AgoraRtcQuality networkQulity;
-
 @property (weak, nonatomic) id<AGSChatCellDelegate> delegate;
+- (void)reLayout;
+- (void)setTitle:(NSString *)title;
 @end
 
 @protocol AGSChatCellDelegate <NSObject>
-
-//
 - (void)cell:(AGSChatCell *)cell didMuteAudio:(BOOL)muted;
-
 @end

@@ -204,6 +204,8 @@
     v1.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     v2.frame = frame1;
     v2.autoresizingMask &= ~(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    [((AGSChatCell *)v1) reLayout];
+    [((AGSChatCell *)v2) reLayout];
 }
 
 // Cell
@@ -472,7 +474,12 @@
         if(gr == nil)
             return;
 
-        // TODO: mute this cell
+        if(muted) {
+            gr.videoView.hidden = YES;
+        }
+        else {
+            gr.videoView.hidden = NO;
+        }
 
         if (muted) {
             [self.activityStrings addObject:[NSString stringWithFormat:@"%td %@", uid, NSLocalizedString(@"disabled camera", @"")]];
@@ -774,6 +781,7 @@
 		[mMainVideoContainer addSubview:gr]; // TODO: set size
         gr.frame = mMainVideoContainer.bounds;
         gr.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [gr reLayout];
 	}
 	else {
 		[mThumbnailsContainer addSubview:gr]; // TODO: set size
@@ -783,7 +791,7 @@
         [self relayoutThumbnails];
 	}
     
-    gr.nameLabel.text = [NSString stringWithFormat:@"%u", (unsigned int)uid];
+    [gr setTitle:[NSString stringWithFormat:@"%u", (unsigned int)uid]];
 
     UITapGestureRecognizer* singleTapRecognizer;
     singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSwitchRemoteUsers:)];
@@ -834,6 +842,8 @@
     
     // no auto-layout
     [self relayoutThumbnails];
+    
+    [gr reLayout];
 }
 
 // must run in gui thread
@@ -873,6 +883,8 @@
         mThumbnailsContainer.subviews[i].frame = rc;
         rc.origin.x += rc.size.width;
         mThumbnailsContainer.subviews[i].autoresizingMask &= ~(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        AGSChatCell *cell = mThumbnailsContainer.subviews[i];
+        [cell reLayout];
     }
 }
 
