@@ -675,6 +675,7 @@
     // Start audio chat
     self.type = AGSChatTypeAudio;
     [self.agoraKit disableVideo];
+    [self updateAllViews];
 }
 
 - (IBAction)didClickVideoButton:(UIButton *)btn
@@ -685,6 +686,7 @@
     if (self.cameraControlButton.selected) {
         self.cameraControlButton.selected = NO;
     }
+    [self updateAllViews];
 }
 
 - (IBAction)didClickMenuButton:(id)sender
@@ -754,7 +756,26 @@
 	return cell;
 }
 
+- (void) updateAllViews {
+    if(mMainVideoContainer.subviews.count != 0) {
+        AGSChatCell *gr = mMainVideoContainer.subviews[0];
+        [self updateViewStatus:gr];
+    }
+
+    int i;
+    for(i=0; i<mThumbnailsContainer.subviews.count; i++) {
+        AGSChatCell *gr = mThumbnailsContainer.subviews[i];
+        [self updateViewStatus:gr];
+    }
+}
+
 - (void) updateViewStatus:(AGSChatCell *)view {
+    if (_type == AGSChatTypeVideo) {
+        view.videoView.hidden = NO;
+    }
+    else {
+        view.videoView.hidden = NO;
+    }
 }
 
 // Anchor point: subview of 'view' to attach video surface

@@ -224,6 +224,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
                 CheckBox cameraEnabler = (CheckBox) findViewById(R.id.action_camera_enabler);
                 cameraEnabler.setChecked(false);
 
+				updateAllViews();
             }
             break;
 
@@ -252,6 +253,8 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
                     setupChannel();
                 }
+
+				updateAllViews();
             }
             break;
 
@@ -664,6 +667,25 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         	c.setZOrderMediaOverlay(true);
 		}
     }
+
+	private void updateAllViews() {
+		// check main view
+		RelativeLayout vg;
+		vg = (RelativeLayout) mMainVideoContainer.getChildAt(0);
+		if(vg != null && (int)vg.getTag() != 0) {
+			updateViewStatus(vg, (int)vg.getTag());
+		}
+
+		// check thumbnails view
+		int child_count = mThumbnailsContainer.getChildCount();
+		int i;
+		for(i=0; i<child_count; i++) {
+			vg = (RelativeLayout) mThumbnailsContainer.getChildAt(i);
+			if(vg != null && (int)vg.getTag() != 0) {
+				updateViewStatus(vg, (int)vg.getTag());
+			}
+		}
+	}
 
     //mute others
     public void onMuteRemoteUsers(View view){
