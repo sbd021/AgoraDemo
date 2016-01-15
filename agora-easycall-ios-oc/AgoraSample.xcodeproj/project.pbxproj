@@ -33,7 +33,7 @@
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
 		2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FC1C34D4A600B281E3 /* libCrasheye.a */; };
-		2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */; };
+		20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
 		2C11930C1BB3F20500CE994E /* FOWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1193051BB3F20500CE994E /* FOWebViewController.xib */; };
 		2C11930D1BB3F20500CE994E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193081BB3F20500CE994E /* NJKWebViewProgress.m */; };
@@ -137,6 +137,7 @@
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
 		2019E7FC1C34D4A600B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
 		2C1193041BB3F20500CE994E /* FOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOWebViewController.m; sourceTree = "<group>"; };
 		2C1193051BB3F20500CE994E /* FOWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FOWebViewController.xib; sourceTree = "<group>"; };
@@ -215,8 +216,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */,
 				2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */,
-				2041504E1C0EA8AC003103CD /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */,
 				C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */,
 				C7A11D5B1BDF50E9008D0407 /* MobileCoreServices.framework in Frameworks */,
@@ -537,6 +538,7 @@
 		2CE545FA1B9D629600EDE8BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */,
 				2019E7FC1C34D4A600B281E3 /* libCrasheye.a */,
 				2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */,
 				C7A11D5E1BDF51AF008D0407 /* libc++.tbd */,
@@ -840,13 +842,13 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				INFOPLIST_FILE = AgoraSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-licucore",
@@ -869,13 +871,13 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				INFOPLIST_FILE = AgoraSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-licucore",
