@@ -531,15 +531,12 @@
             NSLog(@"a previous view is gone for user %d", (int)uid);
             return;
         }
-        else {
-            NSLog(@"a previous view is used for user %d", (int)uid);
-        }
-/*
+
         AgoraRtcVideoCanvas *canvas = [[AgoraRtcVideoCanvas alloc] init];
         canvas.uid = uid;
         canvas.view = [self getAnchorPoint:vg];
         canvas.renderMode = AgoraRtc_Render_Hidden;
-        [self.agoraKit setupRemoteVideo:canvas];*/
+        [self.agoraKit setupRemoteVideo:canvas];
     }];
 }
 

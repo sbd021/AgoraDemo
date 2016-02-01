@@ -760,6 +760,32 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         });
     }
 
+    public synchronized void onFirstRemoteVideoDecoded(final int uid, int width, int height, final int elapsed) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+				// Enable view now
+				ViewGroup vg = findViewFor(uid);
+				if(vg == null)
+					return;
+				SurfaceView canvasView = getVideoSurface(vg, false);
+				if(canvasView == null)
+					return;
+		        rtcEngine.enableVideo(); // If video has not been started, then start it
+		        int rc;
+				if(uid == 0)
+					rc = rtcEngine.setupLocalVideo(new VideoCanvas(canvasView));
+				else
+					rc = rtcEngine.setupRemoteVideo(new VideoCanvas(canvasView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
+		        if (rc < 0) {
+		            Log.e("AGORA_SDK", "Failed to call rtcEngine.setupRemoteVideo for user " + uid);
+		        }
+
+            }
+        });
+    }
+
     public synchronized void onUserJoined(final int uid, int elapsed) {
         runOnUiThread(new Runnable() {
             @Override
@@ -779,19 +805,6 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 					Log.e("AGORA_SDK", "Failed to create a anchor window for user " + uid);
 					return;
 				}
-
-				SurfaceView canvasView = getVideoSurface(vg, false);
-				if(canvasView == null)
-					return;
-		        rtcEngine.enableVideo(); // If video has not been started, then start it
-		        int rc;
-				if(uid == 0)
-					rc = rtcEngine.setupLocalVideo(new VideoCanvas(canvasView));
-				else
-					rc = rtcEngine.setupRemoteVideo(new VideoCanvas(canvasView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-		        if (rc < 0) {
-		            Log.e("AGORA_SDK", "Failed to call rtcEngine.setupRemoteVideo for user " + uid);
-		        }
 
 				// Notification
 		        setupNotification(Math.abs(uid) + getString(R.string.channel_join));
