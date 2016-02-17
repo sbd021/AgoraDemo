@@ -34,3 +34,9 @@ AgoraAudioKit
 agora-demo-android/libs
 agora-easycall-android/libs
 agora-voice-demo-android/libs
+agora-demo-ios-oc/Agora
+agora-demo-ios-oc/AgoraDemo/build
+agora-easycall-ios-oc/Agora
+agora-easycall-ios-oc/build
+agora-voice-demo-oc/Agora
+agora-voice-demo-oc/AgoraDemo/build
