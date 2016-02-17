@@ -270,7 +270,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
     {
         agoraKit = nil
         
-        agoraKit = AgoraRtcEngineKit.init(vendorKey: key, error: { (errorCode: AgoraRtcErrorCode) -> Void in
+        agoraKit = AgoraRtcEngineKit.sharedEngineWithVendorKey(key, error: { (errorCode: AgoraRtcErrorCode) -> Void in
             if errorCode == AgoraRtcErrorCode.Error_NoError {
                 print("agora kit init successfully")
             } else {

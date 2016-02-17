@@ -260,7 +260,6 @@
 				TargetAttributes = {
 					18F23F621B9FC3F400A7A622 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = R8L8SD43MP;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -397,7 +396,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
+				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -434,7 +433,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
+				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -448,7 +447,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,9 +467,9 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
 			};
 			name = Debug;
 		};
@@ -481,8 +480,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,9 +496,9 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
 			};
 			name = Release;
 		};
