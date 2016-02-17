@@ -5,7 +5,7 @@ import io.agora.rtc.IRtcEngineEventHandler;
 /**
  * Created by apple on 15/9/16.
  */
-public class MessageHandler extends IRtcEngineEventHandler {
+public class MessageHandler extends EngineHandlerWrapper {
 
     private BaseEngineHandlerActivity mHandlerActivity;
 
@@ -22,7 +22,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //返回错误
     @Override
     public void onError(int err){
-
+        super.onError(err);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -33,7 +33,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //加入房间
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed){
-
+        super.onJoinChannelSuccess(channel, uid, elapsed);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -44,7 +44,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //显示房间内其他用户的视频
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
-
+        super.onFirstRemoteVideoDecoded(uid, width, height, elapsed);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -55,7 +55,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //用户进入
     @Override
     public void onUserJoined(int uid, int elapsed){
-
+        super.onUserJoined(uid, elapsed);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -66,7 +66,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //用户退出
     @Override
     public void onUserOffline(int uid, int reason) {
-
+        super.onUserOffline(uid, reason);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -77,7 +77,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //监听其他用户是否关闭视频
     @Override
     public void onUserMuteVideo(int uid,boolean muted){
-
+        super.onUserMuteVideo(uid, muted);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -88,7 +88,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //监听其他用户是否关闭音频
     @Override
     public void onUserMuteAudio(int uid,boolean muted){
-
+        super.onUserMuteAudio(uid, muted);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -99,7 +99,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //监听网络质量
     @Override
     public void onNetworkQuality(int quality){
-
+        super.onNetworkQuality(quality);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null){
@@ -110,7 +110,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //监听通话质量
     @Override
     public void onAudioQuality(int uid,int quality,short delay,short lost){
-
+        super.onAudioQuality(uid, quality, delay, lost);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -121,7 +121,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //更新聊天数据
     @Override
     public void onRtcStats(RtcStats stats){
-
+        super.onRtcStats(stats);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
@@ -132,7 +132,7 @@ public class MessageHandler extends IRtcEngineEventHandler {
     //离开频道
     @Override
     public void onLeaveChannel(RtcStats stats) {
-
+        super.onLeaveChannel(stats);
         BaseEngineHandlerActivity activity = getActivity();
 
         if (activity != null) {
