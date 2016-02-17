@@ -6,9 +6,10 @@ $(document).ready(function(){
   var audioChecked = true;
   var username = '';
   var members = 0;
-  var videoDpi = 'sif';
-  var videoFrame = [15, 40];
-  var dpiList = [['sif', 320, 240], ['vga', 640, 480], ['hd720p', 1280, 720]]
+  var videoDpi = '480p';
+  var videoFrame = [20, 20];
+  var videoBR = [800, 800];
+  var dpiList = [['240p', 320, 240], ['480p', 640, 480], ['720p', 1280, 720]]
   if(args.length > 1){
     args = args[1].split("&");
     var data = {};
@@ -53,10 +54,14 @@ $(document).ready(function(){
         localStream.close();
       }
       localStream = AgoraRTC.createStream({streamID: uid, audio: true, video: videoChecked, screen: false});
-      console.log(videoDpi, videoFrame);
+      console.log(videoDpi, videoFrame, videoBR);
       if(videoChecked){
         localStream.setVideoResolution(videoDpi);
         localStream.setVideoFrameRate(videoFrame);
+        localStream.setVideoBitRate(videoBR);
+        //localStream.setVideoResolution('720p');
+        //localStream.setVideoFrameRate([15, 15]);
+        //localStream.setVideoBitRate([800,800]);
       }
       localStream.init(function() {
         console.log("getUserMedia successfully");
@@ -104,7 +109,7 @@ $(document).ready(function(){
     client.init(key,function () {
       console.log("AgoraRTC client initialized");
       var token = undefined;
-      client.join(token, channel, function(uid){
+      client.join(channel, undefined, function(uid){
         console.log("User " + uid + " join channel successfully");
         localStream = initLocalStream(uid);
       }, 
@@ -314,7 +319,7 @@ $(document).ready(function(){
   $(".Kbps .slider").on('mousedown', function(e){
     var start = e.pageX;
     var $e = $(this);
-    var maxKbps = 2048;
+    var maxKbps = 1536;
     var left = parseInt($e.css("left").replace("px", ""));
     $(".Set").bind('mousemove', function(e){
       var pageX = e.pageX;
@@ -328,6 +333,7 @@ $(document).ready(function(){
         }
         $e.css('left', newLeft + 'px');
         $(".Kbps_frequency_two").css('width', newLeft + '%');
+        videoBR = [Math.min(newLeft * maxKbps / 100, maxKbps), Math.min(newLeft * maxKbps / 100, maxKbps)];
       }
     });
   });
@@ -335,7 +341,7 @@ $(document).ready(function(){
   $(".Hz .slider").on('mousedown', function(e){
     var start = e.pageX;
     var $e = $(this);
-    var maxFrameRate = 60;
+    var maxFrameRate = 30;
     var left = parseInt($e.css("left").replace("px", ""));
     $(".Set").bind('mousemove', function(e){
       var pageX = e.pageX;
@@ -344,7 +350,8 @@ $(document).ready(function(){
         $e.css('left', newLeft + 'px');
         $(".Hz_frequency_two").css("width", newLeft + "%");
         $(".Hz label").html(parseInt(newLeft* maxFrameRate / 100));
-        videoFrame = [15, Math.min(newLeft * maxFrameRate / 100, maxFrameRate)];
+	var fr = Math.min(newLeft * maxFrameRate / 100, maxFrameRate);
+        videoFrame = [Math.floor(fr), Math.ceil(fr)];
       }
     });
   });
