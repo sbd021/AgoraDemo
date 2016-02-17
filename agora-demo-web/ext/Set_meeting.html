@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设置会议</title>
+<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+   <div class="box">
+      <!--banner begin-->
+        <div class="banner">
+           <img class="back" src="images/back.png" width="40" height="30" alt="40*30" />
+           <img class="logo" src="images/Logo.png" width="144" height="49" alt="144*49" />
+        </div>
+      <!--banner end-->
+      
+      <!--content begin-->
+        <div class="bg">
+           <div class="content">
+               <!--choose begin-->
+               <div class="choose">
+                 <p>当前会议室:<label></label></p>
+                 <hr />
+                 <p>角色选择</p>
+                 <hr />
+                   <div class="host role">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>主持人</p>
+                   </div>
+                   <div class="participants role">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>参与者</p>
+                   </div>
+                   <br /><br />
+                   <p>布局</p>
+                   <hr />
+                   <div class="default_layout layout" data-layout="default">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>默认布局</p>
+                   </div>
+                   <div class="speak layout" data-layout="AGORA_LECTURE">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>演讲</p>
+                   </div>
+                   
+                   <div class="help layout" data-layout="AGORA_LECTURE_ASSISTANT">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>助手</p>
+                   </div>
+                   <div class="username">
+                      <p>用户名:</p>
+                      <input required="required" id="username" name="username" class="help_name" type="text" placeholder="请输入助手名子" />
+                   </div>
+                   <input class="begin_meeting" type="submit" value="开始会议" /> 
+               </div>
+               <!--choose end-->
+           </div>
+        </div>
+      <!--content end-->
+   
+   </div>
+
+  <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+   <script type="text/javascript" src="js/ext.js"></script>
+   <script type="text/javascript" src="js/AgoraExtSDK.js"></script>
+</body>
+</html>

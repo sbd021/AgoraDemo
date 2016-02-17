@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/compatibility.js"></script>
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+  if((!toRgba())|| document.documentMode==8||document.documentMode==7){
+	  window.location="error.html";
+	  }
+</script>
+</head>
+
+<body>
+    <div class="box">
+      <!--背景层-->
+       <div class="bg">
+           <!--logo egin-->
+            <div class="index_logo">
+              <img class="index_logo_agora1" src="images/index_logo.png" width="250" alt="250*120"/>
+              <img class="index_logo_agora2" src="images/index_logo_bottom.png" width="210" height="30" alt="210*30" />
+            </div>
+             <!--logo end-->
+             
+            <!--options begin-->
+            <div class="indexOptions">
+                <ul>
+                   <li>
+                      <a href="voice_login.html"><div class="voice">Voice Call</div></a>
+                   </li>
+                   <li>
+                     <a href="video_login.html"><div class="video">Video Call</div></a>
+                   </li>
+                   <li>
+                   <a href="whiteboard_login.html"><div class="whiteboard">Whiteboard</div></a>
+                   </li>
+                </ul>
+            </div>
+            <div class="No_key"><a href=".">Exit</a></div>
+          <!--options end-->
+          <div class="hr"></div>
+       </div>
+      <!--背景层结束-->
+      
+      <!--footer begin-->
+      <div class="index_footer">
+        <p>&copy;copyright Agora IPC证xxxxxx号</p>
+      </div>
+      <!--footer end-->
+    </div>
+</body>
+<script type="text/javascript">
+var key = localStorage.getItem("key");
+var username = localStorage.getItem("username");
+if(!key || !username){
+  window.location.href = "/fullset"
+}
+</script>
+</html>

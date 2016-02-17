@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<title>Agora EasyCall</title>
+</head>
+
+<body>
+   <div class="box">
+     <!--背景样式开始-->
+     <div class="bg">
+         <!--Login_banner begin-->
+         <div class="Login_banner">
+            <img class="Login_logo" src="images/banner2.png" width="200"  alt="200*100" />
+            <img class="Login_logo_bottom" src="images/agora_meeting.png" width="180" alt="180*30" />
+         </div>
+         <!--Login_banner end-->
+         
+         <!--from begin-->
+            <div class="Login_from">
+              <form action="login_index.html">
+                 <!--<input type="text" required="required"  placeholder="Vendor Key"/>-->
+                  <input id="key" value="" class="" type="text" placeholder="Vendor Key" required="required" name="key"/>
+                 <img class="vendorkey" src="images/shape.png" width="24" height="28" alt="24*28" />
+                 <!--<input type="text" required="required" placeholder="User Name"/>  -->
+                  <!--<input id="channel" class="channel" type="text" required="required" placeholder="Enter Room No." name="channel"/>-->
+                 <input type="text" id="username" name="username" value="" required="required" placeholder="User Name"/>  
+                 <img class="user_name" src="images/shape_2.png" width="26" height="26" alt="26*26" style="top:110px;" />   
+                 <input class="btn" type="submit" value="Login"/>
+              </form>
+              <hr />
+              <div class="No_key"><a href="http://www.agora.io/">Need a key? Click Here</a></div>
+           </div>
+         <!--from end-->
+     </div>
+     <!--背景样式结束-->
+        <!--footer begin-->
+      <div class="footer">
+        <p>&copy;copyright Agora IPC证xxxxxx号</p>
+      </div>
+      <!--footer end-->
+   </div>
+</body>
+<script>
+var key = localStorage.getItem("key");
+var username = localStorage.getItem("username");
+document.getElementById("key").value = key || "";
+document.getElementById("username").value = username || "";
+document.getElementsByClassName("btn")[0].onclick = function(){
+  var key = document.getElementById("key").value || "";
+  var username = document.getElementById("username").value || "";
+  localStorage.setItem("key", key);
+  localStorage.setItem("username", username);
+};
+</script>
+</html>
