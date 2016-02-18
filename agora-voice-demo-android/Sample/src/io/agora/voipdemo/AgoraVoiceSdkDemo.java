@@ -349,7 +349,9 @@ public class AgoraVoiceSdkDemo extends Activity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			//Do anything with response..
-			mKey.setText(responseString.replaceAll("\\s+", ""), TextView.BufferType.EDITABLE);
+      if (responseString != null) {
+        mKey.setText(responseString.replaceAll("\\s+", ""), TextView.BufferType.EDITABLE);
+      }
 		}
 	}
 }
