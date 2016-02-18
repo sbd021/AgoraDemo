@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.agora.rtc.RtcEngine;
+import io.agora.sample.agora.RtcEngineWrapper;
 import io.agora.sample.agora.Model.Record;
 
 /**
@@ -93,7 +94,8 @@ public class AgoraApplication extends Application {
             rtcEngine = null;
         }
 
-        rtcEngine = RtcEngine.create(getApplicationContext(), vendorKey, messageHandler);
+        // rtcEngine = RtcEngine.create(getApplicationContext(), vendorKey, messageHandler);
+        rtcEngine = RtcEngineWrapper.create(getApplicationContext(), vendorKey, messageHandler);
     }
 
     //get RtcEngine

@@ -11,10 +11,9 @@ import android.util.SparseArray;
 public class EngineHandlerWrapper extends IRtcEngineEventHandler {
     public final static String TAG="AGORA_SDK_TEST_CALLBACK";
 
-
-
-    public final static SparseArray<String> mWarnMap = new SparseArray<String>() {
+    public final static SparseArray<String> mErrorMap = new SparseArray<String>() {
         {
+            // worn code
             put(WarnCode.WARN_NO_AVAILABLE_CHANNEL, "WARN_NO_AVAILABLE_CHANNEL".toLowerCase());
             put(WarnCode.WARN_LOOKUP_CHANNEL_TIMEOUT, "WARN_LOOKUP_CHANNEL_TIMEOUT".toLowerCase());
             put(WarnCode.WARN_LOOKUP_CHANNEL_REJECTED, "WARN_LOOKUP_CHANNEL_REJECTED".toLowerCase());
@@ -27,11 +26,7 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
             put(WarnCode.WARN_ADM_PLAYOUT_MALFUNCTION, "WARN_ADM_PLAYOUT_MALFUNCTION".toLowerCase());
             put(WarnCode.WARN_ADM_RECORD_MALFUNCTION, "WARN_ADM_RECORD_MALFUNCTION".toLowerCase());
             put(WarnCode.WARN_APM_HOWLING, "WARN_APM_HOWLING".toLowerCase());
-        }
-    };
-
-    public final static SparseArray<String> mErrorMap = new SparseArray<String>() {
-        {
+            // error code
             put(ErrorCode.ERR_OK, "ERR_OK".toLowerCase());
             put(ErrorCode.ERR_FAILED, "ERR_FAILED".toLowerCase());
             put(ErrorCode.ERR_INVALID_ARGUMENT, "ERR_INVALID_ARGUMENT".toLowerCase());
@@ -77,12 +72,9 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
         }
     };
 
-    public String translateWarnCode(int warn) {
-        return mWarnMap.get(warn);
-    }
 
     public String translateErrorCode(int error) {
-        return mErrorMap.get(error);
+        return mErrorMap.get(error, "Unknown warn/error code:" + error);
     }
 
 
@@ -95,7 +87,7 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
     }
 
     public void onWarning(int warn) {
-        Log.e(TAG, "onWarning," + translateWarnCode(warn));
+        Log.e(TAG, "onWarning," + translateErrorCode(warn));
     }
 
     public void onError(int err) {
