@@ -2,6 +2,7 @@ package io.agora.voipdemo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,6 +33,10 @@ import java.io.IOException;
 public class AgoraVoiceSdkDemo extends Activity {
 
 	private static final String LOG_TAG = AgoraVoiceSdkDemo.class.getSimpleName();
+
+	private static final String EXTRA_KEYS = "keys";
+	private static final String EXTRA_TEST_KEY = "inner_test_key";
+
 
 	private enum AppState {
 		// Quit -> IDLE
@@ -118,7 +123,7 @@ public class AgoraVoiceSdkDemo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		//vendorKey = this.getSharedPreferences(EXTRA_KEYS, 0);
 		new RequestTask().execute("http://192.168.99.253:8970/agora.inner.test.key.txt");
 
 		MediaDemoApplication app = (MediaDemoApplication) getApplication();
@@ -135,6 +140,8 @@ public class AgoraVoiceSdkDemo extends Activity {
         mChannelStatus.setText("Welcome to Agora Voip Demo!\n");
 
 		mKey = (EditText) findViewById(R.id.key);
+		String key = getSharedPreferences(EXTRA_KEYS, Context.MODE_PRIVATE).getString(EXTRA_TEST_KEY, "");
+		mKey.setText(key, TextView.BufferType.EDITABLE);
 		mChannelId = (EditText) findViewById(R.id.channel_id);
 		mUserId = (EditText) findViewById(R.id.user_id);
 
@@ -144,7 +151,8 @@ public class AgoraVoiceSdkDemo extends Activity {
 			public void onClick(View v) {
 				if (mState == AppState.IDLE) {
 					// String key = "key for Vendor granted by Agora";
-					String key = mKey.getText().toString(); // "6D7A26A1D3554A54A9F43BE6797FE3E2"
+					String key = mKey.getText().toString();
+
 					String extraInfo = "extra info you pass to SDK";
 					final String channel = mChannelId.getText().toString();
 
@@ -349,9 +357,13 @@ public class AgoraVoiceSdkDemo extends Activity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			//Do anything with response..
-      if (responseString != null) {
-        mKey.setText(responseString.replaceAll("\\s+", ""), TextView.BufferType.EDITABLE);
-      }
+      		if (responseString != null) {
+				mKey.setText(responseString.replaceAll("\\s+", ""), TextView.BufferType.EDITABLE);
+
+				getSharedPreferences(EXTRA_KEYS, Context.MODE_PRIVATE).edit()
+						.putString(EXTRA_TEST_KEY, mKey.getText().toString())
+						.apply();
+      		}
 		}
 	}
 }
