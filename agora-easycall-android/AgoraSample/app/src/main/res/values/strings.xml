@@ -110,5 +110,6 @@
     <string name="error">Vendor key updated, please login again.</string>
     <string name="error_101">Invalid vendor key, please login again.</string>
     <string name="error_confirm">Done</string>
+    <string name="about_test">start test</string>
 
 </resources>

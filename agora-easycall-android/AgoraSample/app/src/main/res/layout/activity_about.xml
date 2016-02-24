@@ -10,7 +10,10 @@
         android:id="@+id/about_actionbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/ic_key_rectangle_bg">
+        android:background="@drawable/ic_key_rectangle_bg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <!--Back Button-->
 
@@ -118,6 +121,36 @@
             android:layout_centerVertical="true"
             android:src="@drawable/ic_about_cell_more"/>
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/about_test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/ic_about_rectangle_bg"
+        android:clickable="false"
+        android:layout_below="@+id/about_issue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/about_testView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/about_test"
+            android:textSize="16sp"
+            android:textColor="@color/about_black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_about_cell_more" />
     </RelativeLayout>
 
     <include

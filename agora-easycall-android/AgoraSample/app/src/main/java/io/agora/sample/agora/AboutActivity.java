@@ -3,6 +3,7 @@ package io.agora.sample.agora;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -61,6 +62,13 @@ public class AboutActivity extends BaseEngineHandlerActivity {
             }
             break;
 
+            case R.id.about_test:{
+                Log.e("ROBERT", "tap to start test");
+                Intent i = new Intent(AboutActivity.this, TestEntryActivity.class);
+                startActivity(i);
+            }
+            break;
+
             case R.id.about_overall:{
 
                 finish();
@@ -76,6 +84,7 @@ public class AboutActivity extends BaseEngineHandlerActivity {
 
         findViewById(R.id.about_back).setOnClickListener(getViewClickListener());
         findViewById(R.id.about_issue).setOnClickListener(getViewClickListener());
+        findViewById(R.id.about_test).setOnClickListener(getViewClickListener());
 
         if(((AgoraApplication)getApplication()).getIsInChannel()){
             overallButton.setVisibility(View.VISIBLE);
