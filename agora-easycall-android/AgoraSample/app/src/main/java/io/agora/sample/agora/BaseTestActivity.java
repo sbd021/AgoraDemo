@@ -1,6 +1,10 @@
 package io.agora.sample.agora;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceView;
@@ -30,16 +34,16 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
     protected RtcEngine rtcEngine;
 
     // calling variable
-    private int userId = new Random().nextInt(Math.abs((int) System.currentTimeMillis()));
-    private String callId;
+    protected int userId = new Random().nextInt(Math.abs((int) System.currentTimeMillis()));
+    protected String callId;
 
     // UI elements
-    FrameLayout mVideos[];
-    SparseArray<VideoCanvas> mCanvasMap = new SparseArray<VideoCanvas>();
+    protected FrameLayout mVideos[];
+    protected SparseArray<VideoCanvas> mCanvasMap = new SparseArray<VideoCanvas>();
 
     // states
     private boolean mIsJoined = false;
-
+    protected CommandReceiver mCmdReceiver;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -50,11 +54,14 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setupRtcEngine();
         initViews();
-        joinChannel(CALL_MODE_VIDEO);
+        initCmdHandler();
+        // testJoinChannl();
+        //joinChannel(CALL_MODE_VIDEO);
     }
 
     @Override
     public void onBackPressed() {
+        getApplicationContext().unregisterReceiver(mCmdReceiver);
         rtcEngine.leaveChannel();
         rtcEngine.stopPreview();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -70,13 +77,19 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         }
     }
 
-    private void setupRtcEngine() {
+    protected void setupRtcEngine() {
         rtcEngine = ((AgoraApplication) getApplication()).getRtcEngine();
         ((AgoraApplication) getApplication()).setEngineHandlerActivity(this);
     }
 
+    protected void initCmdHandler() {
+        IntentFilter filter = new IntentFilter("io.agora.sample.agora.CMD");
+        mCmdReceiver = new CommandReceiver();
+        getApplicationContext().registerReceiver(mCmdReceiver, filter);
+    }
 
-    private void initViews() {
+
+    protected void initViews() {
         // init layout
         mVideos = new FrameLayout[] {
                 (FrameLayout) findViewById(R.id.video0),
@@ -124,7 +137,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
     }
 
 
-    private int joinChannel(int callMode) {
+    protected int joinChannel(int callMode) {
         if (callMode == CALL_MODE_VIDEO) {
             rtcEngine.enableVideo();
             // Attention please: before you call setupLocalVideo, you MUST call enableVideo() !!!!
@@ -139,6 +152,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
     }
 
 
+    // Callbacks of RTCEngineEvent
     @Override
     public synchronized void onUserJoined(final int uid, int elapsed) {
         runOnUiThread(new Runnable() {
@@ -190,5 +204,25 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
 
     }
 
+    // Test framework
+    public class CommandReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Log.e(TAG, "onReceive command:");
+            String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "onReceive command:" + cmd + ", parameter:" + para);
+            if (("enableNetworkTest").equals(cmd)) {
+                rtcEngine.enableNetworkTest();
+                return;
+            }
+
+            if (("disableNetworkTest").equals(cmd)) {
+                rtcEngine.disableNetworkTest();
+                return;
+            }
+        }
+
+    }
 
 }
