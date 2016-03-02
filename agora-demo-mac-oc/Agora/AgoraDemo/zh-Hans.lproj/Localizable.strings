@@ -1,0 +1,30 @@
+/*
+ Localizable.strings
+ AgoraMacFullset
+ 
+ Created by Jesse on 12/12/15.
+ Copyright © 2015 Agora. All rights reserved.
+ */
+
+"Need a key? Click Here" = "没有Key?点击这里";
+"Enter Vendor Key" = "输入厂商Key";
+"Room Number" = "房间号";
+"Login" = "登录";
+"Vendor key can not be empty" = "厂商Key不能为空";
+"User name can not be empty" = "用户名不能为空";
+"Room No. can not be empty" = "房间号不能为空";
+"Done" = "完成";
+"Start" = "开始";
+"Free" = "自由";
+"Host" = "主播";
+"Audience" = "听众";
+"login_audio_type_button" = "login_audio_type_button_CN";
+"login_audio_type_button_sel" = "login_audio_type_button_sel_CN";
+"login_video_type_button" = "login_video_type_button_CN";
+"login_video_type_button_sel" = "login_video_type_button_sel_CN";
+"waiting for friends to join" = "房间等待好友加入...";
+"Mute Audio" = "静音";
+"Mute Video" = "关闭视频";
+"Switch" = "切换视角";
+"Default (360P)" = "默认画质（360P）";
+"Audio Chat" = "语音通话";
