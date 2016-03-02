@@ -23,9 +23,9 @@ agora-easycall-ios-swift/SampleSwift.xcodeproj/xcuserdata
 *.xcuserstate
 *.xcbkptlist
 *.plist
-agora-voice-demo-android/Sample/.gradle
-agora-voice-demo-android/Sample/.idea
-agora-voice-demo-android/Sample/build
+agora-voice-demo-android/AgoraDemo/.gradle
+agora-voice-demo-android/AgoraDemo/.idea
+agora-voice-demo-android/AgoraDemo/build
 *.xcscheme
 AgoraRtcEngineKit.h
 IAgoraRtcEngine.h

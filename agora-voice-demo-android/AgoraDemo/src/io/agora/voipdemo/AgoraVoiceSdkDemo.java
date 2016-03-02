@@ -335,7 +335,7 @@ public class AgoraVoiceSdkDemo extends Activity {
 			try {
 				response = httpclient.execute(new HttpGet(uri[0]));
 				StatusLine statusLine = response.getStatusLine();
-				if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+				if(statusLine != null && statusLine.getStatusCode() == HttpStatus.SC_OK){
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					response.getEntity().writeTo(out);
 					responseString = out.toString();
