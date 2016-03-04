@@ -1,6 +1,5 @@
 package io.agora.sample.agora;
 
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +15,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.util.Log;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Random;
 
 import io.agora.rtc.IRtcEngineEventHandler;
@@ -25,13 +27,13 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class BaseTestActivity extends BaseEngineHandlerActivity {
 
-    public final static String TAG = "BaseTestActivity";
+    public final static String TAG = "AGORA_SDK_TEST_ACTIVITY";
     public final static String TEST_CHANNEL = "99527";
 
     public final static int CALL_MODE_VIDEO = 0;
     public final static int CALL_MODE_VOICE = 1;
 
-    protected RtcEngine rtcEngine;
+    protected RtcEngine rtcEngine = null;
 
     // calling variable
     protected int userId = new Random().nextInt(Math.abs((int) System.currentTimeMillis()));
@@ -43,7 +45,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
 
     // states
     private boolean mIsJoined = false;
-    protected CommandReceiver mCmdReceiver;
+    protected CommandReceiver mCmdReceiver = null;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -53,17 +55,27 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setupRtcEngine();
-        initViews();
-        initCmdHandler();
+        initTestFramework();
+        // setupUI();
         // testJoinChannl();
-        //joinChannel(CALL_MODE_VIDEO);
+        // joinChannel(CALL_MODE_VIDEO);
     }
 
     @Override
     public void onBackPressed() {
         getApplicationContext().unregisterReceiver(mCmdReceiver);
+        mCmdReceiver = null;
         rtcEngine.leaveChannel();
         rtcEngine.stopPreview();
+        finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mCmdReceiver != null) {
+            getApplicationContext().unregisterReceiver(mCmdReceiver);
+        }
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
@@ -82,14 +94,16 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setEngineHandlerActivity(this);
     }
 
-    protected void initCmdHandler() {
+
+    protected void initTestFramework() {
         IntentFilter filter = new IntentFilter("io.agora.sample.agora.CMD");
         mCmdReceiver = new CommandReceiver();
         getApplicationContext().registerReceiver(mCmdReceiver, filter);
+        initCommandHandler();
     }
 
 
-    protected void initViews() {
+    protected void setupUI() {
         // init layout
         mVideos = new FrameLayout[] {
                 (FrameLayout) findViewById(R.id.video0),
@@ -102,6 +116,18 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         createViewForUser(0);
     }
 
+    public void destroyUI() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+//                for (int i = 0; i < mCanvasMap.size() + 1; i++) {
+                while (mCanvasMap.size() != 0) {
+                    removeViewForUser(mCanvasMap.keyAt(0));
+                }
+
+                mVideos = null;
+            }
+        });
+    }
 
     public int createViewForUser(int uid) {
         for (FrameLayout fl : mVideos) {
@@ -190,39 +216,100 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         });
     }
 
-    @Override
-    public void onLeaveChannel(final IRtcEngineEventHandler.RtcStats stats) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < mCanvasMap.size() + 1; i++) {
-                    removeViewForUser(mCanvasMap.keyAt(0));
-                }
-                finish();
-            }
-        });
 
-    }
+
 
     // Test framework
+    protected HashMap<String, CommandHandler> mHandlerMap= new HashMap<String, CommandHandler>();
+
+    protected void initCommandHandler() {
+        CommandHandler defaultHandler = new CommandHandler();
+        mHandlerMap.put("setupUI", new setupUIHandler());
+        mHandlerMap.put("destroyUI", new destroyUIHandler());
+        mHandlerMap.put("joinChannel", new JoinChannelHandler());
+        mHandlerMap.put("leaveChannel", defaultHandler);
+        mHandlerMap.put("enableNetworkTest", defaultHandler);
+        mHandlerMap.put("disableNetworkTest", defaultHandler);
+        mHandlerMap.put("enableVideo", defaultHandler);
+        mHandlerMap.put("disableVideo", defaultHandler);
+        mHandlerMap.put("startPreview", defaultHandler);
+        mHandlerMap.put("stopPreview", defaultHandler);
+        mHandlerMap.put("switchCamera", defaultHandler);
+        mHandlerMap.put("startEchoTest", defaultHandler);
+        mHandlerMap.put("stopEchoTest", defaultHandler);
+        mHandlerMap.put("stopAudioRecording", defaultHandler);
+    }
+
+
+    protected class CommandHandler {
+        public synchronized int run(Intent intent) {
+            String cmd = intent.getStringExtra("cmd");
+            Class clazz = rtcEngine.getClass();
+            Method m = null;
+            try {
+                m = clazz.getDeclaredMethod(cmd);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            try {
+                int ret = (int) m.invoke(rtcEngine);
+                // TODO: process return value
+                Log.e(TAG, "call method:" + cmd + ", return value:" + ret);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
+    protected class JoinChannelHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: joinChannel");
+            return joinChannel(CALL_MODE_VIDEO);
+        }
+    }
+
+    protected class setupUIHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: setupUI");
+            setupUI();
+            return 0;
+        }
+    }
+
+    protected class destroyUIHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: destroyUI");
+            destroyUI();
+            return 0;
+        }
+    }
+
+    public int executeCommand(Intent intent) {
+        String cmd = intent.getStringExtra("cmd");
+        if (mHandlerMap.containsKey(cmd)) {
+            return mHandlerMap.get(cmd).run(intent);
+        } else {
+            // no handler found!
+            return -1;
+        }
+    }
+
+
     public class CommandReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Log.e(TAG, "onReceive command:");
             String cmd = intent.getStringExtra("cmd");
-            String para = intent.getStringExtra("para");
-            Log.e(TAG, "onReceive command:" + cmd + ", parameter:" + para);
-            if (("enableNetworkTest").equals(cmd)) {
-                rtcEngine.enableNetworkTest();
-                return;
-            }
-
-            if (("disableNetworkTest").equals(cmd)) {
-                rtcEngine.disableNetworkTest();
-                return;
+            Log.e(TAG, "onReceive command:");
+            if (executeCommand(intent) != 0) {
+                Log.e(TAG, "failed to execute command");
             }
         }
-
     }
 
 }
