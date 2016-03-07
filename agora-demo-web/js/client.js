@@ -40,7 +40,7 @@
             }
         }());
 
-        /* 初始化之后，加入频道 */
+        /* initialzed, join channel */
         (function initAgoraRTC(){
             //document.getElementById("video").disabled = true;
             console.log('Joining channel ' + key + ' : ' + channel);
@@ -67,7 +67,7 @@
         subscribeDomEvents();
 
         (function updateChannelList() {
-            /* 获得已经访问过到channel */
+            /* get history channel */
             var channelList = localStorage.getItem("channelList");
             channelList = channelList? channelList.split(","): [];
             if(channelList.indexOf(channel) == -1){
@@ -225,8 +225,8 @@
             var c = 0;
             var t;
             setInterval(function(){
-                hour = parseInt(c / 3600);// 小时数
-                min = parseInt(c / 60);// 分钟数
+                hour = parseInt(c / 3600);// hours
+                min = parseInt(c / 60);// minutes
                 if(min>=60){
                     min=min%60
                 }
@@ -242,7 +242,7 @@
                 window.location.href = ".";
             });
 
-            /* 点击右侧视频，切换大小屏幕 */
+            /* click the right video and switch view */
             $(".right  ul").delegate('.remoteVideo', 'click', function(e){
                 if(viewSwitch){
                     return false;
@@ -260,7 +260,7 @@
                 }
             });
 
-            /* Switch View之后，点击左侧视频，放大 */
+            /* zoom in/out after view swtich */
             $(".left").delegate('ul .remoteVideo', 'click', function(e){
                 if(!viewSwitch){
                     return false;
@@ -287,7 +287,7 @@
                 }
             });
 
-            /* 打开/关闭声音 */
+            /* mute/unmute audio */
             $(".audioSwitch").on("click", function(e){
                 disableAudio = !disableAudio;
                 if(disableAudio){
@@ -302,7 +302,7 @@
                 }
             });
 
-            /* 打开Camera Off */
+            /* Camera on/off */
             $(".videoSwitch").on("click", function(e){
                 disableVideo = !disableVideo;
                 if(disableVideo){

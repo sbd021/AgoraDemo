@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    /* 进入房间 */
+    /* enter the room */
     $(".enter_room").on("click", function(e){
         var key = $("#key").val();
         var channel = $("#channel").val();
