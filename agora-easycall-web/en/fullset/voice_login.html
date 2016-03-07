@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<title>Join Voice Call</title>
+</head>
+
+<body>
+   <div class="box">
+     <!--背景样式开始-->
+     <div class="bg">
+         <!--Login_banner begin-->
+         <div class="Login_banner">
+            <a href="login_index.html"><img class="Login_back" src="images/back.png" width="40" height="30" alt="40*30" /></a>
+            <img class="Login_logo" src="images/banner2.png" width="200"  alt="200*100" />
+            <img class="Login_logo_bottom" src="images/agora_meeting.png" width="180" alt="180*30" />
+         </div>
+         <!--Login_banner end-->
+         
+         <!--from begin-->
+            <div class="Login_from">
+              <form action="voice_index.html?a=1">
+                 <!--<input type="text" required="required"  placeholder="Vendor Key"/>-->
+                 <!--<img class="vendorkey" src="images/shape.png" width="24" height="28" alt="24*28" />-->
+                 <!--<input type="text" required="required" placeholder="User Name"/>  -->
+                  <input id="channel" class="channel" type="text" required="required" placeholder="Enter Room No." name="channel"/>
+                 <input type="hidden" name="video" value="false" required="required" placeholder="User Name"/>  
+                 <img class="user_name" src="images/shape_2.png" width="26" height="26" alt="26*26" />   
+                 <input class="btn" type="submit" value="Enter"/>
+              </form>
+           </div>
+         <!--from end-->
+     </div>
+     <!--背景样式结束-->
+        <!--footer begin-->
+      <div class="footer">
+        <p>&copy;copyright Agora IPC证xxxxxx号</p>
+      </div>
+      <!--footer end-->
+   </div>
+</body>
+<script type="text/javascript">
+var key = localStorage.getItem("key");
+var username = localStorage.getItem("username");
+if(!key || !username){
+  window.location.href = "/fullset"
+}
+else{
+  $("form").append("<input value='" + key + "' type='hidden' name='key' />");
+  $("form").append("<input value='" + username + "' type='hidden' name='username' />");
+}
+</script>
+</html>

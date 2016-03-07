@@ -1,0 +1,82 @@
+/* CSS Document */
+
+/*==============共同的样式==================*/
+*{ margin:0px; padding:0px;}
+.box{ width:1200px; height:820px;margin:0 auto; position:relative;}
+.banner{width:1200px; height:60px; background:#1677cb; position:relative;}
+.logo{ position:absolute; top:0px; bottom:0px; left:0px; right:0px; margin:auto;}
+.bg{ width:1200px; background-image:url(../images/bg.png); height:760px;}
+.content{  width:1200px; height:760px;z-index:10;background:rgba(14,138,224,0.7); position:relative;}
+hr{ color:#fff;}
+
+
+/*==============Login begin===================*/
+.creat_room{ width:318px; height:255px; position:absolute;left:0px; right:0px; margin:0 auto; top:50px;}
+.creat_room p{ font-size:18px; color:#fff; font-family:"微软雅黑"; line-height:40px;}
+form{ position:relative;}
+input{width:318px; height:45px; margin-top:20px; text-indent:50px;}
+.vendorkey_img{ position:absolute; top:30px; left:10px;}
+.channel_img{ position:absolute; top:103px; left:9px;}
+.build_room{ background:#dcba75; text-indent:0px; color:#fff; font-size:20px; font-family:"微软雅黑";width:320px; cursor:pointer; border:none;}
+.enter{ width:320px; height:120px;position:absolute; left:0px; right:0px; margin:0 auto; top:310px;}
+.enter p{ font-size:18px; color:#fff; font-family:"微软雅黑"; line-height:40px;}
+.selected{ width:320px; height:50px; margin-top:20px; position:relative;}
+.selected_content{ width:320px; background:#fff;line-height:40px;}
+.selected_content label{ padding-left:45px; color:#ccc;}
+.selected .room{ position:absolute; top:9px;left:9px;}
+.selected .xiala{ position:absolute; top:16px; left:292px; cursor:pointer;}
+.selected_option{margin-top:1px; display:none;position:relative;z-index:9999;}
+.selected_option p{ width:240px; line-height:40px; background:#fff; cursor:pointer; color:#000; color:#999;border-top: 1px solid black;}
+.selected_option p:hover{ background:#CCC;}
+.selected_options p:first-child {border-top: 0px;}
+.into{ width:160px; line-height:40px; background:#1677cb; position:absolute;left:0px; top:80px; text-align:center; color:#fff; cursor:pointer;}
+.delete{ width:160px; line-height:40px; background:#dcba75; position:absolute; top:80px;left:160px; text-align:center; color:#fff; cursor:pointer;}
+
+
+/*=============Set_meeting begin============================*/
+.back{ position:absolute; top:12px; left:10px; cursor:pointer;}
+.choose{ width:400px; height:400px; position:absolute; left:0px; right:0px; margin:0 auto; top:50px; position:relative;}
+.choose hr{ margin-bottom:20px;}
+.choose p{ font-size:18px;color:#fff; font-family:"微软雅黑"; line-height:40px;}
+.choose p label{ margin-left:195px;}
+.host{  width:120px; height:30px; float:left;cursor:pointer;}
+.host p{ color:#fff; font-size:20px; line-height:30px; float:right;font-family:"微软雅黑"}
+.participants{ float:left;margin-left:100px; width:120px; height:30px;cursor:pointer;}
+.participants p{ color:#fff; font-size:20px; line-height:30px; float:right;font-family:"微软雅黑";margin-right:10px;}
+.default_layout{  width:100px; height:30px; float:left;cursor:pointer;}
+.default_layout p{color:#fff; font-size:20px; line-height:30px; float:right;font-family:"微软雅黑";}
+.speak{ width:110px; height:30px; margin-left:40px; float:left;cursor:pointer;}
+.speak p{color:#fff; font-size:20px; line-height:30px; float:right;font-family:"微软雅黑"; margin-right:0px;}
+.help{ width:120px; height:30px; float:left; margin-top:0px;cursor:pointer;margin-left:20px;}
+.help img{ float:left;}
+.help p{color:#fff; font-size:20px; line-height:30px; float:left;font-family:"微软雅黑"; margin-left:10px;}
+.help_name{float:left;width:130px; height:26px; font-size:18px; margin-left:10px;margin-top:3px; background:none; color:#acc7d9;border:none; text-indent:0px; border-bottom:1px solid #CCC; line-height:26px;}
+.username{margin-top:60px;}
+.username p{float:left;}
+.begin_meeting{ background:#dcba75; border:none; width:400px; color:#fff; font-size:20px; text-indent:0px; cursor:pointer; font-family:"微软雅黑";}
+
+/*==================index/index_waiting  begin=========================*/
+.user_img{ position:absolute; top:15px; right:45px;}
+.select_img{ position:absolute; top:30px; right:20px; cursor:pointer;}
+.slide img{ position:absolute; top:25px; right:40px;}
+.set{ width:125px; height:100px; z-index:999; background:#fff;position:absolute;  top:60px; right:45px;}
+.set p{ line-height:50px; text-align:center; font-family:"微软雅黑"; cursor:pointer;}
+.waiting{  width:1200px; height:760px; background:#fff; position: relative; background:url(../images/waiting_bg.png);}
+.waiting_img{ width:200px; height:110px; position:absolute;right:0px; left:0px;margin:220px auto;}
+.waiting_img img{ margin-left:25px;}
+.waiting_img p{ text-align:center; color:#006; line-height:70px; font-size:25px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

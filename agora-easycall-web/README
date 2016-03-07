@@ -1,0 +1,22 @@
+安装Nginx
+
+ubuntu: 
+sudo apt-get install nginx
+
+编辑agora.conf  中的root 为实际路径
+然后将agora.conf 拷贝到 /etc/nginx/conf.d/
+
+重新启动Nginx
+sudo service nginx restart
+
+打开本机127.0.0.1 应该能看到效果
+
+127.0.0.1/  简单版本
+
+127.0.0.1/ext/  白板
+
+127.0.0.1/fullset  fullset 版
+
+127.0.0.1/en  英文简单版
+127.0.0.1/en/ext/  英文白板
+127.0.0.1/en/fullset  英文fullset版
