@@ -44,7 +44,28 @@
         (function initAgoraRTC(){
             //document.getElementById("video").disabled = true;
             console.log('Joining channel ' + key + ' : ' + channel);
-            client = AgoraRTC.Client({});
+            client = AgoraRTC.createClient();
+
+            // reference for dynamic key, comment out
+            /*var dynamic_key;
+            console.log("Try to get dynamic key");
+            var use_https = ('https:' == document.location.protocol ? true : false);
+            if (use_https) {
+              var url_str = "https://ip:port/dynamic_key?channelName=" + channel.value;
+            } else {
+              var url_str = "http://ip:port/dynamic_key?channelName=" + channel.value;
+            }
+            $.ajax({
+              url: url_str,
+              error: function() {
+                console.log("Failed to get dynamic key");
+              },
+              success: function(response) {
+                console.log(response.key);
+                dynamic_key = response.key;
+              }
+            });*/
+
 
             client.init(key,function () {
                 console.log("AgoraRTC client initialized");
