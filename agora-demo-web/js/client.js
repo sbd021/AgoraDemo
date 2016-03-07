@@ -97,10 +97,12 @@
             });
 
             client.on('peer-leave', function(evt){
+                var stream = evt.stream;
                 var $p = $('<p id="infoStream' + evt.uid + '">' + evt.uid + ' quit from room</p>');
                 $(".info").append($p);
                 setTimeout(function(){$p.remove();}, 10*1000);
                 delete remoteStremList[evt.uid];
+                stream.stop();
                 console.log($("#agora_remote" + evt.uid).length);
                 if($("#agora_remote" + evt.uid).length > 0){
                     $("#agora_remote" + evt.uid).parent().remove();
