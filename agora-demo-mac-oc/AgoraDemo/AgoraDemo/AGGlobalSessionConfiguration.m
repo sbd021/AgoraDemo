@@ -31,26 +31,14 @@
             return @"360P640*360_15FPS400";
         case AgoraRtc_VideoProfile_120P:
             return @"120P160*120_15FPS80";
-        case AgoraRtc_VideoProfile_120P_3:
-            return @"120P120*120_15FPS60";
-        case AgoraRtc_VideoProfile_180P:
-            return @"180P320*180_15FPS160";
-        case AgoraRtc_VideoProfile_180P_3:
-            return @"180P180*180_15FPS120";
         case AgoraRtc_VideoProfile_240P:
             return @"240P320*240_15FPS200";
-        case AgoraRtc_VideoProfile_240P_3:
-            return @"240P240*240_15FPS160";
-        case AgoraRtc_VideoProfile_360P_3:
-            return @"360P360*360_15FPS300";
         case AgoraRtc_VideoProfile_360P_4:
             return @"360P640*360_30FPS680";
         case AgoraRtc_VideoProfile_360P_6:
             return @"360P360*360_30FPS500";
         case AgoraRtc_VideoProfile_480P:
             return @"480P640*480_15FPS500";
-        case AgoraRtc_VideoProfile_480P_3:
-            return @"480P480*480_15FPS400";
         case AgoraRtc_VideoProfile_480P_4:
             return @"480P640*480_30FPS750";
         case AgoraRtc_VideoProfile_480P_6:
