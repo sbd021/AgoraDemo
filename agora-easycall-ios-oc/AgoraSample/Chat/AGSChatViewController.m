@@ -397,7 +397,7 @@
         }
         
         // if no, create a new view and do some configure
-        [self.agoraKit enableVideo];
+//        [self.agoraKit enableVideo];
         vg = [self setupViewFor:uid];
         if(vg == nil) {
             NSLog(@"Failed to create a anchor window for user %d", (int)uid);
