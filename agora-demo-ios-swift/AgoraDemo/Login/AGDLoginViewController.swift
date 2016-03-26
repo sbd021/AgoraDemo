@@ -15,11 +15,6 @@ class AGDLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // debug
-        
-//        keyTextField.text = "341f3d3c30e94e13bd04be6601dfdd3d"
-//        roomNumberTextField.text = "1024"
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +31,7 @@ class AGDLoginViewController: UIViewController {
         if vendorKey != nil {
             keyTextField.text = vendorKey as? String
         } else {
+            // remove these code, and it's just for inner test
             let innerKeyUrl = NSURL(string: "http://192.168.99.253:8970/agora.inner.test.key.txt")
             let jsonData: NSData = NSData(contentsOfURL: innerKeyUrl!)!
             let innerVendorKey = NSString(data: jsonData, encoding: NSUTF8StringEncoding)

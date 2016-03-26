@@ -26,7 +26,7 @@
 		18F07B331BD5DAF700A7A6F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F07B351BD5DAF700A7A6F1 /* Localizable.strings */; };
 		18F0F4F61BD6382F008E10E7 /* AGDSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0F4F51BD6382F008E10E7 /* AGDSplashViewController.swift */; };
 		2019E8011C34D92500B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E8001C34D92500B281E3 /* libCrasheye.a */; };
-		20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */; };
+		2054F6961CA72154000A46B1 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2054F6951CA72154000A46B1 /* AgoraRtcEngineKit.framework */; };
 		20C838491C35298F006CE5D4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C838481C35298F006CE5D4 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +59,7 @@
 		18FE38D51BE3006A0061BDBD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2019E8001C34D92500B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		20416C141C17CA9700598B89 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		2054F6951CA72154000A46B1 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		20C838461C35296E006CE5D4 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		20C838481C35298F006CE5D4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -68,10 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2054F6961CA72154000A46B1 /* AgoraRtcEngineKit.framework in Frameworks */,
 				20C838491C35298F006CE5D4 /* libz.tbd in Frameworks */,
 				182218161BB245A40033B6B8 /* AudioToolbox.framework in Frameworks */,
 				2019E8011C34D92500B281E3 /* libCrasheye.a in Frameworks */,
-				20416C151C17CA9700598B89 /* AgoraRtcEngineKit.framework in Frameworks */,
 				182218371BB2892E0033B6B8 /* SystemConfiguration.framework in Frameworks */,
 				182218261BB246150033B6B8 /* libicucore.dylib in Frameworks */,
 				182218241BB246010033B6B8 /* libsqlite3.dylib in Frameworks */,
@@ -149,6 +150,7 @@
 		182218141BB244810033B6B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2054F6951CA72154000A46B1 /* AgoraRtcEngineKit.framework */,
 				20C838481C35298F006CE5D4 /* libz.tbd */,
 				20C838461C35296E006CE5D4 /* CoreAudio.framework */,
 				2019E8001C34D92500B281E3 /* libCrasheye.a */,
@@ -392,27 +394,28 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs/",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/libs/Crasheye",
 				);
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.simpledemo-s";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.simpledemo-s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraDemo/AgoraDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -425,28 +428,29 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs/",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/libs/Crasheye";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/libs/Crasheye",
 				);
 				OTHER_LDFLAGS = (
 					"-licucore",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agora.simpledemo-s";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.simpledemo-s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraDemo/AgoraDemo-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
