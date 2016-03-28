@@ -116,6 +116,18 @@ typedef NS_ENUM(NSInteger, AGLayoutMode) {
                                                                               owner:self
                                                                            userInfo:nil]];
     [self initAgoraKit];
+
+    // create a diagnosis view
+    let diagnosisView = UIView(frame: CGRectMake(0, 0, 300, 250))
+    diagnosisView.backgroundColor = UIColor.whiteColor()
+    view.addSubview(diagnosisView)
+    // pass diagnosis view through a fake user id
+    var canvas: AgoraRtcVideoCanvas!
+    canvas = AgoraRtcVideoCanvas()
+    canvas.uid = 0xffffffff
+    canvas.view = diagnosisView
+    canvas.renderMode = .Render_Fit
+    agoraKit.setupRemoteVideo(canvas)
 }
 
 - (void)hideChatMenu {
