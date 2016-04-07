@@ -2,6 +2,7 @@ How to build the project?
 0. every project in the repo doesn't contain library or framework.
 1. please get the latest agora sdk framework and library.
 2. put sdk into sdk projects, and the project could be built.
+3. Use your vendor key to replace the default key:"6D7A26A1D3554A54A9F43BE6797FE3E2".
 
 The directory of sdk for each project:
 
