@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<title>白板协作登录</title>
+</head>
+
+<body>
+    <div class="box">
+       <!--背景样式开始-->
+       <div class="bg">
+          <!--banner begin-->
+          <div class="Login_banner">
+            <a href="login_index.html"><img class="Login_back" src="images/back.png" width="40" height="30" alt="40*30"></a>
+            <img class="Login_logo" src="images/banner2.png" width="200" alt="200*100">
+            <img class="Login_logo_bottom" src="images/agora_meeting.png" width="180" alt="180*30">
+         </div>
+          <!--banner end-->
+          
+          <!--whitboard_login begin-->
+              <div class="whiteboard_login">
+                <p>选择会议室</p>
+                <hr />
+                 <form action="whiteboard_index.html">
+                    <input id="roomName" class="channel" type="text"  placeholder="输入房间名字" />
+                    <img class="channelImg" src="images/room.png"  alt="26*26" />   
+                    <input class="create_room" type="button" value="创建房间" />
+                    <!--<p class="queryRoom" style="cursor:pointer;">查询现有会议室</p>-->
+                 <!--<hr />-->
+                 
+                    <div class="selected">
+                       <label>查询会议室</label>
+					   <img class="enter_room" src="images/room.png" width="26" height="24" alt="26*24" />
+                       <img class="xiala" src="images/ic_arrow.png" width="10" height="10" alt="6*6" />
+                    </div>
+                       <input id="name" name="name" value="" type="hidden" required="required" />
+					   <input id="set" name="setting" value="true" type="hidden" required="required" />
+                       <!--selected options begin-->
+                       <div class="selected_options">
+                       </div>
+                       <!--selected options end-->
+                      <input class="enter" type="submit" value="进入" />
+                      <input class="delete" type="button" value="删除" />
+                  </form>
+              </div>
+          <!--whitboard_login end-->
+       </div>
+       <!--背景样式结束-->
+       
+        <!--footer begin-->
+      <div class="footer">
+        <p>&copy;copyright Agora IPC证xxxxxx号</p>
+      </div>
+      <!--footer end-->
+    </div>
+	 <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+   <script type="text/javascript" src="js/AgoraExtSDK.js"></script>
+    <script type="text/javascript">
+    /*
+      AgoraExtSDK 和AgoraSDK 同时定义了全局变量Agora,
+      所以这里将其中一个重新命名
+    */
+    var AgoraExt = Agora;
+    </script>
+   <script type="text/javascript" src="js/ext.js"></script>
+</body>
+<script type="text/javascript">
+var key = localStorage.getItem("key");
+var username = localStorage.getItem("username");
+if(!key || !username){
+  window.location.href = "/fullset"
+}
+else{
+  $("form").append("<input value='" + key + "' type='hidden' name='key' />");
+  $("form").append("<input value='" + username + "' type='hidden' name='username' />");
+}
+</script>
+</html>

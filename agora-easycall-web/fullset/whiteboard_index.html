@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<title>白板协作主界面</title>
+</head>
+
+<body>
+    <div class="box">
+        <!--banner begin-->
+          <div class="banner">
+               <img id="banner_menu" class="banner_menu" src="images/triangle_copy.png" width="32" height="28" alt="32*28" />
+               <img class="banner_logo" src="images/agora_1.png" width="144" height="49" alt="144*49" />
+               <img class="banner_people" src="images/shape_copy_4.png" width="30" height="30" alt="30*30" />
+               <img class="banner_selected" src="images/shape_copy_5.png" width="14" height="8" alt="14*8" />
+               <img class="banner_selected_option_img" src="images/slide.png" width="30" height="30" alt="60*60" />
+            </div>
+       <!--banner end-->
+       
+       <!--whiteboard_content begin-->
+          <div class="whiteboard_content">
+             <!--text begin-->
+               <iframe width="1200" align="" height="770" id="win" name="win" frameborder="0" scrolling="no"></iframe>
+            <!--text end-->
+            
+             <!--menu_content begin--->
+          <div id="menu_content" class="menu_content" style="top:0px;">
+              <ul>
+                 <li><img src="images/oval.png" alt="20*18" style="width:20px;" /><label class="color"></label></li>
+                 <li class="option"><label>网络协作</label><img id="slideMenu" src="images/voice_index_five.png" width="20" height="14" alt="24*14" /></li>
+                 <!--<li><img src="images/voice_index_six.png" width="20" height="18" alt="20*18" /><label>五人组</label><span class="color">(会议中)</span></li>-->
+                 <!--<li><img src="images/voice_index_four.png" width="20" height="18" alt="20*18" /><label>创建新的房间</label></li> -->
+              </ul>
+          </div>
+         <!--menu_content end-->
+           
+            <!--banner_selected_option begin-->
+                <div class="banner_selected_option">
+                  <p>协作设置</p>
+                  <hr />
+                <a href="login_index.html">退出</a>
+              </div>
+         <!--banner_selected_option end-->
+           
+            <!--display begin-->
+            <div class="display">
+               <span>展开</span>
+               <img src="images/shape_copy_5.png" width="20" alt="20*12" />
+            </div>
+            <!--display end-->
+            
+            <!--display_select begin-->
+             <div class="display_select">
+                <div id="local" style="display:none;"></div>
+                <ul class="displayRemoteAV">
+                </ul>
+                <!--display_choose begin-->
+                <div class="display_choose">
+                   <div class="display_choose_option">
+                      <ul>
+                        <li class="audioSwitch"><div class="on">静音</div></li>
+                        <li class="videoSwitch"><div class="on">关闭摄像头</div></li>
+                        <li class="leave"><div class="phone"><p class="color telephone">0:00</p></div>
+                      </ul>
+                   </div>
+                   <div class="display_hr"></div>
+                   <div class="display_close">
+                     <span>收起</span>
+                     <img src="images/fanhui.png" width="24" height="14" />
+                   </div>
+                </div>
+              <!--display_choose end-->
+             </div>
+         
+        <!--display_select end-->
+            
+            <!--Set begin-->
+             <div class="Set" style="display:block;-moz-user-select:none;" unselectable="on" onselectstart="return false;">
+                 <div class="Set_cancel" style="display:block;">
+                    <img src="images/cancel.png"  alt="88*88" />
+                 </div>
+                  
+                  <!--whiteboard_Set begin-->
+                  <div class="whiteboard_Set">
+                  <!--video_set begin-->
+                    <div class="video_set">
+                          <p>视频设置</p>
+                         <hr />
+                         <!--视频分辨率dpi begin-->
+                         <div class="dpi">
+                           <p>视频分辨率(dpi)</p>
+                             <div class="dpi_frequency_one">
+                                <div class="dpi_frequency_two"></div>
+                             </div>
+                             <label>320×240</label>
+                            <div class="slider" style="">&nbsp;</div>
+                         </div>
+                         <!--视频分辨率dpi end-->
+                         
+                         <!--最大码率Kbps begin-->
+                         <div class="Kbps">
+                             <p>最大码率</p>
+                             <div class="Kbps_frequency_one">
+                                <div class="Kbps_frequency_two"></div>
+                             </div>
+                             <label>256 Kbps</label>
+                            <div class="slider" style="">&nbsp;</div>
+                         </div>
+                         <!--最大码率Kbps end-->
+                         
+                         <!--最大帧率(Hz) begin-->
+                         <div class="Hz">
+                             <p>最大帧率(Hz)</p>
+                             <div class="Hz_frequency_one">
+                                <div class="Hz_frequency_two"></div>
+                             </div>
+                             <label>40</label>
+                            <div class="slider" style="">&nbsp;</div>
+                         </div>
+                         <!--最大帧率(Hz) end-->
+                    </div>
+                  <!--video_set end-->
+                   <!--choose begin-->
+               <div class="choose">
+                 <p>当前会议室:<label>三点固定会议</label></p>
+                 <hr />
+                 <p>角色选择</p>
+                 <hr />
+                   <div class="host role">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>主持人</p>
+                   </div>
+                   <div class="participants role">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>参与者</p>
+                   </div>
+                   <br /><br />
+                   <p>布局</p>
+                   <hr />
+                   <div class="default_layout layout" data-layout="default">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>默认布局</p>
+                   </div>
+                   <div class="speak layout" data-layout="AGORA_LECTURE">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>演讲</p>
+                   </div>
+                   <div class="help layout" data-layout="AGORA_LECTURE_ASSISTANT">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>助手</p>
+                   </div>
+                   <div class="username">
+                      <p>用户名:</p>
+                      <input value="admin" class="help_name" id="username" name="username"  type="text" placeholder="请输入助手名子" />
+                   </div>
+                   
+                   <input class="begin_meeting" type="submit" value="开始会议" /> 
+               </div>
+               <!--choose end-->
+                 </div>
+                 <!--whiteboard_Set end-->
+             </div>
+            <!--Set end-->
+          
+          </div>
+       <!--whiteboard_content end-->
+         
+        
+         
+       <!--footer begin-->
+      <div class="footer">
+        <p>&copy;copyright Agora IPC证xxxxxx号</p>
+      </div>
+      <!--footer end-->
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/AgoraExtSDK.js"></script>
+<script type="text/javascript">
+/*
+   AgoraExtSDK 和AgoraSDK 同时定义了全局变量Agora,
+   所以这里将其中一个重新命名
+ */
+var AgoraExt = Agora;
+</script>
+<script src="js/socket.io.js"></script>
+<script src="js/adapter.js"></script>
+<script src="js/AgoraRTCSDK.js"></script>
+<script type="text/javascript" src="js/extvideo.js"></script>
+<script type="text/javascript" src="js/ext.js"></script>
+</html>

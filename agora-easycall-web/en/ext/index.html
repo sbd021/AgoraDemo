@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" />
+<title>Login</title>
+</head>
+
+<body>
+   <div class="box">
+       <!--banner begin-->
+         <div class="banner">
+            <img class="logo" src="images/Logo.png" alt="144*49" />
+         </div>
+       <!--banner end-->
+       
+       <!--content behin-->
+       <div class="bg">
+          <div class="content">
+             <!--creat_room begin-->
+              <div class="creat_room">
+                 <p>Create Conf Room</p><hr />
+                 <form action="Set_meeting.html" method="get">
+                   <input id="vendorkey" value="" type="text" name="key" required="required"  placeholder="Vendor Key"/>
+                   <img class="vendorkey_img" src="images/key.png" width="24" height="28" alt="24*28"/>
+                   <input id="roomName" type="text" name="name" required="required" placeholder="Enter room ID"/>
+                   <img class="channel_img" src="images/room.png" width="26" height="24" alt="26*24" />
+                   <input class="build_room" type="submit" value="Create room"/>
+                 </form>
+              </div>
+             <!--creat_room begin-->
+             
+<!--enter begin-->
+             <div class="enter">
+                <!--<p class="queryRoom" style="cursor:pointer;">查询现有会议室</p><hr />-->
+               <div class="selected">
+                    <div class="selected_content">
+                       <label>Query conf. room</label>
+                       <img class="room" src="images/room.png" width="26" height="24" alt="26*24" />
+                       <img class="xiala" src="images/ic_arrow.png" width="10" height="10" alt="6*6" />
+                     </div>
+                    <div class="selected_option">
+                    </div>
+              </div>
+              <div class="into">Enter</div>        
+              <div class="delete">Delete</div>
+           </div>
+          </div>
+       </div>
+       <!--content end-->
+   </div>
+  <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+   <script type="text/javascript" src="js/ext.js"></script>
+   <script type="text/javascript" src="js/AgoraExtSDK.js"></script>
+</body>
+</html>

@@ -163,7 +163,7 @@ public class LoginActivity extends BaseActivity {
             try {
                 response = httpclient.execute(new HttpGet(uri[0]));
                 StatusLine statusLine = response.getStatusLine();
-                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                if(statusLine != null && statusLine.getStatusCode() == HttpStatus.SC_OK){
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     response.getEntity().writeTo(out);
                     responseString = out.toString();
@@ -185,7 +185,9 @@ public class LoginActivity extends BaseActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
-            mVendorKey.setText(responseString.replaceAll("\\s+",""), TextView.BufferType.EDITABLE);
+            if (responseString != null) {
+                mVendorKey.setText(responseString.replaceAll("\\s+",""), TextView.BufferType.EDITABLE);
+            }
         }
     }
 

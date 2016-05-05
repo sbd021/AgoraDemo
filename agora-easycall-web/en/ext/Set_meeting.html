@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Settings</title>
+<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+   <div class="box">
+      <!--banner begin-->
+        <div class="banner">
+           <img class="back" src="images/back.png" width="40" height="30" alt="40*30" />
+           <img class="logo" src="images/Logo.png" alt="144*49" />
+        </div>
+      <!--banner end-->
+      
+      <!--content begin-->
+        <div class="bg">
+           <div class="content">
+               <!--choose begin-->
+               <div class="choose">
+                 <p>Current Room:<label></label></p>
+                 <hr />
+                 <p>Choose Your Role</p>
+                 <hr />
+                   <div class="host role">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>Moderator</p>
+                   </div>
+                   <div class="participants role">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>Attendee</p>
+                   </div>
+                   <br /><br />
+                   <p>Layout</p>
+                   <hr />
+                   <div class="default_layout layout" data-layout="default">
+                      <img src="images/checkbox_selected.png" width="28" height="28" alt="28*28"/>
+                      <p>Default</p>
+                   </div>
+                   <div class="speak layout" data-layout="AGORA_LECTURE">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>Lecturer</p>
+                   </div>
+                   
+                   <div class="help layout" data-layout="AGORA_LECTURE_ASSISTANT">
+                      <img src="images/checkbox.png" width="28" height="28" alt="28*28" />
+                      <p>Assistant</p>
+                   </div>
+                   <div class="username">
+                      <p>User Name:</p>
+                      <input required="required" id="username" name="username" class="help_name" type="text" placeholder="Enter the assistant name" />
+                   </div>
+                   <input class="begin_meeting" type="submit" value="Start" /> 
+               </div>
+               <!--choose end-->
+           </div>
+        </div>
+      <!--content end-->
+   
+   </div>
+
+  <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+   <script type="text/javascript" src="js/ext.js"></script>
+   <script type="text/javascript" src="js/AgoraExtSDK.js"></script>
+</body>
+</html>

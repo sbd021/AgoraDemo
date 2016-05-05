@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2019E7FF1C34D80200B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FE1C34D80200B281E3 /* libCrasheye.a */; };
-		20416C171C17D78C00598B89 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */; };
+		20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */; };
+		20933E101C745772009DD779 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0F1C745772009DD779 /* libCrasheye.a */; };
 		C70B49BF1BD4720700885E30 /* AGSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */; };
 		C70EE7A61BCF83E300458992 /* AGSLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */; };
 		C7680E971BC509F700A5B26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7680E961BC509F700A5B26B /* AppDelegate.swift */; };
@@ -78,8 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2019E7FE1C34D80200B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
-		20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		20933E0F1C745772009DD779 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSNavigationBar.swift; path = SampleSwift/AGSNavigationBar.swift; sourceTree = SOURCE_ROOT; };
 		C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLaunchViewController.swift; path = SampleSwift/AGSLaunchViewController.swift; sourceTree = SOURCE_ROOT; };
 		C7680E911BC509F700A5B26B /* SampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,8 +182,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2019E7FF1C34D80200B281E3 /* libCrasheye.a in Frameworks */,
-				20416C171C17D78C00598B89 /* AgoraRtcEngineKit.framework in Frameworks */,
+				20933E101C745772009DD779 /* libCrasheye.a in Frameworks */,
+				20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7FD24471BE68D2E0064454F /* CoreLocation.framework in Frameworks */,
 				C7FD24451BE68D220064454F /* MobileCoreServices.framework in Frameworks */,
 				C7FD24431BE68D070064454F /* libsqlite3.tbd in Frameworks */,
@@ -206,6 +206,8 @@
 		C7680E881BC509F700A5B26B = {
 			isa = PBXGroup;
 			children = (
+				20933E0F1C745772009DD779 /* libCrasheye.a */,
+				20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */,
 				C7D27F661BC518C3002E72B6 /* Framework */,
 				C7680E931BC509F700A5B26B /* SampleSwift */,
 				C7680EAC1BC509F700A5B26B /* SampleSwiftTests */,
@@ -453,8 +455,6 @@
 		C7D27F661BC518C3002E72B6 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				2019E7FE1C34D80200B281E3 /* libCrasheye.a */,
-				20416C161C17D78C00598B89 /* AgoraRtcEngineKit.framework */,
 				C7FD24421BE68D070064454F /* libsqlite3.tbd */,
 				C7FD24401BE68CF10064454F /* libc++.tbd */,
 				C7FD24461BE68D2E0064454F /* CoreLocation.framework */,
@@ -739,14 +739,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/libs/Crasheye",
+					"$(PROJECT_DIR)/Crasheye",
+				);
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/libs/Crasheye",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -772,15 +777,20 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Crasheye";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/libs/Crasheye",
+					"$(PROJECT_DIR)/Crasheye",
+				);
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Crasheye",
+					"$(PROJECT_DIR)/libs/Crasheye",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

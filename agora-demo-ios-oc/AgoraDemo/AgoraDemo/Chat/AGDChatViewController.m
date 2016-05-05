@@ -87,14 +87,6 @@
     // use test key
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKey delegate:self];
         
-//    self.agoraKit = [[AgoraRtcEngineKit alloc] initWithVendorKey:self.vendorKey error:^(AgoraRtcErrorCode errorCode) {
-//        if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
-//            [self.agoraKit leaveChannel:nil];
-//            [self.errorKeyAlert show];
-//        }
-//    }];
-    [self.agoraKit setLogFilter:0];
-    
     [self setUpVideo];
     [self setUpBlocks];
 }

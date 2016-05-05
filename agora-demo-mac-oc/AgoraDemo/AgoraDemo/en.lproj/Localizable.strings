@@ -1,0 +1,30 @@
+/*
+ Localizable.strings
+ AgoraMacFullset
+ 
+ Created by Jesse on 12/12/15.
+ Copyright © 2015 Agora. All rights reserved.
+ */
+
+"Need a key? Click Here" = "Need a key? Click Here";
+"Enter Vendor Key" = "Enter Vendor Key";
+"Room Number" = "Room Number";
+"Login" = "Login";
+"Vendor key can not be empty" = "Vendor key can not be empty";
+"User name can not be empty" = "User name can not be empty";
+"Room No. can not be empty" = "Room No. can not be empty";
+"Done" = "Done";
+"Start" = "Start";
+"Free" = "Free";
+"Host" = "Host";
+"Audience" = "Audience";
+"login_audio_type_button" = "login_audio_type_button_EN";
+"login_audio_type_button_sel" = "login_audio_type_button_sel_EN";
+"login_video_type_button" = "login_video_type_button_EN";
+"login_video_type_button_sel" = "login_video_type_button_sel_EN";
+"waiting for friends to join" = "waiting for friends to join the chat...";
+"Mute Audio" = "Mute Audio";
+"Mute Video" = "Mute Video";
+"Switch" = "Switch";
+"Default (360P)" = "Default (360P)";
+"Audio Chat" = "Audio Chat";

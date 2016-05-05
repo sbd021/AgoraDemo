@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" />
+<title>登录</title>
+</head>
+
+<body>
+   <div id="box">
+     <!--banner begin--> 
+      <div class="banner">
+           <img src="images/banner1.png" class="banner_QQ" />
+           <img src="images/banner3.png" class="banner_Agora"/>
+      </div>
+     <!--banner end-->
+     
+     <!--Login begin-->
+       <div class="Login">
+        <form action="/interface_Waiting.html" method="get">
+           <input id="key" value="" class="vendorkey" type="text" placeholder="厂商key" required="required" name="key"/>
+           <span><img class="vendorkey_img" src="images/Shape.png" width="24" height="28" alt="24*28"/><span>
+           <br />
+           <input id="channel" class="channel" type="text" required="required" placeholder="输入房间号码" name="channel"/>
+           <span><img class="channel_img" src="images/Shape2.png" width="26" height="26" alt="26*26" /></span>
+           <br />
+           <div class="video">
+               <input id="video" name="video" value="true" style="display:none;" />
+               <span class="video_choose"><img src="images/ic_login_checkbox_celected.png" width="25" alt="25*25" /></span>
+               <span class="video_img"><img src="images/ic_login_cell_video.png" /></span>
+               <input id="audio" name="audio" value="false" style="display:none;" />
+               <span class="audio_choose"><img src="images/ic_login_checkbox.png" width="25" alt="25*25" /></span>
+               <span class="audio_img"><img src="images/ic_login_cell_voice.png" /></span>
+           </div>
+           <br />
+          <input class="enter_room" type="submit" name="btn" value="进入房间"/>
+       </form>
+       </div> 
+     <!--Login end-->
+     
+     <!--footet begin-->
+       <div class="footer">
+         <p>@copyright Agora&nbsp;ICP证xxxxxxx号</p>
+       </div>
+     <!--footer end-->
+   </div>
+</body>
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+</html>
