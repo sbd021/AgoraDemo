@@ -37,6 +37,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
 
     // calling variable
     protected int userId = new Random().nextInt(Math.abs((int) System.currentTimeMillis()));
+    //protected int userId = 8888;
     protected String callId;
 
     // UI elements
@@ -77,6 +78,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
             getApplicationContext().unregisterReceiver(mCmdReceiver);
         }
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        destroyUI();
     }
 
 

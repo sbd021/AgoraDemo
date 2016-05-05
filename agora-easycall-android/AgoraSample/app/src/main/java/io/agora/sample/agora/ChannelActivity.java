@@ -106,6 +106,7 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
     private String channel;
 
     private int userId=new Random().nextInt(Math.abs((int) System.currentTimeMillis()));
+    //private int userId=9999;
 
     private String callId;
 
@@ -357,7 +358,9 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         ((TextView)findViewById(R.id.channel_id)).setText(String.format(getString(R.string.channel_title),channel));
 
         rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), channel, "", userId);
+        rtcEngine.setPreferHeadset(true);
     }
+
 
     private void initViews(){
 

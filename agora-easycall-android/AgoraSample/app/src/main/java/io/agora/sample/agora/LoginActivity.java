@@ -37,7 +37,7 @@ public class LoginActivity extends BaseEngineHandlerActivity {
 
         super.onCreate(savedInstance);
 
-        new RequestTask().execute("http://192.168.99.253:8970/agora.inner.test.key.txt");
+        // new RequestTask().execute("http://192.168.99.253:8970/agora.inner.test.key.txt");
         setContentView(R.layout.activity_login);
 
         ((AgoraApplication) getApplication()).setEngineHandlerActivity(this);
@@ -91,6 +91,7 @@ public class LoginActivity extends BaseEngineHandlerActivity {
 
         mVendorKeyInput = (EditText) findViewById(R.id.login_key_input);
         mUsernameInput = (EditText) findViewById(R.id.login_user_input);
+        mVendorKeyInput.setText("E33D67E2B174495F8F7AB9E154713D5E");
 
         findViewById(R.id.login_back).setOnClickListener(getViewClickListener());
         findViewById(R.id.login_login).setOnClickListener(getViewClickListener());
