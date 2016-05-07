@@ -10,7 +10,6 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: '../libs', include: '*.jar')
-    compile files('libs/crasheye.jar')
 }
 
 android {
