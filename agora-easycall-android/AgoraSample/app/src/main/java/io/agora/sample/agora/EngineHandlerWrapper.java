@@ -116,12 +116,19 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
     }
 
     public void onRtcStats(RtcStats stats) {
-        Log.e(TAG, "onRtcStats");
+        Log.e(TAG, "onRtcStats=> totalduration:" +stats.totalDuration + ",txB:" + stats.txBytes +
+                    ",rxB:" + stats.rxBytes + ",txR:" + stats.txKBitRate + ",rxR:" + stats.rxKBitRate +
+                    ",lastm:" + stats.lastmileQuality + ",user:" + stats.users +
+                    ",cput:" + stats.cpuTotalUsage + ",cpua" + stats.cpuAppUsage);
+
     }
 
     // TODO: dump Audio volume infomation
     public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume) {
-        Log.e(TAG, "onAudioVolumeIndication");
+        Log.e(TAG, "onAudioVolumeIndication: totalvolume:" + totalVolume);
+        for (int i = 0; i < speakers.length; i++) {
+            Log.e(TAG, "uid:" + speakers[i].uid + ",volume:" + speakers[i].volume);
+        }
     }
 
     public void onNetworkQuality(int quality) {
@@ -134,7 +141,16 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
 
 
     public void onUserOffline(int uid, int reason) {
-        Log.e(TAG, "onUserOffline," + uid + "," + reason);
+        String desc;
+        if (reason == 0) {
+            desc = "USER_OFFLINE_QUIT";
+        } else if (reason == 1) {
+            desc = "USER_OFFLINE_DROPPED";
+        } else {
+            Log.e(TAG, "onUserOffline callback failed with wrong reason: " + reason);
+            return;
+        }
+        Log.e(TAG, "onUserOffline," + uid + "," + desc);
     }
 
     public void onUserMuteAudio(int uid, boolean muted) {
@@ -145,12 +161,17 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
         Log.e(TAG, "onUserMuteVideo," + uid + "," + muted);
     }
 
-    public void onRemoteVideoStat(int uid, int delay, int receivedBitrate, int receivedFrameRate) {
-        Log.e(TAG, "onRemoteVideoStat");
+    public void onUserEnableVideo(int uid, boolean enabled) {
+        Log.e(TAG, "onUserEnableVideo," + uid + "," + enabled);
     }
 
-    public void onLocalVideoStat(int sentBitrate, int sentFrameRate) {
-        Log.e(TAG, "onLocalVideoStat");
+    public void onRemoteVideoStats(IRtcEngineEventHandler.RemoteVideoStats stats) {
+        Log.e(TAG, "onRemoteVideoStat=> uid:" + stats.uid + ",delay:" + stats.delay + ",w:" + stats.width
+                + ",h:" + stats.height + ",rxBitRate:" + stats.receivedBitrate + ",rxFramerate:" + stats.receivedFrameRate);
+    }
+
+    public void onLocalVideoStats(IRtcEngineEventHandler.LocalVideoStats stats) {
+        Log.e(TAG, "onLocalVideoStat=> txBitrate:" + stats.sentBitrate + ",txFramerate:" +stats.sentFrameRate);
     }
 
     public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {
@@ -176,6 +197,5 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
     public void onMediaEngineEvent(int code) {
         Log.e(TAG, "onJoinChannelSuccess");
     }
-
 
 }

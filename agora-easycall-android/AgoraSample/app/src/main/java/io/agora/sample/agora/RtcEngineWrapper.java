@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import io.agora.rtc.RtcEngine;
+//import io.agora.rtc.RtcEngineEx;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.IRtcEngineEventHandler;
 import android.util.Log;
@@ -71,15 +72,25 @@ public class RtcEngineWrapper extends RtcEngine{
         return mEngine.stopPreview();
     }
 
+//    public String getParameters(String parameters) {
+//        Log.e(TAG, "getParameters");
+//        return mEngine.getParameters(parameters);
+//    }
+
+    public String getParameter(String parameter, String args) {
+        Log.e(TAG, "getParameter");
+        return mEngine.getParameter(parameter, args);
+    }
+
     public int setParameters(String parameters) {
         Log.e(TAG, "setParameters," + parameters);
         return mEngine.setParameters(parameters);
     }
 
-    public String makeQualityReportUrl(String channel, int listenerUid, int speakerUid, int format) {
-        Log.e(TAG, "makeQualityReportUrl," + channel + "," + listenerUid + "," + speakerUid + "," + format);
-        return mEngine.makeQualityReportUrl(channel, listenerUid, speakerUid, format);
-    }
+//    public String makeQualityReportUrl(String channel, int listenerUid, int speakerUid, int format) {
+//        Log.e(TAG, "makeQualityReportUrl," + channel + "," + listenerUid + "," + speakerUid + "," + format);
+//        return mEngine.makeQualityReportUrl(channel, listenerUid, speakerUid, format);
+//    }
 
     public String getCallId() {
         Log.e(TAG, "getCallId");
@@ -199,6 +210,21 @@ public class RtcEngineWrapper extends RtcEngine{
     public int stopAudioRecording() {
         Log.e(TAG, "stopAudioRecording");
         return mEngine.stopAudioRecording();
+    }
+
+    public int startRecordingService(String key) {
+        Log.e(TAG, "startRecordingService");
+        return mEngine.startRecordingService(key);
+    }
+
+    public int stopRecordingService(String key) {
+        Log.e(TAG, "stopRecordingService");
+        return mEngine.stopRecordingService(key);
+    }
+
+    public int refreshRecordingServiceStatus() {
+        Log.e(TAG, "refreshRecordingServiceStatus");
+        return mEngine.refreshRecordingServiceStatus();
     }
 
     public int startEchoTest() {

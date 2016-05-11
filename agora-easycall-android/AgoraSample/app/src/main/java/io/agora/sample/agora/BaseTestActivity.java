@@ -17,12 +17,16 @@ import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.CoderMalfunctionError;
 import java.util.HashMap;
 import java.util.Random;
 
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
+import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoCanvas;
+
+import static java.lang.Integer.getInteger;
 
 
 public class BaseTestActivity extends BaseEngineHandlerActivity {
@@ -143,7 +147,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
                 view.setZOrderOnTop(true);
                 view.setZOrderMediaOverlay(true);
                 view.setTag(fl);
-                mCanvasMap.put(uid, new VideoCanvas(view, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+                mCanvasMap.put(uid, new VideoCanvas(view, VideoCanvas.RENDER_MODE_FIT, uid));
                 return 0;
             }
         }
@@ -156,7 +160,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
             if (uid == 0) {
                 rtcEngine.setupLocalVideo(new VideoCanvas(null));
             } else {
-                rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, uid));
+                rtcEngine.setupRemoteVideo(new VideoCanvas(null, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
             }
             FrameLayout fl = (FrameLayout) mCanvasMap.get(uid).view.getTag();
             fl.removeView(mCanvasMap.get(uid).view);
@@ -165,15 +169,16 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
     }
 
 
-    protected int joinChannel(int callMode) {
+    protected int joinChannel(int callMode, int uid) {
         if (callMode == CALL_MODE_VIDEO) {
             rtcEngine.enableVideo();
             // Attention please: before you call setupLocalVideo, you MUST call enableVideo() !!!!
             rtcEngine.setupLocalVideo(mCanvasMap.get(0));
+            //rtcEngine.setupLocalVideo(null);
             rtcEngine.startPreview();
-            rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", userId);
-        } else {
-            rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", userId);
+            rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", uid);
+        } else if (callMode == CALL_MODE_VOICE) {
+            rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", uid);
         }
 
         return 0;
@@ -226,9 +231,15 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
 
     protected void initCommandHandler() {
         CommandHandler defaultHandler = new CommandHandler();
-        mHandlerMap.put("setupUI", new setupUIHandler());
-        mHandlerMap.put("destroyUI", new destroyUIHandler());
+        CommandHandler boolHandler = new BoolCommandHandler();
+        CommandHandler intHandler = new IntHandler();
+        CommandHandler stringHandler = new StringHandler();
+        CommandHandler headsetEventHandler = new HeadsetEventHandler();
+        mHandlerMap.put("setupUI", new SetupUIHandler());
+        mHandlerMap.put("setupLocalVideo", new SetupLocalVideoHandler());
+        mHandlerMap.put("destroyUI", new DestroyUIHandler());
         mHandlerMap.put("joinChannel", new JoinChannelHandler());
+        mHandlerMap.put("joinChannelOnly", new JoinChannelOnlyHandler());
         mHandlerMap.put("leaveChannel", defaultHandler);
         mHandlerMap.put("enableNetworkTest", defaultHandler);
         mHandlerMap.put("disableNetworkTest", defaultHandler);
@@ -240,12 +251,41 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         mHandlerMap.put("startEchoTest", defaultHandler);
         mHandlerMap.put("stopEchoTest", defaultHandler);
         mHandlerMap.put("stopAudioRecording", defaultHandler);
+        mHandlerMap.put("getCallId", new GetCallIdHandler());
+        mHandlerMap.put("rate", new RateHandler());
+        mHandlerMap.put("complain", new ComplainHandler());
+        mHandlerMap.put("setChannelProfile", new SetChannelProfileHandler());
+        mHandlerMap.put("monitorConnectionEvent", boolHandler);
+        mHandlerMap.put("muteLocalVideoStream", boolHandler);
+        mHandlerMap.put("muteAllRemoteVideoStreams", boolHandler);
+        mHandlerMap.put("setEnableSpeakerphone", boolHandler);
+        mHandlerMap.put("enableAudioQualityIndication", boolHandler);
+        mHandlerMap.put("muteLocalAudioStream", boolHandler);
+        mHandlerMap.put("muteAllRemoteAudioStreams", boolHandler);
+        mHandlerMap.put("setPreferHeadset", new SetPreferHeadsetHandler());
+        mHandlerMap.put("setSpeakerphoneVolume", intHandler);
+        mHandlerMap.put("setLogFilter", intHandler);
+        mHandlerMap.put("setLocalRenderMode", intHandler);
+        mHandlerMap.put("setVideoProfile", intHandler);
+        mHandlerMap.put("setChannelProfile", intHandler);
+        mHandlerMap.put("enableAudioVolumeIndication", new EnableAudioVolumeIndicationHandler());
+        mHandlerMap.put("setLogFile", stringHandler);
+        mHandlerMap.put("isSpeakerphoneEnabled", new IsSpeakerphoneEnabledHandler());
+        mHandlerMap.put("enableHighPerfWifiMode", new EnableHighPerfWifiModeHandler());
+        mHandlerMap.put("monitorConnectionEvent", new MonitorConnectionEventHandler());
+        mHandlerMap.put("switchView", new SwitchViewHandler());
+        mHandlerMap.put("monitorHeadsetEvent", headsetEventHandler);
+        mHandlerMap.put("monitorBluetoothHeadsetEvent", headsetEventHandler);
+        mHandlerMap.put("startAudioRecording", stringHandler);
+        mHandlerMap.put("stopAudioRecording", defaultHandler);
     }
 
 
     protected class CommandHandler {
         public synchronized int run(Intent intent) {
             String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "receive cmd:[" + cmd + "]; with parameters:[" + para + "]");
             Class clazz = rtcEngine.getClass();
             Method m = null;
             try {
@@ -266,15 +306,147 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         }
     }
 
+    protected class BoolCommandHandler extends CommandHandler {
+        public synchronized int run(Intent intent) {
+            String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            boolean arg;
+            Log.e(TAG, "receive cmd:[" + cmd + "]; with parameters:[" + para + "]");
+            if (para.equals("true")) {
+                arg = true;
+            } else if (para.equals("false")) {
+                arg = false;
+            } else {
+                Log.e(TAG, "wrong parameter");
+                return -1;
+            }
+            Class clazz = rtcEngine.getClass();
+            Method m = null;
+            try {
+                m = clazz.getDeclaredMethod(cmd, boolean.class);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            try {
+                int ret = (int) m.invoke(rtcEngine, arg);
+                Log.e(TAG, "call method:" + cmd + ", return value:" + ret);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
+    protected class IntHandler extends CommandHandler {
+        @Override
+        public synchronized int run(Intent intent) {
+            String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "receive cmd:[" + cmd + "]; with parameters:[" + para + "]");
+            Integer varI = new Integer(para);
+            int arg = varI.intValue();
+            Class clazz = rtcEngine.getClass();
+            Method m = null;
+            try {
+                m = clazz.getDeclaredMethod(cmd, int.class);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            try {
+                int ret = (int) m.invoke(rtcEngine, arg);
+                Log.e(TAG, "call method:" + cmd + ", return value:" + ret);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
+    protected class StringHandler extends CommandHandler {
+        @Override
+        public synchronized int run(Intent intent) {
+            String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "receive cmd:[" + cmd + "]; with parameters:[" + para + "]");
+            Class clazz = rtcEngine.getClass();
+            Method m = null;
+            try {
+                m = clazz.getDeclaredMethod(cmd, String.class);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            try {
+                int ret = (int) m.invoke(rtcEngine, para);
+                Log.e(TAG, "call method:" + cmd + ", return value:" + ret);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
+    protected class HeadsetEventHandler extends CommandHandler {
+        public synchronized int run(Intent intent) {
+            String cmd = intent.getStringExtra("cmd");
+            String para = intent.getStringExtra("para");
+            boolean arg;
+            Log.e(TAG, "receive cmd:[" + cmd + "]; with parameters:[" + para + "]");
+            if (para.equals("true")) {
+                arg = true;
+            } else if (para.equals("false")) {
+                arg = false;
+            } else {
+                Log.e(TAG, "wrong parameter");
+                return -1;
+            }
+            Class clazz = rtcEngine.getClass();
+            Method m = null;
+            try {
+                m = clazz.getDeclaredMethod(cmd, boolean.class);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            try {
+                m.invoke(rtcEngine, arg);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
     protected class JoinChannelHandler extends CommandHandler {
         @Override
         public int run(Intent intent) {
             Log.e(TAG, "call method: joinChannel");
-            return joinChannel(CALL_MODE_VIDEO);
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with para:" + para);
+            if (para == null) {
+                return joinChannel(CALL_MODE_VIDEO, userId);
+            } else if (para.equals("auto_uid")) {
+                return joinChannel(CALL_MODE_VIDEO, 0);
+            }
+            return 0;
         }
     }
 
-    protected class setupUIHandler extends CommandHandler {
+    protected class JoinChannelOnlyHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: JoinChannelonly");
+            return rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", 0);
+        }
+    }
+
+    protected class SetupUIHandler extends CommandHandler {
         @Override
         public int run(Intent intent) {
             Log.e(TAG, "call method: setupUI");
@@ -283,11 +455,162 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         }
     }
 
-    protected class destroyUIHandler extends CommandHandler {
+    protected class SetupLocalVideoHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: setupLocalVideo");
+            return rtcEngine.setupLocalVideo(mCanvasMap.get(0));
+        }
+    }
+
+    protected class DestroyUIHandler extends CommandHandler {
         @Override
         public int run(Intent intent) {
             Log.e(TAG, "call method: destroyUI");
             destroyUI();
+            return 0;
+        }
+    }
+
+    protected class GetCallIdHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: getCallId");
+            Log.e(TAG, "call id is:" + rtcEngine.getCallId());
+            return 0;
+        }
+    }
+
+    protected class RateHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: rate");
+            String desc = "sdk test";
+            return rtcEngine.rate(rtcEngine.getCallId(), 3, desc);
+        }
+    }
+
+    protected class ComplainHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: complainHandler");
+            String desc ="sdk test complain";
+            return rtcEngine.complain(rtcEngine.getCallId(), desc);
+        }
+    }
+
+    protected class SetChannelProfileHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: setChannelProfile");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with para:" + para);
+            int profile;
+            if (para.equals("free")) {
+                profile = 0;
+            } else if (para.equals("broadcaster")) {
+                profile = 1;
+            } else if (para.equals("audience")) {
+                profile = 2;
+            } else {
+                return -1;
+            }
+            return rtcEngine.setChannelProfile(profile);
+        }
+    }
+
+    protected class SetPreferHeadsetHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: setPreferHeadsetHandler");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with para" + para);
+            boolean arg;
+            if (para.equals("true")) {
+                arg = true;
+            } else if (para.equals("false")) {
+                arg = false;
+            } else {
+                Log.e(TAG, "wrong parameters");
+                return -1;
+            }
+            rtcEngine.setPreferHeadset(arg);
+            return 0;
+        }
+    }
+
+    protected class EnableAudioVolumeIndicationHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: enableAudioVolumeIndiction");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with para" + para);
+            Integer varI = new Integer(para);
+            int arg = varI.intValue();
+            return rtcEngine.enableAudioVolumeIndication(arg, 10);
+        }
+    }
+
+    protected class IsSpeakerphoneEnabledHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: isSpeakerphoneEnabled");
+            boolean res = rtcEngine.isSpeakerphoneEnabled();
+            Log.e(TAG, "isSpeakerphoneEnabled returns: " + res);
+            return 0;
+        }
+    }
+
+    protected class EnableHighPerfWifiModeHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: EnableHighPerfWifiMode");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with parameter:" + para);
+            boolean arg;
+            if (para.equals("true")) {
+                arg = true;
+            } else if (para.equals("false")) {
+                arg = false;
+            } else {
+                Log.e(TAG, "wrong parameter");
+                return -1;
+            }
+            boolean res = rtcEngine.enableHighPerfWifiMode(arg);
+            Log.e(TAG, "enableHighPerfWifiMode returns: " + res);
+            return 0;
+        }
+    }
+
+    protected class SwitchViewHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: switchView");
+            if (mCanvasMap.size() <= 1) {
+                Log.e(TAG, "wait for another one joining the channel");
+                return -1;
+            }
+            rtcEngine.switchView(mCanvasMap.keyAt(0), mCanvasMap.keyAt(1));
+            return 0;
+        }
+    }
+
+    protected class MonitorConnectionEventHandler extends CommandHandler {
+        @Override
+        public int run(Intent intent) {
+            Log.e(TAG, "call method: monitorConnectionEvent");
+            String para = intent.getStringExtra("para");
+            Log.e(TAG, "with parameter:" + para);
+            boolean arg;
+            if (para.equals("true")) {
+                arg = true;
+            } else if (para.equals("false")) {
+                arg = false;
+            } else {
+                Log.e(TAG, "wrong parameter");
+                return -1;
+            }
+            rtcEngine.monitorConnectionEvent(arg);
             return 0;
         }
     }
@@ -307,7 +630,7 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String cmd = intent.getStringExtra("cmd");
-            Log.e(TAG, "onReceive command:");
+            Log.e(TAG, "onReceive command:" + cmd);
             if (executeCommand(intent) != 0) {
                 Log.e(TAG, "failed to execute command");
             }

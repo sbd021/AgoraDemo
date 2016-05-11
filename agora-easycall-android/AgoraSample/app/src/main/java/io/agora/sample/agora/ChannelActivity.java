@@ -726,9 +726,9 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
 
         String recordValue = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss").format(Calendar.getInstance().getTime());
 
-        String recordUrl = rtcEngine.makeQualityReportUrl(channel, uid, 0, 0);
+        // String recordUrl = rtcEngine.makeQualityReportUrl(channel, uid, 0, 0);
 
-        ((AgoraApplication) getApplication()).setRecordDate(callId, recordValue + "+" + recordUrl);
+        // ((AgoraApplication) getApplication()).setRecordDate(callId, recordValue + "+" + recordUrl);
     }
 
     public void onError(final int err){
