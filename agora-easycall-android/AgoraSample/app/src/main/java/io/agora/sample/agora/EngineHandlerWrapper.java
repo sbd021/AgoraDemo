@@ -3,6 +3,7 @@ package io.agora.sample.agora;
 import io.agora.rtc.IRtcEngineEventHandler;
 import android.util.Log;
 import android.util.SparseArray;
+import io.agora.rtc.Constants;
 
 
 /**
@@ -19,7 +20,7 @@ public class EngineHandlerWrapper extends IRtcEngineEventHandler {
             put(WarnCode.WARN_LOOKUP_CHANNEL_REJECTED, "WARN_LOOKUP_CHANNEL_REJECTED".toLowerCase());
             put(WarnCode.WARN_OPEN_CHANNEL_TIMEOUT, "WARN_OPEN_CHANNEL_TIMEOUT".toLowerCase());
             put(WarnCode.WARN_OPEN_CHANNEL_REJECTED, "WARN_OPEN_CHANNEL_REJECTED".toLowerCase());
-            put(WarnCode.WARN_REQUEST_DEFERRED, "WARN_REQUEST_DEFERRED".toLowerCase());
+            //put(WarnCode.WARN_REQUEST_DEFERRED, "WARN_REQUEST_DEFERRED".toLowerCase());
             put(WarnCode.WARN_ADM_RUNTIME_PLAYOUT_WARNING, "WARN_ADM_RUNTIME_PLAYOUT_WARNING".toLowerCase());
             put(WarnCode.WARN_ADM_RUNTIME_RECORDING_WARNING, "WARN_ADM_RUNTIME_RECORDING_WARNING".toLowerCase());
             put(WarnCode.WARN_ADM_RECORD_AUDIO_SILENCE, "WARN_ADM_RECORD_AUDIO_SILENCE".toLowerCase());

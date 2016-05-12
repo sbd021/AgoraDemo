@@ -278,6 +278,9 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         mHandlerMap.put("monitorBluetoothHeadsetEvent", headsetEventHandler);
         mHandlerMap.put("startAudioRecording", stringHandler);
         mHandlerMap.put("stopAudioRecording", defaultHandler);
+        mHandlerMap.put("startRecordingService", stringHandler);
+        mHandlerMap.put("stopRecordingService", stringHandler);
+        mHandlerMap.put("refreshRecordingServiceStatus", defaultHandler);
     }
 
 
@@ -442,7 +445,12 @@ public class BaseTestActivity extends BaseEngineHandlerActivity {
         @Override
         public int run(Intent intent) {
             Log.e(TAG, "call method: JoinChannelonly");
-            return rtcEngine.joinChannel(((AgoraApplication) getApplication()).getVendorKey(), TEST_CHANNEL, "", 0);
+            String key = intent.getStringExtra("key");
+            String channel = intent.getStringExtra("channel");
+            String uid_str = intent.getStringExtra("uid");
+            int uid = Integer.valueOf(uid_str).intValue();
+            Log.e(TAG, "Vendor key:" + key + ", Channel:" + channel + ", uid" + uid);
+            return rtcEngine.joinChannel(key, channel, "", uid);
         }
     }
 
