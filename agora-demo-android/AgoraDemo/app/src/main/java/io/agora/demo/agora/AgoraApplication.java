@@ -1,6 +1,7 @@
 package io.agora.demo.agora;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.xsj.crasheye.Crasheye;
@@ -19,11 +20,7 @@ public class AgoraApplication extends Application {
     public void onCreate(){
 
         super.onCreate();
-
         Crasheye.initWithNativeHandle(this, "06798b00");
-
-
-        Log.d("Crasheye","0");
 
         messageHandler = new MessageHandler();
     }

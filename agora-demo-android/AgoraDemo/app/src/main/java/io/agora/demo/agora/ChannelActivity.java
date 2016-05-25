@@ -74,7 +74,6 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_room);
 
-
         // keep screen on - turned on
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -618,7 +617,6 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
     @Override
     public void onLeaveChannel(IRtcEngineEventHandler.RtcStats stats) {
         try {
-            super.onLeaveChannel(stats);
             finish();
         }catch (Exception e){
             e.printStackTrace();
@@ -722,5 +720,11 @@ public class ChannelActivity extends BaseEngineEventHandlerActivity {
         int exp = (int) (Math.log(bytes) / Math.log(unit));
         String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ((AgoraApplication) getApplication()).setEngineEventHandlerActivity(null);
     }
 }
