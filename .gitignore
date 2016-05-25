@@ -22,7 +22,6 @@ agora-easycall-ios-swift/SampleSwift.xcodeproj/project.xcworkspace/xcuserdata
 agora-easycall-ios-swift/SampleSwift.xcodeproj/xcuserdata
 *.xcuserstate
 *.xcbkptlist
-*.plist
 agora-voice-demo-android/AgoraDemo/.gradle
 agora-voice-demo-android/AgoraDemo/.idea
 agora-voice-demo-android/AgoraDemo/build
@@ -40,3 +39,6 @@ agora-easycall-ios-oc/Agora
 agora-easycall-ios-oc/build
 agora-voice-demo-oc/Agora
 agora-voice-demo-oc/AgoraDemo/build
+agora-demo-ios-oc/AgoraDemo/AgoraDemo.xcodeproj/xcuserdata
+agora-demo-mac-oc/AgoraDemo/AgoraDemo.xcodeproj/xcuserdata
+agora-voice-demo-oc/AgoraDemo/sample.xcodeproj/xcuserdata
