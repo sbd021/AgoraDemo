@@ -456,8 +456,8 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
             
             // Save record
             if self.firstJoinedUid != 0 {
-                let url = self.agoraKit.makeQualityReportUrl(self.callId, listenerUid: self.firstJoinedUid, speakerrUid: self.myUid, reportFormat: AgoraRtcQualityReportFormat.QualityReportFormat_Html)
-                AGSCoreDataManager.shareManager.saveRecord(self.callId, date: self.startDate, duration: self.duration, url: url)
+//                let url = self.agoraKit.makeQualityReportUrl(self.callId, listenerUid: self.firstJoinedUid, speakerrUid: self.myUid, reportFormat: AgoraRtcQualityReportFormat.QualityReportFormat_Html)
+//                AGSCoreDataManager.shareManager.saveRecord(self.callId, date: self.startDate, duration: self.duration, url: url)
             }
             
             //

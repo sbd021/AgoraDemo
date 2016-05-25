@@ -25,6 +25,7 @@
 		18F23FB51B9FC7C700A7A622 /* AGDChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */; };
 		2019E7F91C34CCF600B281E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */; };
 		2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FA1C34CD8700B281E3 /* libz.tbd */; };
+		20A103F61CF58CD100646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F51CF58CD100646D92 /* VideoToolbox.framework */; };
 		20C8384B1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */; };
 		20C8384D1C3A4F4F006CE5D4 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */; };
 		2C00E95E1BA152D600605003 /* AGDChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00E95D1BA152D600605003 /* AGDChatCell.m */; };
@@ -78,6 +79,7 @@
 		18F23FB41B9FC7C700A7A622 /* AGDChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatViewController.m; sourceTree = "<group>"; };
 		2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2019E7FA1C34CD8700B281E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		20A103F51CF58CD100646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = ../libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = ../libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2C00E95C1BA152D600605003 /* AGDChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatCell.h; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A103F61CF58CD100646D92 /* VideoToolbox.framework in Frameworks */,
 				20C8384D1C3A4F4F006CE5D4 /* libCrasheye.a in Frameworks */,
 				20C8384B1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */,
 				2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */,
@@ -188,6 +191,7 @@
 		18F23F8D1B9FC49100A7A622 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20A103F51CF58CD100646D92 /* VideoToolbox.framework */,
 				20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */,
 				20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */,
 				2019E7FA1C34CD8700B281E3 /* libz.tbd */,
@@ -446,7 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -467,9 +471,9 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.simpledemo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 			};
 			name = Debug;
 		};
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -496,9 +500,9 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.simpledemo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 			};
 			name = Release;
 		};

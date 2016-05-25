@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */; };
 		20933E101C745772009DD779 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0F1C745772009DD779 /* libCrasheye.a */; };
+		20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F91CF58E3500646D92 /* VideoToolbox.framework */; };
 		C70B49BF1BD4720700885E30 /* AGSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */; };
 		C70EE7A61BCF83E300458992 /* AGSLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */; };
 		C7680E971BC509F700A5B26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7680E961BC509F700A5B26B /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		20933E0F1C745772009DD779 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
+		20A103F91CF58E3500646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSNavigationBar.swift; path = SampleSwift/AGSNavigationBar.swift; sourceTree = SOURCE_ROOT; };
 		C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLaunchViewController.swift; path = SampleSwift/AGSLaunchViewController.swift; sourceTree = SOURCE_ROOT; };
 		C7680E911BC509F700A5B26B /* SampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */,
 				20933E101C745772009DD779 /* libCrasheye.a in Frameworks */,
 				20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7FD24471BE68D2E0064454F /* CoreLocation.framework in Frameworks */,
@@ -206,6 +209,7 @@
 		C7680E881BC509F700A5B26B = {
 			isa = PBXGroup;
 			children = (
+				20A103F91CF58E3500646D92 /* VideoToolbox.framework */,
 				20933E0F1C745772009DD779 /* libCrasheye.a */,
 				20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */,
 				C7D27F661BC518C3002E72B6 /* Framework */,
@@ -735,6 +739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -760,8 +765,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.SampleSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.SampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				SWIFT_OBJC_BRIDGING_HEADER = "SampleSwift/SampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -773,6 +779,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -799,9 +806,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.SampleSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.SampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d3d7ed76-806e-4a97-88e6-35009d1385b3";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				SWIFT_OBJC_BRIDGING_HEADER = "SampleSwift/SampleSwift-Bridging-Header.h";
 			};
 			name = Release;

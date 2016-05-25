@@ -33,6 +33,7 @@
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
 		2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FC1C34D4A600B281E3 /* libCrasheye.a */; };
+		20A103FC1CF58E6200646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103FB1CF58E6200646D92 /* VideoToolbox.framework */; };
 		20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
 		2C11930C1BB3F20500CE994E /* FOWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1193051BB3F20500CE994E /* FOWebViewController.xib */; };
@@ -137,6 +138,7 @@
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
 		2019E7FC1C34D4A600B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		20A103FB1CF58E6200646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
 		2C1193041BB3F20500CE994E /* FOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOWebViewController.m; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A103FC1CF58E6200646D92 /* VideoToolbox.framework in Frameworks */,
 				20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */,
 				2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */,
 				C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */,
@@ -538,6 +541,7 @@
 		2CE545FA1B9D629600EDE8BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20A103FB1CF58E6200646D92 /* VideoToolbox.framework */,
 				20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */,
 				2019E7FC1C34D4A600B281E3 /* libCrasheye.a */,
 				2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */,
@@ -838,7 +842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -855,9 +859,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.AgoraSample;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 			};
 			name = Debug;
 		};
@@ -867,7 +871,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -884,9 +888,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.AgoraSample;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 			};
 			name = Release;
 		};

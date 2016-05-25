@@ -94,9 +94,9 @@ class AGSSelectMediaViewController: AGSBaseViewController, AGSAlertViewDelegate,
         videoLabel.text = NSLocalizedString("Join Video Call", comment: "")
         voiceLabel.text = NSLocalizedString("Join Voice Call", comment: "")
         
-        if DEBUG == 1 {
-            roomNumberTextField.text = "1024"
-        }
+//        if DEBUG == 1 {
+//            roomNumberTextField.text = "1024"
+//        }
     }
     
     override func didReceiveMemoryWarning() {

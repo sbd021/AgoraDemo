@@ -360,9 +360,9 @@
 					"-licucore",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.voicedemo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.voicedemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -398,9 +398,9 @@
 					"-licucore",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.agora.voicedemo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.voicedemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
