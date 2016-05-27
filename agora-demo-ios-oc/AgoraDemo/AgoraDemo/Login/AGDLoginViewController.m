@@ -42,13 +42,19 @@ static NSString * const AGDSegueIdentifierChat = @"Chat";
     if (vendorKey) {
         self.keyTextField.text = vendorKey;
     } else {
+        NSError *error = nil;
         NSURL *innerKeyUrl = [NSURL URLWithString:@"http://192.168.99.253:8970/agora.inner.test.key.txt"];
         NSString *innerVendorKey = [NSString stringWithContentsOfURL:innerKeyUrl
                                                      encoding:NSASCIIStringEncoding
-                                                        error:nil];
-        
-        self.keyTextField.text = [innerVendorKey
+                                                        error: &error];
+
+        if (!error) {
+            if (!innerVendorKey) {
+                self.keyTextField.text = [innerVendorKey
                                   stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
+            }
+
+        }
     }
     
 }
