@@ -43,14 +43,17 @@
     if (vendorKey) {
         self.vendorKeyTextField.stringValue = vendorKey;
     } else {
+        NSError *err = nil;
         NSURL *innerKeyUrl = [NSURL URLWithString:@"http://192.168.99.253:8970/agora.inner.test.key.txt"];
         NSString *innerVendorKey = [NSString stringWithContentsOfURL:innerKeyUrl
                                                             encoding:NSASCIIStringEncoding
-                                                               error:nil];
-        
-        if (innerVendorKey != nil) {
-            self.vendorKeyTextField.stringValue = [innerVendorKey
-                                  stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
+                                                               error:&err];
+
+        if (!err) {
+            if (innerVendorKey != nil) {
+                self.vendorKeyTextField.stringValue = [innerVendorKey
+                                      stringByReplacingOccurrencesOfString:@"\n" withString:@""];; // Please use your own key. The inner test key is just invalid in public.
+            }
         }
     }
 }
