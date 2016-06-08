@@ -33,6 +33,7 @@
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
 		2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FC1C34D4A600B281E3 /* libCrasheye.a */; };
+		209A2CB81D06BF5C003E4950 /* AGSChatEncryptObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = 209A2CB71D06BF5C003E4950 /* AGSChatEncryptObserver.mm */; };
 		20A103FC1CF58E6200646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103FB1CF58E6200646D92 /* VideoToolbox.framework */; };
 		20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
@@ -137,7 +138,8 @@
 		18F34DF51BB0090D000ADECA /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
 		2019E7FC1C34D4A600B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
-		2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		209A2CB61D06BF35003E4950 /* AGSChatEncryptObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSChatEncryptObserver.h; sourceTree = "<group>"; };
+		209A2CB71D06BF5C003E4950 /* AGSChatEncryptObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AGSChatEncryptObserver.mm; sourceTree = "<group>"; };
 		20A103FB1CF58E6200646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
@@ -247,6 +249,8 @@
 				18F0F4FD1BD72DEE008E10E7 /* AGSChatCell.m */,
 				18F0F4FE1BD72DEE008E10E7 /* AGSChatViewController.h */,
 				18F0F4FF1BD72DEE008E10E7 /* AGSChatViewController.m */,
+				209A2CB61D06BF35003E4950 /* AGSChatEncryptObserver.h */,
+				209A2CB71D06BF5C003E4950 /* AGSChatEncryptObserver.mm */,
 			);
 			name = Chat;
 			path = AgoraSample/Chat;
@@ -544,7 +548,6 @@
 				20A103FB1CF58E6200646D92 /* VideoToolbox.framework */,
 				20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */,
 				2019E7FC1C34D4A600B281E3 /* libCrasheye.a */,
-				2041504D1C0EA8AC003103CD /* AgoraRtcEngineKit.framework */,
 				C7A11D5E1BDF51AF008D0407 /* libc++.tbd */,
 				C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */,
 				C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */,
@@ -696,6 +699,7 @@
 				18F0F51E1BD72DEE008E10E7 /* AGSSplashViewController.m in Sources */,
 				2C27730F1BB4F04000FAA550 /* UIColor+Helper.m in Sources */,
 				18F34DE31BAFC2A2000ADECA /* AGSCallBackView.m in Sources */,
+				209A2CB81D06BF5C003E4950 /* AGSChatEncryptObserver.mm in Sources */,
 				18F0F5221BD72DEE008E10E7 /* AGSHistoryCell.m in Sources */,
 				2C11930D1BB3F20500CE994E /* NJKWebViewProgress.m in Sources */,
 				2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */,

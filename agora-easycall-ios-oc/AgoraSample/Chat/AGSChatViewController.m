@@ -10,6 +10,7 @@
 #import <AgoraRtcEngineKit/AgoraRTCEngineKit.h>
 #import "AGSCoreDataManager.h"
 #import "AGSProfileViewController.h"
+#import "AGSChatEncryptObserver.h"
 
 @interface AGSChatViewController ()
 {
@@ -281,12 +282,16 @@
         }
     }];
 
+//    [AGSChatEncryptObserver registerEncryptObserver:self.agoraKit];
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex:0];
     [self.agoraKit setLogFile:[NSString stringWithFormat:@"%@/agora.log", docDir]];
     [self.agoraKit setSpeakerphoneVolume:200];
     [self.agoraKit enableNetworkTest];
-    
+
+//    registerAgoraPacketObserver([self.agoraKit getNativeHandle], nil);
+
     [self setUpVideo];
     [self setUpBlocks];
     [self setupMenuSettingBlocks];
