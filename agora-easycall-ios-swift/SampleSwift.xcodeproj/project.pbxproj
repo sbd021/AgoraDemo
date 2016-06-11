@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202BA2051D08408900801078 /* AGSChatEncryptObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = 202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */; };
 		20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */; };
 		20933E101C745772009DD779 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0F1C745772009DD779 /* libCrasheye.a */; };
 		20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F91CF58E3500646D92 /* VideoToolbox.framework */; };
@@ -79,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		202BA2031D08408900801078 /* AGSChatEncryptObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSChatEncryptObserver.h; sourceTree = "<group>"; };
+		202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AGSChatEncryptObserver.mm; sourceTree = "<group>"; };
 		20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		20933E0F1C745772009DD779 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		20A103F91CF58E3500646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
@@ -245,6 +248,8 @@
 		C7680E941BC509F700A5B26B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				202BA2031D08408900801078 /* AGSChatEncryptObserver.h */,
+				202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */,
 				C7680E951BC509F700A5B26B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -586,6 +591,7 @@
 				C7CF18061BC50FDD005BE5D5 /* AGSCallBackView.m in Sources */,
 				C7CF17FA1BC50FDD005BE5D5 /* REFrostedContainerViewController.m in Sources */,
 				C7CF17F61BC50FDD005BE5D5 /* NSDate+Helper.m in Sources */,
+				202BA2051D08408900801078 /* AGSChatEncryptObserver.mm in Sources */,
 				C7DE4ED71BE1FD210064F1B1 /* AGSMenuPushSegue.swift in Sources */,
 				C7DE4ED11BE1BCF50064F1B1 /* AGSMenuViewController.swift in Sources */,
 				C7CF18001BC50FDD005BE5D5 /* AGSRatingView.m in Sources */,

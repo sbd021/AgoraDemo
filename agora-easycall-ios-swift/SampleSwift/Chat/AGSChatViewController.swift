@@ -281,7 +281,9 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
                 }
             }
         })
-        
+
+        AGSChatEncryptObserver.registerEncryptObserver(agoraKit)
+
         var filePath: String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!
         filePath.appendContentsOf("/agora.log")
         agoraKit.setLogFile(filePath)

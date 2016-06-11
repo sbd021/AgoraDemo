@@ -43,9 +43,11 @@ class AGSLoginViewController: AGSBaseViewController { //:base
             keyTextField.text = vendorKey
         } else {
             let innerKeyUrl = NSURL(string: "http://192.168.99.253:8970/agora.inner.test.key.txt")
-            let jsonData: NSData = NSData(contentsOfURL: innerKeyUrl!)!
-            let innerVendorKey = NSString(data: jsonData, encoding: NSUTF8StringEncoding)
-            self.keyTextField.text = innerVendorKey!.stringByReplacingOccurrencesOfString("\n", withString: "") // Please use your own key. The inner test key is just invalid in public.
+            if let jsonData: NSData = NSData(contentsOfURL: innerKeyUrl!) {
+                let innerVendorKey = NSString(data: jsonData, encoding: NSUTF8StringEncoding)
+                self.keyTextField.text = innerVendorKey!.stringByReplacingOccurrencesOfString("\n", withString: "") // Please use your own key. The inner test key is just invalid in public.
+            }
+
         }
      
     }

@@ -15,3 +15,4 @@
 #import "AGSCallBackView.h"
 
 #import "Crasheye.h"
+#import "AGSChatEncryptObserver.h"
