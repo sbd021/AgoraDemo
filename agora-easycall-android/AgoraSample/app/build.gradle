@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "io.agora.sample.agora"
@@ -29,5 +29,4 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: '../../libs')
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile files('libs/crasheye.jar')
 }

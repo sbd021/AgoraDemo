@@ -3,7 +3,7 @@ package io.agora.sample.agora;
 import android.app.Application;
 import android.content.SharedPreferences;
 
-import com.xsj.crasheye.Crasheye;
+//import com.xsj.crasheye.Crasheye;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class AgoraApplication extends Application {
 
         super.onCreate();
 
-        Crasheye.initWithNativeHandle(this, "e1925440");
+//        Crasheye.initWithNativeHandle(this, "e1925440");
 
         messageHandler = new MessageHandler();
 

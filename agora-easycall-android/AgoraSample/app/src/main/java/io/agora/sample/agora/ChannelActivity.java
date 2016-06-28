@@ -350,6 +350,8 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         ((AgoraApplication) getApplication()).setEngineHandlerActivity(this);
 
         rtcEngine.setLogFile(((AgoraApplication) getApplication()).getPath() + "/" + Integer.toString(Math.abs((int) System.currentTimeMillis())) + ".txt");
+
+        RtcEngineEncryption.enableEncryption(rtcEngine.getNativeHandle());
     }
 
     private void setupChannel(){
@@ -720,12 +722,6 @@ public class ChannelActivity extends BaseEngineHandlerActivity {
         callId=rtcEngine.getCallId();
 
         ((AgoraApplication)getApplication()).setCallId(callId);
-
-        String recordValue = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss").format(Calendar.getInstance().getTime());
-
-        String recordUrl = rtcEngine.makeQualityReportUrl(channel, uid, 0, 0);
-
-        ((AgoraApplication) getApplication()).setRecordDate(callId, recordValue + "+" + recordUrl);
     }
 
     public void onError(final int err){
