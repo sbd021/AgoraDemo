@@ -10,7 +10,6 @@
 		076F02B2197FC8BB008F575C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076F02B1197FC8BB008F575C /* AudioToolbox.framework */; };
 		07B112F61963B58C00E4E80C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B112F51963B58C00E4E80C /* SystemConfiguration.framework */; };
 		07B112FE1963B7AA00E4E80C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B112FD1963B7AA00E4E80C /* libc++.dylib */; };
-		2019E8031C34DDD100B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E8021C34DDD100B281E3 /* libCrasheye.a */; };
 		2019E8051C34DE8200B281E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E8041C34DE8200B281E3 /* libz.tbd */; };
 		202CC9711C0C8367003310C1 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC9701C0C8367003310C1 /* AgoraAudioKit.framework */; };
 		A4FB05BA19448E4C00192816 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FB05B919448E4C00192816 /* Foundation.framework */; };
@@ -63,7 +62,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2019E8051C34DE8200B281E3 /* libz.tbd in Frameworks */,
-				2019E8031C34DDD100B281E3 /* libCrasheye.a in Frameworks */,
 				202CC9711C0C8367003310C1 /* AgoraAudioKit.framework in Frameworks */,
 				B6D0A4E61B0A2850006DB2F1 /* CoreMedia.framework in Frameworks */,
 				B6D0A4E41B0A27B6006DB2F1 /* CoreMotion.framework in Frameworks */,

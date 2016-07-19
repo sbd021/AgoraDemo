@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        Crasheye.initWithAppKey("29114fb0")
-        
-        //
         AGSAgoraKitManager.shareManager.delegate = self;
         
         return true

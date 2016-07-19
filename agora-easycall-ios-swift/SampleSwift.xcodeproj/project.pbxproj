@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		202BA2051D08408900801078 /* AGSChatEncryptObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = 202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */; };
 		20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */; };
-		20933E101C745772009DD779 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0F1C745772009DD779 /* libCrasheye.a */; };
 		20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F91CF58E3500646D92 /* VideoToolbox.framework */; };
 		C70B49BF1BD4720700885E30 /* AGSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */; };
 		C70EE7A61BCF83E300458992 /* AGSLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */; };
@@ -83,7 +82,6 @@
 		202BA2031D08408900801078 /* AGSChatEncryptObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSChatEncryptObserver.h; sourceTree = "<group>"; };
 		202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AGSChatEncryptObserver.mm; sourceTree = "<group>"; };
 		20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		20933E0F1C745772009DD779 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		20A103F91CF58E3500646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSNavigationBar.swift; path = SampleSwift/AGSNavigationBar.swift; sourceTree = SOURCE_ROOT; };
 		C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLaunchViewController.swift; path = SampleSwift/AGSLaunchViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -188,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */,
-				20933E101C745772009DD779 /* libCrasheye.a in Frameworks */,
 				20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7FD24471BE68D2E0064454F /* CoreLocation.framework in Frameworks */,
 				C7FD24451BE68D220064454F /* MobileCoreServices.framework in Frameworks */,
@@ -213,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				20A103F91CF58E3500646D92 /* VideoToolbox.framework */,
-				20933E0F1C745772009DD779 /* libCrasheye.a */,
 				20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */,
 				C7D27F661BC518C3002E72B6 /* Framework */,
 				C7680E931BC509F700A5B26B /* SampleSwift */,
@@ -752,10 +748,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/libs/Crasheye",
-					"$(PROJECT_DIR)/Crasheye",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -793,10 +786,7 @@
 					"$(PROJECT_DIR)/libs",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/libs/Crasheye",
-					"$(PROJECT_DIR)/Crasheye",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
