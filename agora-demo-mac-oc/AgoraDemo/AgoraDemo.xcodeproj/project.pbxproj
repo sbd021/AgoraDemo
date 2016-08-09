@@ -35,7 +35,7 @@
 		202966F21C85CC6200D894AB /* NSButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966E01C85CC6200D894AB /* NSButton+Ext.m */; };
 		202966F31C85CC6200D894AB /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966E21C85CC6200D894AB /* NSColor+Hex.m */; };
 		202966F41C85CC6200D894AB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 202966E41C85CC6200D894AB /* Localizable.strings */; };
-		202966F61C86CA6000D894AB /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966F51C86CA6000D894AB /* AgoraRtcEngineKit.framework */; };
+		CE5CDFC11D59A3850046ED0C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +93,7 @@
 		202966E21C85CC6200D894AB /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
 		202966E51C85CC6200D894AB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		202966F51C86CA6000D894AB /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = ../libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				202966F61C86CA6000D894AB /* AgoraRtcEngineKit.framework in Frameworks */,
+				CE5CDFC11D59A3850046ED0C /* AgoraRtcEngineKit.framework in Frameworks */,
 				202966C31C85C86100D894AB /* libc++.tbd in Frameworks */,
 				202966C11C85C85700D894AB /* Foundation.framework in Frameworks */,
 				202966BF1C85C83E00D894AB /* QTKit.framework in Frameworks */,
@@ -199,6 +200,7 @@
 		202966C41C85CB8600D894AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */,
 				202966F51C86CA6000D894AB /* AgoraRtcEngineKit.framework */,
 				202966C21C85C86100D894AB /* libc++.tbd */,
 				202966C01C85C85700D894AB /* Foundation.framework */,
@@ -489,6 +491,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -505,6 +508,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

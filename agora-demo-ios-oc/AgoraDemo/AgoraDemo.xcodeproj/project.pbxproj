@@ -26,13 +26,12 @@
 		2019E7F91C34CCF600B281E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */; };
 		2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FA1C34CD8700B281E3 /* libz.tbd */; };
 		20A103F61CF58CD100646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F51CF58CD100646D92 /* VideoToolbox.framework */; };
-		20C8384B1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */; };
-		20C8384D1C3A4F4F006CE5D4 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */; };
 		2C00E95E1BA152D600605003 /* AGDChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00E95D1BA152D600605003 /* AGDChatCell.m */; };
 		2C5DBCDD1BA7D89900952C9D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDC1BA7D89900952C9D /* MobileCoreServices.framework */; };
 		2C5DBCDF1BA7D8AA00952C9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCDE1BA7D8AA00952C9D /* CoreLocation.framework */; };
 		2C5DBCE11BA7D8B800952C9D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCE01BA7D8B800952C9D /* libicucore.dylib */; };
 		2C5DBCE31BA7D94400952C9D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5DBCE21BA7D94400952C9D /* libsqlite3.dylib */; };
+		CE9359631D598AA0008D5421 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9359621D598AA0008D5421 /* AgoraRtcEngineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,13 +80,13 @@
 		2019E7FA1C34CD8700B281E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		20A103F51CF58CD100646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = ../libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = ../libs/Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2C00E95C1BA152D600605003 /* AGDChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGDChatCell.h; sourceTree = "<group>"; };
 		2C00E95D1BA152D600605003 /* AGDChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDChatCell.m; sourceTree = "<group>"; };
 		2C5DBCDC1BA7D89900952C9D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2C5DBCDE1BA7D8AA00952C9D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2C5DBCE01BA7D8B800952C9D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		2C5DBCE21BA7D94400952C9D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		CE9359621D598AA0008D5421 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9359631D598AA0008D5421 /* AgoraRtcEngineKit.framework in Frameworks */,
 				20A103F61CF58CD100646D92 /* VideoToolbox.framework in Frameworks */,
-				20C8384D1C3A4F4F006CE5D4 /* libCrasheye.a in Frameworks */,
-				20C8384B1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */,
 				2019E7FB1C34CD8700B281E3 /* libz.tbd in Frameworks */,
 				2019E7F91C34CCF600B281E3 /* AudioToolbox.framework in Frameworks */,
 				18F23F991B9FC4FF00A7A622 /* AVFoundation.framework in Frameworks */,
@@ -191,8 +189,8 @@
 		18F23F8D1B9FC49100A7A622 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE9359621D598AA0008D5421 /* AgoraRtcEngineKit.framework */,
 				20A103F51CF58CD100646D92 /* VideoToolbox.framework */,
-				20C8384C1C3A4F4F006CE5D4 /* libCrasheye.a */,
 				20C8384A1C3A4F39006CE5D4 /* AgoraRtcEngineKit.framework */,
 				2019E7FA1C34CD8700B281E3 /* libz.tbd */,
 				2019E7F81C34CCF600B281E3 /* AudioToolbox.framework */,
@@ -259,7 +257,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AGD;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = apple;
 				TargetAttributes = {
 					18F23F621B9FC3F400A7A622 = {
@@ -378,10 +376,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -400,7 +400,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -422,7 +422,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -437,7 +438,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1090cd99-3884-4006-b19f-f8581cb7e8b3";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -446,63 +447,61 @@
 		18F23F871B9FC3F400A7A622 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/",
+					"$(PROJECT_DIR)/libs",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 					AgoraDemo_IOS,
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/Crasheye/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/Crasheye/";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 			};
 			name = Debug;
 		};
 		18F23F881B9FC3F400A7A622 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/",
+					"$(PROJECT_DIR)/libs",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/Crasheye/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = AgoraDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/Crasheye/";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.simpledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 			};
 			name = Release;
 		};

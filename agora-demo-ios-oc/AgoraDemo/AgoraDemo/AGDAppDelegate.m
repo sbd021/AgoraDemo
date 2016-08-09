@@ -7,7 +7,6 @@
 //
 
 #import "AGDAppDelegate.h"
-#import "crasheye.h"
 
 @interface AGDAppDelegate ()
 
@@ -18,7 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-   [Crasheye initWithAppKey:@"d7b5e280"];
     return YES;
 }
 

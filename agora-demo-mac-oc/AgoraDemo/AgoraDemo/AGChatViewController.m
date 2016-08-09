@@ -249,7 +249,8 @@ typedef NS_ENUM(NSInteger, AGLayoutMode) {
 - (void)initAgoraKit {
     AGGlobalSessionConfiguration *config = [AGGlobalSessionConfiguration configuration];
     
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:config.vendorKey delegate:self];
+    //self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:config.vendorKey delegate:self];
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:config delegate:self];
     [self.agoraKit setChannelProfile:config.channelProfile];
     
     if (config.videoEnabled) {

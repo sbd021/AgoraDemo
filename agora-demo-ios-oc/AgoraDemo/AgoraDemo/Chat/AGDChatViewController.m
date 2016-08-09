@@ -85,7 +85,8 @@
 - (void)initAgoraKit
 {
     // use test key
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKey delegate:self];
+    //self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKey delegate:self];
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:self.vendorKey delegate:self];
         
     [self setUpVideo];
     [self setUpBlocks];

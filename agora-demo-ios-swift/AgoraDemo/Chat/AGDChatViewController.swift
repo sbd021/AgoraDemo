@@ -60,7 +60,7 @@ class AGDChatViewController: UIViewController {
         }()
  
     lazy var agoraKit: AgoraRtcEngineKit = {
-        let kit = AgoraRtcEngineKit.sharedEngineWithVendorKey(self.vendorKey) { errorCode -> Void in
+        let kit = AgoraRtcEngineKit.sharedEngineWithAppId(self.vendorKey) { errorCode -> Void in
             if errorCode == AgoraRtcErrorCode.Error_InvalidVendorKey {
                 self.agoraKit.leaveChannel(nil)
                 self.errorKeyAlert.show()
