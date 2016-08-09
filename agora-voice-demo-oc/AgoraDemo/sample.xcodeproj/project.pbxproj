@@ -11,7 +11,6 @@
 		07B112F61963B58C00E4E80C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B112F51963B58C00E4E80C /* SystemConfiguration.framework */; };
 		07B112FE1963B7AA00E4E80C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B112FD1963B7AA00E4E80C /* libc++.dylib */; };
 		2019E8051C34DE8200B281E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E8041C34DE8200B281E3 /* libz.tbd */; };
-		202CC9711C0C8367003310C1 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC9701C0C8367003310C1 /* AgoraAudioKit.framework */; };
 		A4FB05BA19448E4C00192816 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FB05B919448E4C00192816 /* Foundation.framework */; };
 		A4FB05BC19448E4C00192816 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FB05BB19448E4C00192816 /* CoreGraphics.framework */; };
 		A4FB05BE19448E4C00192816 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FB05BD19448E4C00192816 /* UIKit.framework */; };
@@ -25,6 +24,7 @@
 		B6BA5EFF1A1216FE00C1122F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BA5EFD1A1215DF00C1122F /* AVFoundation.framework */; };
 		B6D0A4E41B0A27B6006DB2F1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D0A4E31B0A27B6006DB2F1 /* CoreMotion.framework */; };
 		B6D0A4E61B0A2850006DB2F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D0A4E51B0A2850006DB2F1 /* CoreMedia.framework */; };
+		CE5CDFDB1D59DA260046ED0C /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFDA1D59DA260046ED0C /* AgoraAudioKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +32,7 @@
 		07861AD6198742C000730A8F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		07B112F51963B58C00E4E80C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		07B112FD1963B7AA00E4E80C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		2019E8021C34DDD100B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		2019E8041C34DE8200B281E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		202CC9701C0C8367003310C1 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraAudioKit.framework; sourceTree = "<group>"; };
 		A4FB05B619448E4C00192816 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4FB05B919448E4C00192816 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A4FB05BB19448E4C00192816 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,6 +52,7 @@
 		B6BA5EFD1A1215DF00C1122F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B6D0A4E31B0A27B6006DB2F1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B6D0A4E51B0A2850006DB2F1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		CE5CDFDA1D59DA260046ED0C /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = libs/AgoraAudioKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5CDFDB1D59DA260046ED0C /* AgoraAudioKit.framework in Frameworks */,
 				2019E8051C34DE8200B281E3 /* libz.tbd in Frameworks */,
-				202CC9711C0C8367003310C1 /* AgoraAudioKit.framework in Frameworks */,
 				B6D0A4E61B0A2850006DB2F1 /* CoreMedia.framework in Frameworks */,
 				B6D0A4E41B0A27B6006DB2F1 /* CoreMotion.framework in Frameworks */,
 				B6BA5EFF1A1216FE00C1122F /* AVFoundation.framework in Frameworks */,
@@ -99,9 +98,8 @@
 		A4FB05B819448E4C00192816 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE5CDFDA1D59DA260046ED0C /* AgoraAudioKit.framework */,
 				2019E8041C34DE8200B281E3 /* libz.tbd */,
-				2019E8021C34DDD100B281E3 /* libCrasheye.a */,
-				202CC9701C0C8367003310C1 /* AgoraAudioKit.framework */,
 				B6D0A4E51B0A2850006DB2F1 /* CoreMedia.framework */,
 				B6D0A4E31B0A27B6006DB2F1 /* CoreMotion.framework */,
 				B6BA5EFD1A1215DF00C1122F /* AVFoundation.framework */,
@@ -337,22 +335,16 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/libs",
 				);
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sample/sample-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/Crasheye",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "sample/sample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/Crasheye",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-licucore",
@@ -360,7 +352,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.voicedemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,22 +367,16 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/libs",
 				);
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sample/sample-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/Crasheye",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "sample/sample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../libs/Crasheye",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-licucore",
@@ -398,7 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.voicedemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -61,7 +61,7 @@ static NSString * const KeyVendorKey = @"VendorKey";
     }
     
     
-    self.agoraRtcEngine = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.vendorKeyTextField.text delegate:self];
+    self.agoraRtcEngine = [AgoraRtcEngineKit sharedEngineWithAppId:self.vendorKeyTextField.text delegate:self];
     
     NSURL *docURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *logDir = [docURL path];
@@ -88,7 +88,7 @@ static NSString * const KeyVendorKey = @"VendorKey";
 //        [strongSelf appendLogString:[NSString stringWithFormat:@"network quality: %d", (int)quality]];
 //    }];
     
-    [self.agoraRtcEngine enableNetworkTest];
+    [self.agoraRtcEngine enableLastmileTest];
 }
 
 - (void) rtcEngine:(AgoraRtcEngineKit *)engine audioQualityOfUid:(NSUInteger)uid quality:(AgoraRtcQuality)quality delay:(NSUInteger)delay lost:(NSUInteger)lost{
