@@ -11,9 +11,7 @@
 		202966851C85C78E00D894AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966841C85C78E00D894AB /* main.m */; };
 		2029668A1C85C78E00D894AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202966891C85C78E00D894AB /* Assets.xcassets */; };
 		202966981C85C78E00D894AB /* AgoraDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966971C85C78E00D894AB /* AgoraDemoTests.m */; };
-		202966B41C85C7F500D894AB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B21C85C7F500D894AB /* AudioToolbox.framework */; };
 		202966B51C85C7F500D894AB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B31C85C7F500D894AB /* CoreAudio.framework */; };
-		202966B71C85C7FE00D894AB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B61C85C7FE00D894AB /* AVFoundation.framework */; };
 		202966BA1C85C82200D894AB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B81C85C82200D894AB /* CoreMedia.framework */; };
 		202966BB1C85C82200D894AB /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B91C85C82200D894AB /* CoreWLAN.framework */; };
 		202966BD1C85C83200D894AB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966BC1C85C83200D894AB /* SystemConfiguration.framework */; };
@@ -35,7 +33,10 @@
 		202966F21C85CC6200D894AB /* NSButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966E01C85CC6200D894AB /* NSButton+Ext.m */; };
 		202966F31C85CC6200D894AB /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 202966E21C85CC6200D894AB /* NSColor+Hex.m */; };
 		202966F41C85CC6200D894AB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 202966E41C85CC6200D894AB /* Localizable.strings */; };
-		CE5CDFC11D59A3850046ED0C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */; };
+		CE5CDFCC1D59BA550046ED0C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B21C85C7F500D894AB /* AudioToolbox.framework */; };
+		CE5CDFCD1D59BA5A0046ED0C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202966B61C85C7FE00D894AB /* AVFoundation.framework */; };
+		CE5CDFCE1D59BA710046ED0C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */; };
+		CE5CDFD01D59BB1C0046ED0C /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFCF1D59BB1C0046ED0C /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		202966E51C85CC6200D894AB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		202966F51C86CA6000D894AB /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = ../libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		CE5CDFCF1D59BB1C0046ED0C /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5CDFC11D59A3850046ED0C /* AgoraRtcEngineKit.framework in Frameworks */,
+				CE5CDFD01D59BB1C0046ED0C /* VideoToolbox.framework in Frameworks */,
+				CE5CDFCE1D59BA710046ED0C /* AgoraRtcEngineKit.framework in Frameworks */,
+				CE5CDFCD1D59BA5A0046ED0C /* AVFoundation.framework in Frameworks */,
+				CE5CDFCC1D59BA550046ED0C /* AudioToolbox.framework in Frameworks */,
 				202966C31C85C86100D894AB /* libc++.tbd in Frameworks */,
 				202966C11C85C85700D894AB /* Foundation.framework in Frameworks */,
 				202966BF1C85C83E00D894AB /* QTKit.framework in Frameworks */,
@@ -109,8 +114,6 @@
 				202966BA1C85C82200D894AB /* CoreMedia.framework in Frameworks */,
 				202966BB1C85C82200D894AB /* CoreWLAN.framework in Frameworks */,
 				202966B51C85C7F500D894AB /* CoreAudio.framework in Frameworks */,
-				202966B71C85C7FE00D894AB /* AVFoundation.framework in Frameworks */,
-				202966B41C85C7F500D894AB /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +203,7 @@
 		202966C41C85CB8600D894AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE5CDFCF1D59BB1C0046ED0C /* VideoToolbox.framework */,
 				CE5CDFC01D59A3850046ED0C /* AgoraRtcEngineKit.framework */,
 				202966F51C86CA6000D894AB /* AgoraRtcEngineKit.framework */,
 				202966C21C85C86100D894AB /* libc++.tbd */,

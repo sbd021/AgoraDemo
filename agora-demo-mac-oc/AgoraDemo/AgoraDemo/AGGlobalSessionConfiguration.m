@@ -14,7 +14,7 @@
     static dispatch_once_t onceToken;
     static AGGlobalSessionConfiguration *config;
     dispatch_once(&onceToken, ^{
-        config = [AGGlobalSessionConfiguration new];
+        config = [[AGGlobalSessionConfiguration alloc] init];
         config.vendorKey = @"";
         config.roomIdentifier = @"";
         config.channelProfile = AgoraRtc_ChannelProfile_Free;
