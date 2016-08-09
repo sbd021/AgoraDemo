@@ -32,10 +32,8 @@
 		18F34DEC1BAFD2E7000ADECA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DEB1BAFD2E7000ADECA /* Foundation.framework */; };
 		18F34DEE1BAFD312000ADECA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F34DED1BAFD312000ADECA /* UIKit.framework */; };
 		18F34DF71BB0090E000ADECA /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F34DF61BB0090D000ADECA /* VolumeView.m */; };
-		2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2019E7FC1C34D4A600B281E3 /* libCrasheye.a */; };
 		209A2CB81D06BF5C003E4950 /* AGSChatEncryptObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = 209A2CB71D06BF5C003E4950 /* AGSChatEncryptObserver.mm */; };
 		20A103FC1CF58E6200646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103FB1CF58E6200646D92 /* VideoToolbox.framework */; };
-		20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */; };
 		2C11930B1BB3F20500CE994E /* FOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193041BB3F20500CE994E /* FOWebViewController.m */; };
 		2C11930C1BB3F20500CE994E /* FOWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1193051BB3F20500CE994E /* FOWebViewController.xib */; };
 		2C11930D1BB3F20500CE994E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1193081BB3F20500CE994E /* NJKWebViewProgress.m */; };
@@ -72,12 +70,12 @@
 		2CE5460E1B9D6A6100EDE8BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE5460D1B9D6A6100EDE8BB /* SystemConfiguration.framework */; };
 		C70B49C61BD60F1100885E30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C70B49C81BD60F1100885E30 /* Localizable.strings */; };
 		C70B49DD1BD6EFEF00885E30 /* AGSSplashSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = C70B49DC1BD6EFEF00885E30 /* AGSSplashSegue.m */; };
-		C773BD6B1BD6F7E600F92C3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C773BD6A1BD6F7E600F92C3B /* Info.plist */; };
 		C7A11D591BDF50CF008D0407 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D581BDF50CF008D0407 /* CoreLocation.framework */; };
 		C7A11D5B1BDF50E9008D0407 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */; };
 		C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */; };
 		C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A11D5E1BDF51AF008D0407 /* libc++.tbd */; };
 		C7FD24671BE9B14D0064454F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7FD24691BE9B14D0064454F /* InfoPlist.strings */; };
+		CE5CDFD61D59D24A0046ED0C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFD41D59CD610046ED0C /* AgoraRtcEngineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,11 +135,9 @@
 		18F34DED1BAFD312000ADECA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18F34DF51BB0090D000ADECA /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
 		18F34DF61BB0090D000ADECA /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
-		2019E7FC1C34D4A600B281E3 /* libCrasheye.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrasheye.a; path = Crasheye/libCrasheye.a; sourceTree = "<group>"; };
 		209A2CB61D06BF35003E4950 /* AGSChatEncryptObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSChatEncryptObserver.h; sourceTree = "<group>"; };
 		209A2CB71D06BF5C003E4950 /* AGSChatEncryptObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AGSChatEncryptObserver.mm; sourceTree = "<group>"; };
 		20A103FB1CF58E6200646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		2C1193031BB3F20500CE994E /* FOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOWebViewController.h; sourceTree = "<group>"; };
 		2C1193041BB3F20500CE994E /* FOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOWebViewController.m; sourceTree = "<group>"; };
 		2C1193051BB3F20500CE994E /* FOWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FOWebViewController.xib; sourceTree = "<group>"; };
@@ -213,6 +209,7 @@
 		C7FD24681BE9B14D0064454F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7FD246C1BE9B1A50064454F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7FD246D1BE9B1AA0064454F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CE5CDFD41D59CD610046ED0C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,9 +217,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5CDFD61D59D24A0046ED0C /* AgoraRtcEngineKit.framework in Frameworks */,
 				20A103FC1CF58E6200646D92 /* VideoToolbox.framework in Frameworks */,
-				20C8385B1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework in Frameworks */,
-				2019E7FD1C34D4A600B281E3 /* libCrasheye.a in Frameworks */,
 				C7A11D5F1BDF51AF008D0407 /* libc++.tbd in Frameworks */,
 				C7A11D5D1BDF516F008D0407 /* libsqlite3.tbd in Frameworks */,
 				C7A11D5B1BDF50E9008D0407 /* MobileCoreServices.framework in Frameworks */,
@@ -545,9 +541,8 @@
 		2CE545FA1B9D629600EDE8BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE5CDFD41D59CD610046ED0C /* AgoraRtcEngineKit.framework */,
 				20A103FB1CF58E6200646D92 /* VideoToolbox.framework */,
-				20C8385A1C48F45B006CE5D4 /* AgoraRtcEngineKit.framework */,
-				2019E7FC1C34D4A600B281E3 /* libCrasheye.a */,
 				C7A11D5E1BDF51AF008D0407 /* libc++.tbd */,
 				C7A11D5C1BDF516F008D0407 /* libsqlite3.tbd */,
 				C7A11D5A1BDF50E9008D0407 /* MobileCoreServices.framework */,
@@ -594,7 +589,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AGS;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Agora;
 				TargetAttributes = {
 					2CE545D01B9D54E400EDE8BB = {
@@ -645,7 +640,6 @@
 				18F1AB841BA64E2F00AECDF4 /* Login.storyboard in Resources */,
 				18F0F5201BD72DEE008E10E7 /* AGSVoiceTestViewController.xib in Resources */,
 				18F34DE41BAFC2A2000ADECA /* AGSCallBackView.xib in Resources */,
-				C773BD6B1BD6F7E600F92C3B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +775,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -865,7 +860,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 			};
 			name = Debug;
 		};
@@ -894,7 +889,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 			};
 			name = Release;
 		};

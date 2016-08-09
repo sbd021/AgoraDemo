@@ -270,7 +270,7 @@
     if (self.agoraKit) {
         self.agoraKit = nil;
     }
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:self.key error:^(AgoraRtcErrorCode errorCode) {
+    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:self.key error:^(AgoraRtcErrorCode errorCode) {
         if (errorCode == AgoraRtc_Error_NoError) {
             NSLog(@"agora kit init successfully");
         } else {
@@ -288,7 +288,7 @@
     NSString *docDir = [paths objectAtIndex:0];
     [self.agoraKit setLogFile:[NSString stringWithFormat:@"%@/agora.log", docDir]];
     [self.agoraKit setSpeakerphoneVolume:200];
-    [self.agoraKit enableNetworkTest];
+    [self.agoraKit enableLastmileTest];
 
 //    registerAgoraPacketObserver([self.agoraKit getNativeHandle], nil);
 
@@ -345,9 +345,9 @@
     //
     // Network
     //
-    [self.agoraKit networkQualityBlock:^(AgoraRtcQuality quality) {
+    [self.agoraKit networkQualityBlock:^(NSUInteger uid, AgoraRtcQuality rxQuality, AgoraRtcQuality txQuality) {
             NSString *imageName = @"";
-            switch (quality) {
+            switch (rxQuality) {
                 case AgoraRtc_Quality_Down:
                     imageName = @"ic_room_signal_none";
                     break;

@@ -38,7 +38,7 @@ static AGSAgoraKitManager *obj = nil;
 {
     _vendorKey = vendorKey;
     if (!self.agoraKit) {
-        self.agoraKit = [AgoraRtcEngineKit sharedEngineWithVendorKey:vendorKey error:^(AgoraRtcErrorCode errorCode) {
+        self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:vendorKey error:^(AgoraRtcErrorCode errorCode) {
             _errorCode = errorCode;
         }];
     }

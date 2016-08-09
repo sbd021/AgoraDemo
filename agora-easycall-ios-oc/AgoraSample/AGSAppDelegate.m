@@ -11,7 +11,6 @@
 #import "AGSCoreDataManager.h"
 #import "AGSChatViewController.h"
 #import "AGSCallBackView.h"
-#import "Crasheye.h"
 
 @interface AGSAppDelegate ()
 
@@ -21,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [Crasheye initWithAppKey:@"faf12510"];
+    //[Crasheye initWithAppKey:@"faf12510"];
     
     //
     [AGSAgoraKitManager shareManager].delegate = self;

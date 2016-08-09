@@ -270,7 +270,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
     {
         agoraKit = nil
         
-        agoraKit = AgoraRtcEngineKit.sharedEngineWithVendorKey(key, error: { (errorCode: AgoraRtcErrorCode) -> Void in
+        agoraKit = AgoraRtcEngineKit.sharedEngineWithAppId(key, error: { (errorCode: AgoraRtcErrorCode) -> Void in
             if errorCode == AgoraRtcErrorCode.Error_NoError {
                 print("agora kit init successfully")
             } else {
@@ -288,7 +288,7 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         filePath.appendContentsOf("/agora.log")
         agoraKit.setLogFile(filePath)
         agoraKit.setSpeakerphoneVolume(200)
-        agoraKit.enableNetworkTest()
+        agoraKit.enableLastmileTest()
         
         setUpVideo()
         setUpBlocks()
@@ -342,9 +342,9 @@ class AGSChatViewController:  UIViewController, UICollectionViewDelegate, UIColl
         //
         // Network qulity of myself
         //
-        self.agoraKit.networkQualityBlock { (quality: AgoraRtcQuality) -> Void in
+        self.agoraKit.networkQualityBlock { (uid:UInt, txQuality: AgoraRtcQuality,rxQuality: AgoraRtcQuality) -> Void in
             var imageName :String!
-            switch quality {
+            switch rxQuality {
             case .Quality_Down:
                 imageName = "ic_room_signal_none"
             case .Quality_VBad, .Quality_Bad:

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		202BA2051D08408900801078 /* AGSChatEncryptObserver.mm in Sources */ = {isa = PBXBuildFile; fileRef = 202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */; };
-		20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */; };
 		20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A103F91CF58E3500646D92 /* VideoToolbox.framework */; };
 		C70B49BF1BD4720700885E30 /* AGSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */; };
 		C70EE7A61BCF83E300458992 /* AGSLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */; };
@@ -76,12 +75,12 @@
 		C7FD24781BEA55FA0064454F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7FD24771BEA55FA0064454F /* Login.storyboard */; };
 		C7FD247A1BEA57480064454F /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7FD24791BEA57480064454F /* Menu.storyboard */; };
 		C7FD247C1BEA65BC0064454F /* AGSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD247B1BEA65BC0064454F /* AGSBaseViewController.swift */; };
+		CE5CDFD31D59C4390046ED0C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CDFD21D59C4390046ED0C /* AgoraRtcEngineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		202BA2031D08408900801078 /* AGSChatEncryptObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSChatEncryptObserver.h; sourceTree = "<group>"; };
 		202BA2041D08408900801078 /* AGSChatEncryptObserver.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AGSChatEncryptObserver.mm; sourceTree = "<group>"; };
-		20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		20A103F91CF58E3500646D92 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		C70B49BE1BD4720700885E30 /* AGSNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSNavigationBar.swift; path = SampleSwift/AGSNavigationBar.swift; sourceTree = SOURCE_ROOT; };
 		C70EE7A51BCF83E300458992 /* AGSLaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AGSLaunchViewController.swift; path = SampleSwift/AGSLaunchViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -178,6 +177,7 @@
 		C7FD24771BEA55FA0064454F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C7FD24791BEA57480064454F /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		C7FD247B1BEA65BC0064454F /* AGSBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGSBaseViewController.swift; sourceTree = "<group>"; };
+		CE5CDFD21D59C4390046ED0C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +185,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5CDFD31D59C4390046ED0C /* AgoraRtcEngineKit.framework in Frameworks */,
 				20A103FA1CF58E3500646D92 /* VideoToolbox.framework in Frameworks */,
-				20933E0E1C745765009DD779 /* AgoraRtcEngineKit.framework in Frameworks */,
 				C7FD24471BE68D2E0064454F /* CoreLocation.framework in Frameworks */,
 				C7FD24451BE68D220064454F /* MobileCoreServices.framework in Frameworks */,
 				C7FD24431BE68D070064454F /* libsqlite3.tbd in Frameworks */,
@@ -209,8 +209,8 @@
 		C7680E881BC509F700A5B26B = {
 			isa = PBXGroup;
 			children = (
+				CE5CDFD21D59C4390046ED0C /* AgoraRtcEngineKit.framework */,
 				20A103F91CF58E3500646D92 /* VideoToolbox.framework */,
-				20933E0D1C745765009DD779 /* AgoraRtcEngineKit.framework */,
 				C7D27F661BC518C3002E72B6 /* Framework */,
 				C7680E931BC509F700A5B26B /* SampleSwift */,
 				C7680EAC1BC509F700A5B26B /* SampleSwiftTests */,
@@ -505,7 +505,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Agora;
 				TargetAttributes = {
 					C7680E901BC509F700A5B26B = {
@@ -675,6 +675,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -766,7 +767,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.SampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				SWIFT_OBJC_BRIDGING_HEADER = "SampleSwift/SampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -804,7 +805,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.SampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ae43132-7fa9-41df-a911-470a2877d880";
+				PROVISIONING_PROFILE = "36365273-df15-4f6f-bcae-582d622cf307";
 				SWIFT_OBJC_BRIDGING_HEADER = "SampleSwift/SampleSwift-Bridging-Header.h";
 			};
 			name = Release;
