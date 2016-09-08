@@ -58,7 +58,7 @@ public class MediaHandlerMgr extends IRtcEngineEventHandler {
 
 	@Override
 	public void onRtcStats(RtcStats stats) {
-		onNetworkQuality(stats.lastmileQuality);
+		//onNetworkQuality(stats.lastmileQuality);
 	}
 	static String getQualityDesc(int quality) {
 		switch (quality) {
@@ -108,7 +108,7 @@ public class MediaHandlerMgr extends IRtcEngineEventHandler {
 	}
 
 	@Override
-	public void onNetworkQuality(int quality) {
+	public void onNetworkQuality(int uid, int txQuality, int rxQuality) {
 //        String msg = String.format("network quality %s", getQualityDesc(quality));
 //        notify2UIThread(MediaMessage.onWriteLog, msg);
 	}
