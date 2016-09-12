@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AGLayoutMode) {
     
     if (config.videoEnabled) {
         [self.agoraKit enableVideo];
-        [self.agoraKit setVideoProfile:config.videoProfile];
+        [self.agoraKit setVideoProfile:config.videoProfile landscape:false];
     } else {
         [self.agoraKit disableVideo];
     }

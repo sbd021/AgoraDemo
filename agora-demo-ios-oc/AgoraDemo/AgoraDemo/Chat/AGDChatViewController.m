@@ -185,7 +185,7 @@
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraRtcErrorCode)errorCode
 {
     __weak typeof(self) weakSelf = self;
-    if (errorCode == AgoraRtc_Error_InvalidVendorKey) {
+    if (errorCode == AgoraRtc_Error_InvalidAppId) {
         [weakSelf.agoraKit leaveChannel:nil];
         [weakSelf.errorKeyAlert show];
     }
