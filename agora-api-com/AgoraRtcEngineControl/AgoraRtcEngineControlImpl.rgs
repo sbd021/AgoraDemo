@@ -1,0 +1,26 @@
+HKCR
+{
+	Agora.RtcEngineControl.1 = s 'AgoraRtcEngineControl Class'
+	{
+		CLSID = s '{DA06DE88-2602-478F-A731-5BEA37508D69}'
+	}
+	Agora.RtcEngineControl = s 'AgoraRtcEngineControl Class'
+	{		
+		CurVer = s 'Agora.RtcEngineControl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {DA06DE88-2602-478F-A731-5BEA37508D69} = s 'AgoraRtcEngineControl Class'
+		{
+			ProgID = s 'Agora.RtcEngineControl.1'
+			VersionIndependentProgID = s 'Agora.RtcEngineControl'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{25184BF7-4EC2-4B07-BDAA-6FEF3DB78B00}'
+			Version = s '1.0'
+		}
+	}
+}

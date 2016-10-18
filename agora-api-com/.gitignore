@@ -1,0 +1,8 @@
+bin/
+Debug/
+DebugPS/
+ipch/
+*.sdf
+*.suo
+*.user
+*.opensdf
