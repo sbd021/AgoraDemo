@@ -13,6 +13,7 @@ class AgoraRtcEngine : public QObject, public agora::media::IExternalVideoRender
     Q_OBJECT
 public:
     explicit AgoraRtcEngine(QObject *parent = 0);
+    ~AgoraRtcEngine();
     virtual agora::media::IExternalVideoRender* createRenderInstance(const agora::media::ExternalVideoRenerContext& context) override;
     Q_INVOKABLE int joinChannel(const QString& key, const QString& channel, int uid);
     Q_INVOKABLE int leaveChannel();
