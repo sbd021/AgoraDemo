@@ -65,14 +65,25 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
 
     m_rtcEngine->initialize(context);
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    mediaEngine.queryInterface(*m_rtcEngine, AGORA_IID_MEDIA_ENGINE);
+    mediaEngine.queryInterface(m_rtcEngine.get(), AGORA_IID_MEDIA_ENGINE);
     if (mediaEngine)
         mediaEngine->registerVideoRenderFactory(this);
     m_rtcEngine->enableVideo();
 }
 
+AgoraRtcEngine::~AgoraRtcEngine()
+{
+    if(m_rtcEngine.get()) {
+        auto re = m_rtcEngine.get();
+        m_rtcEngine.release();
+        re->release();
+    }
+}
+
 int AgoraRtcEngine::joinChannel(const QString& key, const QString& channel, int uid)
 {
+    //m_rtcEngine->enableVideo();
+    m_rtcEngine->startPreview();
     int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), nullptr, uid);
     if (!r)
         emit joiningChannel();
@@ -119,7 +130,7 @@ QVariantMap AgoraRtcEngine::getRecordingDeviceList()
 {
     QVariantMap devices;
     QVariantList names, guids;
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return devices;
 
@@ -149,7 +160,7 @@ QVariantMap AgoraRtcEngine::getPlayoutDeviceList()
 {
     QVariantMap devices;
     QVariantList names, guids;
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return devices;
 
@@ -179,7 +190,7 @@ QVariantMap AgoraRtcEngine::getVideoDeviceList()
 {
     QVariantMap devices;
     QVariantList names, guids;
-    AVideoDeviceManager videoDeviceManager(*m_rtcEngine);
+    AVideoDeviceManager videoDeviceManager(m_rtcEngine.get());
     if (!videoDeviceManager)
         return devices;
 
@@ -209,7 +220,7 @@ int AgoraRtcEngine::setRecordingDevice(const QString& guid)
 {
     if (guid.isEmpty())
         return -1;
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return -1;
     return audioDeviceManager->setRecordingDevice(guid.toUtf8().data());
@@ -219,7 +230,7 @@ int AgoraRtcEngine::setPlayoutDevice(const QString& guid)
 {
     if (guid.isEmpty())
         return -1;
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return -1;
     return audioDeviceManager->setPlaybackDevice(guid.toUtf8().data());
@@ -229,7 +240,7 @@ int AgoraRtcEngine::setVideoDevice(const QString& guid)
 {
     if (guid.isEmpty())
         return -1;
-    AVideoDeviceManager videoDeviceManager(*m_rtcEngine);
+    AVideoDeviceManager videoDeviceManager(m_rtcEngine.get());
     if (!videoDeviceManager)
         return -1;
     return videoDeviceManager->setDevice(guid.toUtf8().data());
@@ -237,7 +248,7 @@ int AgoraRtcEngine::setVideoDevice(const QString& guid)
 
 int AgoraRtcEngine::getRecordingDeviceVolume()
 {
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return 0;
     int vol = 0;
@@ -248,7 +259,7 @@ int AgoraRtcEngine::getRecordingDeviceVolume()
 
 int AgoraRtcEngine::getPalyoutDeviceVolume()
 {
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return 0;
     int vol = 0;
@@ -259,7 +270,7 @@ int AgoraRtcEngine::getPalyoutDeviceVolume()
 
 int AgoraRtcEngine::setRecordingDeviceVolume(int volume)
 {
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return -1;
     return audioDeviceManager->setRecordingDeviceVolume(volume);
@@ -267,7 +278,7 @@ int AgoraRtcEngine::setRecordingDeviceVolume(int volume)
 
 int AgoraRtcEngine::setPalyoutDeviceVolume(int volume)
 {
-    AAudioDeviceManager audioDeviceManager(*m_rtcEngine);
+    AAudioDeviceManager audioDeviceManager(m_rtcEngine.get());
     if (!audioDeviceManager)
         return -1;
     return audioDeviceManager->setPlaybackDeviceVolume(volume);
@@ -275,7 +286,7 @@ int AgoraRtcEngine::setPalyoutDeviceVolume(int volume)
 
 int AgoraRtcEngine::testMicrophone(bool start, int interval)
 {
-    agora::rtc::AAudioDeviceManager dm(*m_rtcEngine);
+    agora::rtc::AAudioDeviceManager dm(m_rtcEngine.get());
     if (!dm)
         return -1;
     if (start)
@@ -286,7 +297,7 @@ int AgoraRtcEngine::testMicrophone(bool start, int interval)
 
 int AgoraRtcEngine::testSpeaker(bool start)
 {
-    agora::rtc::AAudioDeviceManager dm(*m_rtcEngine);
+    agora::rtc::AAudioDeviceManager dm(m_rtcEngine.get());
     if (!dm)
         return -1;
     if (start)
@@ -297,7 +308,7 @@ int AgoraRtcEngine::testSpeaker(bool start)
 
 int AgoraRtcEngine::testCamera(bool start, QQuickItem* view)
 {
-    agora::rtc::AVideoDeviceManager dm(*m_rtcEngine);
+    agora::rtc::AVideoDeviceManager dm(m_rtcEngine.get());
     if (!dm)
         return -1;
 
