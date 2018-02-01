@@ -28,7 +28,7 @@ HEADERS += \
 
 INCLUDEPATH += $$PWD/lib
 
-win32: LIBS += -L$$PWD/lib/ -lagorartc
+win32: LIBS += -L$$PWD/lib/ -lagora_rtc_sdk
 
 macx:{
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.11

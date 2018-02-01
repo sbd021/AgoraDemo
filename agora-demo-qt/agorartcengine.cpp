@@ -65,7 +65,7 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
 
     m_rtcEngine->initialize(context);
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    mediaEngine.queryInterface(m_rtcEngine.get(), AGORA_IID_MEDIA_ENGINE);
+    mediaEngine.queryInterface(m_rtcEngine.get(), agora::AGORA_IID_MEDIA_ENGINE);
     if (mediaEngine)
         mediaEngine->registerVideoRenderFactory(this);
     m_rtcEngine->enableVideo();
@@ -137,7 +137,7 @@ QVariantMap AgoraRtcEngine::getRecordingDeviceList()
     agora::util::AutoPtr<IAudioDeviceCollection> spCollection(audioDeviceManager->enumerateRecordingDevices());
     if (!spCollection)
         return devices;
-    char name[128], guid[128];
+	char name[MAX_DEVICE_ID_LENGTH], guid[MAX_DEVICE_ID_LENGTH];
     int count = spCollection->getCount();
     if (count > 0)
     {
@@ -167,7 +167,7 @@ QVariantMap AgoraRtcEngine::getPlayoutDeviceList()
     agora::util::AutoPtr<IAudioDeviceCollection> spCollection(audioDeviceManager->enumeratePlaybackDevices());
     if (!spCollection)
         return devices;
-    char name[128], guid[128];
+	char name[MAX_DEVICE_ID_LENGTH], guid[MAX_DEVICE_ID_LENGTH];
     int count = spCollection->getCount();
     if (count > 0)
     {
@@ -197,7 +197,7 @@ QVariantMap AgoraRtcEngine::getVideoDeviceList()
     agora::util::AutoPtr<IVideoDeviceCollection> spCollection(videoDeviceManager->enumerateVideoDevices());
     if (!spCollection)
         return devices;
-    char name[128], guid[128];
+	char name[MAX_DEVICE_ID_LENGTH], guid[MAX_DEVICE_ID_LENGTH];
     int count = spCollection->getCount();
     if (count > 0)
     {

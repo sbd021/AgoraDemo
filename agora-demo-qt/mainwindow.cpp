@@ -34,6 +34,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+	if (m_contentView)
+	{
+		delete m_contentView;
+		m_contentView = NULL;
+	}
+	
 }
 
 void MainWindow::joiningChannel()
